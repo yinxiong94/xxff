@@ -6,11 +6,11 @@
         <img src="../assets/logo.png"
              alt="" />
         <div class="nav_li">
-          <a href="#">主页</a>
-          <a href="#">套餐购买</a>
-          <a href="#">发布</a>
-          <a href="#">我的应用</a>
-          <a href="#">个人中心</a>
+          <p>主页</p>
+          <p>套餐购买</p>
+          <p>发布</p>
+          <p>我的应用</p>
+          <p>个人中心</p>
         </div>
         <div class="nav_right">
           <div class="notice">
@@ -47,10 +47,11 @@ export default {
   justify-content: space-between;
   margin-top: 25px;
 }
-.nav .nav_li a {
+.nav .nav_li p {
   font-size: 20px;
   height: 20px;
   line-height: 20px;
+  cursor:pointer;
 }
 .nav .nav_right {
   width: 184px;

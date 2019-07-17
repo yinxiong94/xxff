@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div class="">
+   
+      <Header></Header>
+    
     <div class="cont_bg">
       <div class="cont_text">
         <span class="cont_span1">国内最全面的APP分发服务商</span>
@@ -228,8 +231,13 @@
 </template>
 
 <script>
+import Header from "../common/header"
 export default {
+  components:{
+      Header
+    },
   data() {
+    
     return {
       curr: 0
     };
@@ -245,6 +253,9 @@ export default {
 <style>
 body {
   margin: 0 !important;
+}
+.cont_top{
+  height: 200px;
 }
 .cont_bg {
   background: url("../assets/shouebeij.png") no-repeat;
