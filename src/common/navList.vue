@@ -1,34 +1,13 @@
 <template>
   <div class="navList">
     <ul>
-      <li>
-        账户总览
-        <img src="../assets/nav1.png"
-             alt="">
-      </li>
-      <li class="blue">
-        我的钱包
-        <img src="../assets/nav12.png"
-             alt="">
-      </li>
-      <li>
-        修改资料
-        <img src="../assets/nav3.png"
-             alt="">
-      </li>
-      <li>
-        我的优惠券
-        <img src="../assets/nav4.png"
-             alt="">
-      </li>
-      <li>
-        我的消息
-        <img src="../assets/nav5.png"
-             alt="">
-      </li>
-      <li>
-        交易明细
-        <img src="../assets/nav6.png"
+      <li v-for="item  in list"
+          v-bind:key="item.id"
+          :data-index='item.id'
+          :class="item.off?' ':'blue'"
+          v-on:click="Jump($event)">
+        {{item.title}}
+        <img :src='item.off?item.Selection:item.noSelection'
              alt="">
       </li>
     </ul>
@@ -37,7 +16,69 @@
 
 <script>
 export default {
+  data () {
+    return {
+      list: [
+        {
+          id: 0,
+          title: '账户总览',
+          Selection: require('../assets/nav1.png'),
+          noSelection: require('../assets/nav11.png'),
+          off: false
+        },
+        {
+          id: 1,
+          title: '我的钱包',
+          Selection: require('../assets/nav2.png'),
+          noSelection: require('../assets/nav12.png'),
+          off: true
+        },
+        {
+          id: 2,
+          title: '修改资料',
+          Selection: require('../assets/nav3.png'),
+          noSelection: require('../assets/nav13.png'),
+          off: true
+        },
+        {
+          id: 3,
+          title: '我的优惠券',
+          Selection: require('../assets/nav4.png'),
+          noSelection: require('../assets/nav14.png'),
+          off: true
+        },
+        {
+          id: 4,
+          title: '我的消息',
+          Selection: require('../assets/nav5.png'),
+          noSelection: require('../assets/nav15.png'),
+          off: true
+        },
+        {
+          id: 5,
+          title: '交易明细',
+          Selection: require('../assets/nav6.png'),
+          noSelection: require('../assets/nav16.png'),
+          off: true
+        }
+      ]
+    }
+  },
+  methods: {
+    Jump: function (e) {
 
+      let index = e.target.dataset.index
+      let off = !this.list[index].off;
+      for (let i = 0; i < this.list.length; i++) {
+        if (index == i) {
+          this.list[index].off = !this.list[index].off;
+        } else {
+          this.list[i].off = true;
+        }
+      }
+    //  this.$router.push({ path:'/withdrawal'})
+    }
+  }
 }
 </script>
 
