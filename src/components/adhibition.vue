@@ -358,7 +358,7 @@
         </div>
       </div>
       <div class="pagination">
-        <el-pagination background layout="prev, pager, next" :total="1000" :size="10"></el-pagination>
+        <el-pagination background layout="prev, pager, next" :total="100" :size="10"></el-pagination>
       </div>
     </div>
     <Tail></Tail>
