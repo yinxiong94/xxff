@@ -5,8 +5,10 @@
       <dir class="banxin">
         <navList></navList>
         <div class="wallet">
-          <div class="title">我的钱包</div>
-          <div class="list">
+          <div :class="off == 0?'title':'title1'"
+               @click="Previous">{{title}}</div>
+          <div class="list"
+               v-if="off == 0">
             <div class="send">
               <div class="send_conter">
                 <span class="send_pirce1">5000.00</span>
@@ -19,17 +21,67 @@
                 <span class="send_Total">资产总额（￥）</span>
               </div>
             </div>
-            <div class="send">
+            <div class="send"
+                 @click="Recharge()">
               <div class="send_conter">
                 <div class="center">充值</div>
               </div>
             </div>
-            <div class="send">
+            <div class="send"
+                 @click="withdrawal()">
               <div class="send_conter">
                 <div class="center1">提现</div>
               </div>
             </div>
           </div>
+          <!-- 充值 -->
+          <div class="Recharge"
+               v-if="off == 1">
+            <div class="Recharge_left">
+              <div class="Recharge_text">提现方式：</div>
+              <div class="Recharge_text">提现金额：</div>
+              <div class="Recharge_text">当前可提现余额：</div>
+            </div>
+            <div class="Recharge_right">
+              <div class="Recharge_Tips">发起提现后，24小时内会有工作人员与您联系</div>
+              <input type="text"
+                     class="input"
+                     placeholder=""
+                     value="">
+              <div class="Recharge_balance">
+                188,000 <span>元</span>
+              </div>
+              <div class="Recharge_Btn">
+                提现
+              </div>
+            </div>
+          </div>
+
+          <!-- 提现 -->
+          <div class="Recharge"
+               v-if="off == 2">
+            <div class="Recharge_left">
+              <div class="Recharge_text">提现方式：</div>
+              <div class="Recharge_text">提现金额：</div>
+              <div class="Recharge_text">当前可用余额：</div>
+            </div>
+            <div class="Recharge_right">
+              <div class="Recharge_Zfb">
+                支付宝
+              </div>
+              <input type="text"
+                     class="input"
+                     placeholder=""
+                     value="">
+              <div class="Recharge_balance">
+                188,000 <span>元</span>
+              </div>
+              <div class="Recharge_Btn">
+                提现
+              </div>
+            </div>
+          </div>
+
           <div class="Tips">
             <div class="title" style="border-bottom:0">温馨提示</div>
             <div class="Tips_num">
@@ -47,7 +99,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import headWoke from "../../common/header.vue";
 import navList from "../../common/navList.vue";
@@ -55,6 +106,32 @@ export default {
   components: {
     headWoke,
     navList
+  },
+  data () {
+    return {
+      off: 0,
+      title: '我的钱包'
+    }
+  },
+  methods: {
+    Recharge: function () {
+      this.off = 1;
+      this.title = '账户提现'
+    },
+    withdrawal: function () {
+      this.off = 2;
+      this.title = '账户充值'
+    },
+    Previous: function () {
+      if (this.off == 0) {
+        return
+      } else {
+        this.off = 0;
+      }
+    }
+  },
+  watch: {
+
   }
 };
 </script>
@@ -83,6 +160,21 @@ body {
   color: rgba(51, 51, 51, 1);
   line-height: 80px;
   border-bottom: 1px solid #f1efee;
+}
+.wallet .title1 {
+  width: 100%;
+  height: 80px;
+  font-size: 32px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 80px;
+  border-bottom: 1px solid #f1efee;
+  background-image: url("../../assets/left.png");
+  background-size: 17px 28px;
+  background-repeat: no-repeat;
+  background-position: 0 27px;
+  text-indent: 40px;
 }
 .wallet .list {
   margin-top: 15px;
@@ -152,6 +244,86 @@ body {
   font-size: 24px;
   color: #666666;
   margin-bottom: 10px;
+}
+
+/* 充值 */
+.Recharge {
+  display: flex;
+  margin-top: 66px;
+}
+.Recharge .Recharge_left {
+  width: 215px;
+  text-align: right;
+}
+.Recharge .Recharge_left .Recharge_text {
+  height: 20px;
+  font-size: 20px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 20px;
+  margin-bottom: 50px;
+}
+.Recharge .Recharge_right {
+  flex: 1;
+  margin-left: 57px;
+}
+.Recharge .Recharge_right .Recharge_Tips {
+  height: 22px;
+  font-size: 22px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 22px;
+  margin-bottom: 42px;
+}
+.Recharge .Recharge_right .Recharge_Zfb {
+  width: 140px;
+  height: 38px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(51, 104, 191, 1);
+  border-radius: 5px;
+  margin-bottom: 42px;
+  background-image: url("../../assets/choose.png");
+  text-align: center;
+  font-size: 20px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(51, 104, 191, 1);
+  margin-top: -6px;
+  line-height: 38px;
+}
+.Recharge .Recharge_right .input {
+  width: 272px;
+  height: 38px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(204, 204, 204, 1);
+  border-radius: 5px;
+  margin-bottom: 35px;
+}
+.Recharge .Recharge_right .Recharge_balance {
+  height: 24px;
+  font-size: 24px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(91, 173, 242, 1);
+  line-height: 24px;
+}
+.Recharge .Recharge_right .Recharge_balance span {
+  color: #000;
+}
+.Recharge_Btn {
+  width: 272px;
+  height: 46px;
+  background: rgba(37, 143, 252, 1);
+  border-radius: 5px;
+  text-align: center;
+  line-height: 46px;
+  font-size: 24px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 70px;
 }
 </style>
 
