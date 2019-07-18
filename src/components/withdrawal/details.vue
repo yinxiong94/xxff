@@ -129,7 +129,7 @@ export default {
   margin-top: 30px;
 }
 .db {
-  flex: 1;
+  width: 100%;
   padding-bottom: 96px;
 }
 .db .banxin {

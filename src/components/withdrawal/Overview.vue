@@ -544,6 +544,7 @@ body {
   text-align: center;
   line-height: 20px;
   height: 20px;
+  flex: 1;
 }
 .Overview_date
   .Overview_date_type
