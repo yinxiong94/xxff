@@ -8,6 +8,10 @@ import Login from "../components/Login";
 import register from "../components/register";
 import Home from "../components/Home";
 import text from "../components/text";
+import succeed from "../components/succeed";
+import nothing from "../components/nothing";
+import amend from "../components/amend";
+import  introduce from '../components/introduce'
 
 Vue.use(Router);
 
@@ -52,6 +56,26 @@ export default new Router({
       path: "/text",
       name: "text",
       component: text
-    }
+    },
+    {
+      path: "/succeed",
+      name: "succeed",
+      component: succeed
+    },
+    {
+      path: "/nothing",
+      name: "nothing",
+      component: nothing
+    },
+    {
+      path: "/amend",
+      name: "amend",
+      component: amend
+    },
+    {
+      path: "/introduce",
+      name: "introduce",
+      component: introduce
+    },
   ]
 });

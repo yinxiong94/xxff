@@ -1,8 +1,7 @@
 <template>
-  <div class="">
-   
-      <Header></Header>
-    
+  <div class>
+    <Header></Header>
+
     <div class="cont_bg">
       <div class="cont_text">
         <span class="cont_span1">国内最全面的APP分发服务商</span>
@@ -62,17 +61,17 @@
       <div class="stage">
         <div class="stage1" :class="curr==1?'setting':''" @click="junm($event)" data-cuur="1">
           <div class="chosen_item_tit" data-cuur="1">
-            <img src="../assets/deng.png" alt  data-cuur="2"/>
-            <p class="stage_text"  data-cuur="2">180元/年</p>
-            <p class="stage_text1"  data-cuur="2">一天一千次分发次数</p>
+            <img src="../assets/deng.png" alt data-cuur="2" />
+            <p class="stage_text" data-cuur="2">180元/年</p>
+            <p class="stage_text1" data-cuur="2">一天一千次分发次数</p>
           </div>
         </div>
 
         <div class="stage1" :class="curr==2?'setting':''" @click="junm($event)" data-curr="2">
           <div class="chosen_item_tit" data-cuur="2">
-            <img src="../assets/laba.png"  data-cuur="2"/>
-            <p class="stage_text"  data-cuur="2">500元/年</p>
-            <p class="stage_text1"  data-cuur="2">一天五千次分发次数</p>
+            <img src="../assets/laba.png" data-cuur="2" />
+            <p class="stage_text" data-cuur="2">500元/年</p>
+            <p class="stage_text1" data-cuur="2">一天五千次分发次数</p>
           </div>
         </div>
 
@@ -203,41 +202,19 @@
         <img src="../assets/zhaos.png" alt />
       </div>
     </div>
-    <div class="cont_body_bg4">
-      <div class="mod_help_list">
-        <div class="mod_help_list_text">
-          <p class="cpfb">产品发布</p>
-          <p class="icon"></p>
-          <p class="mod_help_list_text1">发布app</p>
-          <p class="mod_help_list_text1">内测分发</p>
-        </div>
-        <div class="mod_help_list_text">
-          <p class="cpfb">我的应用</p>
-          <p class="icon"></p>
-          <p class="mod_help_list_text1">发布新应用</p>
-          <p class="mod_help_list_text1">管理我的应用</p>
-          <p class="mod_help_list_text1">应用更新</p>
-        </div>
-        <div class="mod_help_list_text">
-          <p class="cpfb">联系我们</p>
-          <p class="icon"></p>
-          <p class="mod_help_list_text1">QQ： 598614735</p>
-          <p class="mod_help_list_text1">邮箱：yizhoufenfa@163.com</p>
-          <p class="mod_help_list_text1">地址：湖南省长沙市天心区黑石铺路184号</p>
-        </div>
-      </div>
-    </div>
+    <Tail></Tail>
   </div>
 </template>
 
 <script>
-import Header from "../common/header"
+import Header from "../common/header";
+import Tail from "../common/tail"
 export default {
-  components:{
-      Header
-    },
+  components: {
+    Header,
+    Tail
+  },
   data() {
-    
     return {
       curr: 0
     };
@@ -251,10 +228,8 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0 !important;
-}
-.cont_top{
+
+.cont_top {
   height: 200px;
 }
 .cont_bg {
@@ -586,36 +561,5 @@ p {
 .SkusCell1 .mod_price_text {
   margin: 0 !important;
 }
-.cont_body_bg4 {
-  background: #3e3e3e;
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.mod_help_list_text {
-  color: #fff;
-}
-.mod_help_list {
-  width: 50%;
-  height: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.cpfb {
-  font-size: 20px;
-}
-.mod_help_list_text > p {
-  margin-bottom: 10px;
-}
-.mod_help_list_text1 {
-  font-size: 10px;
-}
-.setting {
-  background: #258ffc;
-}
+
 </style>
