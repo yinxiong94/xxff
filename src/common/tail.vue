@@ -30,7 +30,7 @@
 
 <script>
 export default {
-    name:'tail'
+  name: 'tail'
 };
 </script>
 
@@ -42,6 +42,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 }
 .mod_help_list_text {
   color: #fff;
@@ -67,7 +68,7 @@ export default {
 .setting {
   background: #258ffc;
 }
-.icon{
+.icon {
   width: 50px;
   border-bottom: 3px solid #5badf2;
   border-radius: 3px;
