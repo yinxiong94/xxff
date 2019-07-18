@@ -11,7 +11,8 @@ import text from "../components/text";
 import succeed from "../components/succeed";
 import nothing from "../components/nothing";
 import amend from "../components/amend";
-import  introduce from '../components/introduce'
+import introduce from "../components/introduce";
+import adhibition from "../components/adhibition";
 
 Vue.use(Router);
 
@@ -77,5 +78,10 @@ export default new Router({
       name: "introduce",
       component: introduce
     },
+    {
+      path: "/adhibition",
+      name: "adhibition",
+      component: adhibition
+    }
   ]
 });
