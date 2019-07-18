@@ -83,8 +83,7 @@
           </div>
 
           <div class="Tips">
-            <div class="title"
-                 style="border-bottom:0">温馨提示</div>
+            <div class="title" style="border-bottom:0">温馨提示</div>
             <div class="Tips_num">
               <ul>
                 <li>1.为了您的账户资金安全，请在充值前开通第三方资金托管账户、设置交易密码；</li>
@@ -101,8 +100,8 @@
   </div>
 </template>
 <script>
-import headWoke from '../../common/header.vue'
-import navList from '../../common/navList.vue'
+import headWoke from "../../common/header.vue";
+import navList from "../../common/navList.vue";
 export default {
   components: {
     headWoke,
@@ -134,7 +133,7 @@ export default {
   watch: {
 
   }
-}
+};
 </script>
 <style>
 body {
