@@ -108,16 +108,19 @@
         </div>
       </div>
     </div>
+    <tail></tail>
   </div>
 </template>
 
 <script>
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
+import tail from '../../common/tail.vue'
 export default {
   components: {
     headWoke,
-    navList
+    navList,
+    tail
   },
   data () {
     return {
@@ -544,6 +547,7 @@ body {
   text-align: center;
   line-height: 20px;
   height: 20px;
+  flex: 1;
 }
 .Overview_date
   .Overview_date_type

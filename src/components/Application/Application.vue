@@ -1,7 +1,6 @@
 <template>
 
   <div class="Application">
-
     <headWoke></headWoke>
     <div class="mian">
       <div class="banxin">
@@ -147,14 +146,17 @@
         <div class="Release_right"></div>
       </div>
     </div>
+    <tail></tail>
   </div>
 </template>
 
 <script>
 import headWoke from '../../common/header.vue'
+import tail from '../../common/tail.vue'
 export default {
   components: {
-    headWoke
+    headWoke,
+    tail
   }
 }
 </script>

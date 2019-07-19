@@ -150,15 +150,18 @@
         </div>
       </dir>
     </div>
+    <tail></tail>
   </div>
 </template>
 <script>
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
+import tail from '../../common/tail.vue'
 export default {
   components: {
     headWoke,
-    navList
+    navList,
+    tail
   },
   data () {
     return {

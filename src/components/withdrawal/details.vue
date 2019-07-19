@@ -99,17 +99,19 @@
         </div>
       </div>
     </div>
+    <tail></tail>
   </div>
 </template>
 
 <script>
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
-
+import tail from '../../common/tail.vue'
 export default {
   components: {
     headWoke,
-    navList
+    navList,
+    tail
   },
   data () {
     return {
@@ -130,7 +132,7 @@ export default {
   margin-top: 30px;
 }
 .db {
-  flex: 1;
+  width: 100%;
   padding-bottom: 96px;
 }
 .db .banxin {
