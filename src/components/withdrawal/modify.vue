@@ -97,7 +97,7 @@
           </div>
         </div> -->
         <!-- 修改手机号 -->
-        <!-- <div class="wallet">
+        <div class="wallet">
           <div class="title">原手机号</div>
           <div class="wallet_wallet">
             <span> 请输原手机验证码</span>
@@ -106,16 +106,16 @@
             </div>
           </div>
           <div class="wallet_wallet">
-            <span>新手机验证码</span>
+            <span>手机验证码</span>
             <div class="wallet_send">
-              <input type="text">
+              <input type="text" maxlength="11">
               <div class="wallet_send_btn">获取验证码</div>
             </div>
           </div>
           <div class="wallet_wallet">
             <span>输入新手机号码</span>
             <div class="wallet_send">
-              <input type="text">
+              <input type="text" maxlength="11">
             </div>
           </div>
           <div class="wallet_wallet">
@@ -128,9 +128,10 @@
           <div class="wallet_btn1">
             确定修改
           </div>
-        </div> -->
+        </div>
+        
         <!-- 修改密码 -->
-        <div class="wallet">
+        <!-- <div class="wallet">
           <div class="title">修改密码</div>
           <div class="wallet_wallet">
             <span> 请输入密码</span>
@@ -147,7 +148,7 @@
           <div class="wallet_btn1">
             确定修改
           </div>
-        </div>
+        </div> -->
       </dir>
     </div>
     <tail></tail>

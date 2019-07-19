@@ -1,5 +1,5 @@
 <template>
-  <div class='release'>
+  <div class="release">
     <headWoke></headWoke>
     <div class="main">
       <div class="banxin">
@@ -7,36 +7,45 @@
         <div class="mian_left">发布应用，仅需两步</div>
       </div>
     </div>
+
     <div class="mian_content">
-      <div class="banxin">
-        <div class="upload">
-          <div class="upload_iife">
-            <input type="file"
-                   id="btn_file"
-                   style="display:none" />
-            <img src="../../assets/iife.png"
-                 alt="" />
-          </div>
-          <div class="Notes">
-            点击按钮选择应用的安装包，或拖拽文件到此区域
-            （支持.ipa或.apk文件，单个文件最大支持 <span>600M</span> ）
+      <el-upload drag multiple   action="https://jsonplaceholder.typicode.com/posts/">
+        <div class="banxin">
+          <div class="upload">
+            <div class="upload_iife">
+              <input type="file" id="btn_file" style="display:none" />
+              <img src="../../assets/iife.png" alt />
+            </div>
+            <div class="Notes">
+              点击按钮选择应用的安装包，或拖拽文件到此区域
+              （支持.ipa或.apk文件，单个文件最大支持
+              <span>600M</span> ）
+            </div>
           </div>
         </div>
-      </div>
+      </el-upload>
     </div>
+
     <tail></tail>
   </div>
 </template>
 
 <script>
-import headWoke from '../../common/header.vue'
-import tail from '../../common/tail.vue'
+import headWoke from "../../common/header.vue";
+import tail from "../../common/tail.vue";
 export default {
   components: {
     headWoke,
     tail
+  },
+  data() {
+    return{
+
+    }
+  },
+  methods: {
   }
-}
+};
 </script>
 
 <style>
@@ -44,6 +53,10 @@ export default {
   width: 100%;
   height: 76px;
   border-bottom: 1px solid #dfdfdf;
+}
+.el-upload-dragger {
+  width: 100% !important;
+  height: 100% !important;
 }
 .main .banxin {
   width: 75%;
@@ -64,20 +77,24 @@ export default {
 .mian_content {
   height: 946px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.mian_content .banxin {
+.banxin {
   width: 75%;
   max-width: 1200px;
   margin: 0 auto;
 }
-.mian_content .banxin .upload {
+.banxin .upload {
   width: 100%;
   height: 810px;
-  background-color: #eaeaea;
+  background-color: #dfd9d9;
   position: relative;
   margin-top: 50px;
 }
-.mian_content .banxin .upload .upload_iife {
+.banxin .upload .upload_iife {
   width: 18.4%;
   height: 84px;
   cursor: pointer;
@@ -86,11 +103,11 @@ export default {
   left: 50%;
   transform: translate(-50%, -160%);
 }
-.mian_content .banxin .upload .upload_iife img {
+.banxin .upload .upload_iife img {
   width: 100%;
   height: 84px;
 }
-.mian_content .banxin .Notes {
+.banxin .Notes {
   width: 362px;
   font-size: 15px;
   float: left;
@@ -101,7 +118,7 @@ export default {
   transform: translate(-44%, -20%);
   color: #919191;
 }
-.mian_content .banxin .Notes span {
+.banxin .Notes span {
   color: red;
 }
 </style>

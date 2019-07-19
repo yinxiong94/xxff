@@ -3,23 +3,20 @@
     <!-- 头部 -->
     <div class="banxin">
       <div class="nav">
-        <img src="../assets/logo.png"
-             alt="" />
-        <div class="nav_li">
-          <p>主页</p>
-          <p>套餐购买</p>
-          <p>发布</p>
-          <p>我的应用</p>
-          <p>个人中心</p>
+        <img src="../assets/logo.png" alt />
+        <div class="nav_li" v-for="(item, index) in list" :key="item.id">
+          <p
+            :data-id="item.id"
+            @click="Jump($event,index)"
+            :class="index==id?'blue':''"
+          >{{item.name}}</p>
         </div>
         <div class="nav_right">
           <div class="notice">
-            <img src="../assets/notice.png"
-                 alt="" />
+            <img src="../assets/notice.png" alt />
             <div>1</div>
           </div>
-          <img src="../assets/tx.png"
-               alt="" />
+          <img src="../assets/tx.png" alt />
         </div>
       </div>
     </div>
@@ -27,13 +24,49 @@
 </template>
 <script>
 export default {
-  name: 'Header'
-}
+  name: "Header",
+  data() {
+    return {
+      list: [
+        { id: 0, name: "主页" },
+        { id: 1, name: "套餐购买" },
+        { id: 2, name: "发布" },
+        { id: 3, name: "我的应用" },
+        { id: 4, name: "个人中心" }
+      ],
+      index: 0,
+      id: 0
+    };
+  },
+  created() {},
+  beforeUpdate(){
+    
+  },
+  methods: {
+    Jump(e, index) {
+      this.index = index;
+      this.id = parseInt(e.target.dataset.id);
+      console.log(this.index, index);
+      this.index == 0
+        ? this.$router.push({ path: "/" })
+        : this.index == 1 && this.id == 1
+        ? this.$router.push({ path: "/pirce" })
+        : this.index == 2 && this.id == 2
+        ? this.$router.push({ path: "/release" })
+        : this.index == 3 && this.id == 3
+        ? this.$router.push({ path: "/adhibition" })
+        : this.$router.push({ path: "/withdrawal" });
+    }
+  }
+};
 </script>
 
 <style>
 .nav {
   display: flex;
+}
+.blue {
+  color: #258ffc;
 }
 .nav > img {
   width: 178px;
@@ -50,8 +83,9 @@ export default {
 .nav .nav_li p {
   font-size: 20px;
   height: 20px;
+  width: 80px;
   line-height: 20px;
-  cursor:pointer;
+  cursor: pointer;
 }
 .nav .nav_right {
   width: 184px;
