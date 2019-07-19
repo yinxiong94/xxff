@@ -12,13 +12,13 @@
             <div class="send">
               <div class="send_conter">
                 <span class="send_pirce1">5000.00</span>
-                <span class="send_Total">资产总额（￥）</span>
+                <span class="send_Total">账户钱包余额（￥）</span>
               </div>
             </div>
             <div class="send">
               <div class="send_conter">
                 <span class="send_pirce">5000.00</span>
-                <span class="send_Total">资产总额（￥）</span>
+                <span class="send_Total">分佣钱包余额（￥）</span>
               </div>
             </div>
             <div class="send"

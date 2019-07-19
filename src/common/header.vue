@@ -51,7 +51,7 @@ export default {
   font-size: 20px;
   height: 20px;
   line-height: 20px;
-  cursor:pointer;
+  cursor: pointer;
 }
 .nav .nav_right {
   width: 184px;
@@ -106,6 +106,7 @@ a {
 #header {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.21);
   background: #fff;
+  height: 73px;
 }
 </style>
 
