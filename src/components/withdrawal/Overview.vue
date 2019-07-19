@@ -36,7 +36,6 @@
               <div class="Overview_data_right_pirce">366.89</div>
               <div class="Overview_data_right_btn">
                 <div class="Overview_data_right_btn1">充值</div>
-                <div class="Overview_data_right_btn2">提现</div>
               </div>
             </div>
           </div>
@@ -53,8 +52,8 @@
             </div>
             <div class="item">
               <div class="item_xian"></div>
-              <div class="item_z">共上传APP数量</div>
-              <div class="item_num">4<span>个</span></div>
+              <div class="item_z">分佣钱包</div>
+              <div class="item_num">4<span>元(可提现)</span></div>
             </div>
           </div>
           <div class="xiaoxi">

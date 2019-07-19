@@ -140,6 +140,7 @@ a {
 #header {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.21);
   background: #fff;
+  height: 73px;
 }
 </style>
 
