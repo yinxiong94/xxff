@@ -105,6 +105,7 @@
 <script>
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
+
 export default {
   components: {
     headWoke,
