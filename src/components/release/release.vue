@@ -7,7 +7,6 @@
         <div class="mian_left">发布应用，仅需两步</div>
       </div>
     </div>
-
     <div class="mian_content">
       <el-upload drag multiple   action="https://jsonplaceholder.typicode.com/posts/">
         <div class="banxin">
@@ -25,7 +24,6 @@
         </div>
       </el-upload>
     </div>
-
     <tail></tail>
   </div>
 </template>

@@ -35,18 +35,16 @@ export default {
         { id: 4, name: "个人中心" }
       ],
       index: 0,
-      id: 0
+      id:0
     };
   },
   created() {},
-  beforeUpdate(){
-    
-  },
+  beforeUpdate() {},
   methods: {
     Jump(e, index) {
       this.index = index;
       this.id = parseInt(e.target.dataset.id);
-      console.log(this.index, index);
+      console.log(this.index, this.id);
       this.index == 0
         ? this.$router.push({ path: "/" })
         : this.index == 1 && this.id == 1
