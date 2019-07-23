@@ -3,14 +3,18 @@
     <Header></Header>
     <div class="search_withdrawal">
       <div class="search aa">
-        <img src="../assets/search.png" alt />
-        <input type="text" placeholder="搜索您的应用" />
-        <img src="../assets/chacha.png" alt />
+        <img src="../assets/search.png"
+             alt />
+        <input type="text"
+               placeholder="搜索您的应用" />
+        <img src="../assets/chacha.png"
+             alt />
       </div>
       <div class="searchTwo">
         <div class="One">
           <span>全部</span>
-          <img src="../assets/daosanjiao.png" alt />
+          <img src="../assets/daosanjiao.png"
+               alt />
         </div>
         <div class="Two">
           <span>发布</span>
@@ -28,24 +32,26 @@
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
             </div>
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
+              <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -58,23 +64,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -82,7 +92,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -95,23 +104,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -119,7 +132,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -132,23 +144,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -156,7 +172,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -169,23 +184,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -193,7 +212,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -206,23 +224,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -230,7 +252,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -243,23 +264,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -267,7 +292,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -280,31 +304,35 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
             </div>
             <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
+              <span class="green1">时长包</span>
+              <span class="ths">次数包</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -317,23 +345,27 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class="xhs">小红书APP</span>
               <span class="gray">更新时间：</span>
               <span class="gray">2019-04-11</span>
               <span class="gray">23:22</span>
@@ -341,7 +373,6 @@
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
               <span class="green">编辑</span>
-              <span class="yellow">预览</span>
               <span class="red">删除</span>
             </div>
           </div>
@@ -354,11 +385,16 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="pagination">
-        <el-pagination background layout="prev, pager, next" :total="100" :size="10"></el-pagination>
+        <el-pagination background
+                       layout="prev, pager, next"
+                       :total="100"
+                       :size="10"></el-pagination>
       </div>
     </div>
     <Tail></Tail>
@@ -376,17 +412,21 @@ export default {
 </script>
 
 <style scoped>
-.pagination{
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.pagination {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .aa {
   display: flex;
 }
 .search_withdrawal {
   margin-top: 20px;
+  padding-top: 40px;
+}
+.xhs {
+  font-size: 20px !important;
 }
 
 span {
@@ -399,6 +439,7 @@ span {
   margin: 0 auto;
   background: #d1dffb;
   opacity: 0.6;
+  margin-bottom: 30px;
 }
 .search > img {
   width: 20px;
@@ -422,10 +463,12 @@ span {
 }
 .searchTwoTwo {
   width: 80%;
-  height: 90px;
+  height: 142px;
   margin: 0 auto;
   display: flex;
   border-bottom: 2px solid #eee;
+  padding-top: 20px;
+  box-sizing: border-box;
 }
 .One {
   width: 50px;
@@ -466,6 +509,7 @@ span {
 .flexTwo {
   display: flex;
   width: 100;
+  margin-top: 20px !important;
 }
 .ContentOne {
   width: 10%;
@@ -485,14 +529,25 @@ span {
 .Contentthree > div:last-child > span:nth-child(3),
 .Contentthree > div:last-child > span:last-child {
   color: #fff;
-  width: 40px;
-  height: 20px;
+  width: 54px;
+  height: 25px;
   display: block;
   text-align: center;
   border-radius: 5px;
+  line-height: 25px;
 }
 .blue {
   background: deepskyblue;
+  margin-right: 20px;
+}
+.green1 {
+  width: 60px !important;
+  background: #31c37c;
+  margin-right: 20px;
+}
+.ths {
+  width: 60px !important;
+  background: #bd9d2f;
   margin-right: 20px;
 }
 .green {
@@ -511,7 +566,7 @@ span {
   color: #999;
 }
 .textCenterTwo {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 .textCenterTwoSpan {
   margin-top: 10px;
@@ -522,8 +577,8 @@ span {
 .ContentTwo > img {
   display: block;
   margin-top: 13px;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 .flexOne {
   flex-direction: column;
