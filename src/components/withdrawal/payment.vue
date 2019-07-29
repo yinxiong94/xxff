@@ -10,33 +10,38 @@
         <div class="conter_Order">
           <div class="conter_h5">
             <div class="h4">订单提交成功，请尽快付款</div>
-            <div>需支付<span>99</span>元</div>
+            <div>需支付<span>{{pirce}}</span>元</div>
           </div>
-          <div class="input"
+          <div :class="mode == 0?'input':'input1'"
                style="margin-bottom: 10px;">
             <input class="radio_type"
                    type="radio"
+                   @click="HandMone($event)"
                    name="type"
+                   data-index="0"
                    id="radio1"
                    checked="checked" />
             <img src="../../assets/balance.png"
                  alt="">
             <span>账户余额（1569元）</span>
-            <div class="input_right">支付<span>99</span>元</div>
+            <div class="input_right">支付<span>{{pirce}}</span>元</div>
           </div>
-          <div class="input1">
+          <div :class="mode == 1?'input':'input1'">
             <input class="radio_type"
                    type="radio"
                    name="type"
+                   @click="HandMone($event)"
+                   data-index="1"
                    id="radio1"
                    checked="checked" />
             <img src="../../assets/input_zfb.png"
                  alt="">
-            <span>账户余额（1569元）</span>
-            <div class="input_right">支付<span>99</span>元</div>
+            <span>支付宝 <span class="Quick">快捷支付</span></span>
+            <div class="input_right">支付<span>{{pirce}}</span>元</div>
           </div>
         </div>
-        <div class="payment_btn">
+        <div class="payment_btn"
+             @click="HandSubmission()">
           确认支付
         </div>
       </div>
@@ -49,6 +54,7 @@
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
 import tail from '../../common/tail.vue'
+var that = this
 export default {
   components: {
     headWoke,
@@ -56,8 +62,39 @@ export default {
   },
   data () {
     return {
-      radio: '1'
+      radio: '1',
+      mode: 1,
+      pirce: 99
     };
+  },
+  methods: {
+    HandMone: function (e) {
+      this.mode = e.target.dataset.index
+    },
+    HandSubmission: function () {
+      if (this.mode == '0') {
+        let prl = {
+          action: 'Zhifu',
+          type: 2,
+          OrderPrice: this.pirce
+        }
+        this.$post('GetUserData.ashx', prl).then(res => {
+          console.log(res);
+        })
+      }
+    }
+  },
+  watch: {
+    // '$route': function () {
+    //   this.pirce = this.$routes.params.id
+    //   console.log(this.pirce);
+    // }
+
+  },
+  mounted () {
+    this.pirce = localStorage.getItem('pirce');
+  },
+  created () {
   }
 }
 </script>
@@ -65,6 +102,15 @@ export default {
 <style>
 body {
   background: #f1efee;
+}
+.Quick {
+  height: 17px;
+  font-size: 17px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: #ff8c19;
+  line-height: 17px;
+  margin-left: 16px;
 }
 label {
   margin: 10px;
@@ -104,6 +150,7 @@ label {
   margin-top: 47px;
   border-bottom: 1px solid #ccc;
   padding: 0 28px;
+  padding-bottom: 30px;
 }
 .conter .conter_Order .conter_h5 {
   display: flex;
@@ -223,8 +270,9 @@ label {
   background-color: #5badf2;
   content: "";
   position: absolute;
-  left: 42%;
-  top: 40%;
+  left: 38%;
+  top: 50%;
+  border-radius: 50%;
 }
 .payment_btn {
   width: 200px;

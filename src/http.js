@@ -1,68 +1,86 @@
-// 引入axios，并加到原型链中
-import axios from 'axios';
-import Vue from 'vue'
-Vue.prototype.$axios = axios;
-import QS from 'qs'
-Vue.prototype.qs = QS;
+import Vue from "vue";
+import axios from "axios";
+import qs from "qs";
+import { Message, Loading } from "element-ui";
+// 响应时间
+axios.defaults.timeout = 5 * 1000;
+// 配置cookie
+// axios.defaults.withCredentials = true
+// 配置请求头
+axios.defaults.headers.post["Content-Type"] =
+  "application/x-www-form-urlencoded;charset=UTF-8";
+// 静态资源
+Vue.prototype.$static = "";
 
-
-axios.defaults.timeout = 5000;                        //响应时间
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';        //配置请求头
-axios.defaults.baseURL = 'http://192.168.1.188:81/API/';   //配置接口地址
-
-//POST传参序列化(添加请求拦截器)
-axios.interceptors.request.use((config) => {
-    //在发送请求之前做某件事
-    if(config.method  === 'post'){
-        config.data = qs.stringify(config.data);
+// 配置接口地址
+axios.defaults.baseURL = "http://www.xxffpt.com/API/";
+var loadingInstance;
+// POST传参序列化(添加请求拦截器)
+axios.interceptors.request.use(
+  config => {
+    loadingInstance = Loading.service({
+      lock: true,
+      text: "数据加载中，请稍后...",
+      spinner: "el-icon-loading",
+      background: "rgba(0, 0, 0, 0.7)"
+    });
+    if (config.method === "post") {
+      config.data = qs.stringify(config.data);
     }
     return config;
-},(error) =>{
-    console.log('错误的传参')
-    return Promise.reject(error);
-});
-
-//返回状态判断(添加响应拦截器)
-axios.interceptors.response.use((res) =>{
-    //对响应数据做些事
-    if(!res.data.success){
-        return Promise.resolve(res);
+  },
+  err => {
+    loadingInstance.close();
+    Message.error("请求错误");
+    return Promise.reject(err);
+  }
+);
+// 返回状态判断(添加响应拦截器)
+axios.interceptors.response.use(
+  res => {
+    if (res.data.code === 200) {
+      loadingInstance.close();
+      return res;
+    } else {
+      loadingInstance.close();
+      Message.error(res.data.msg);
     }
-    return res;
-}, (error) => {
-    console.log('网络异常')
-    return Promise.reject(error);
-});
-
-//返回一个Promise(发送post请求)
+  },
+  err => {
+    loadingInstance.close();
+    Message.error("请求失败，请稍后再试");
+    return Promise.reject(err);
+  }
+);
+// 发送请求
 export function fetchPost(url, params) {
-    return new Promise((resolve, reject) => {
-        axios.post(url, params)
-            .then(response => {
-                resolve(response);
-            }, err => {
-                reject(err);
-            })
-            .catch((error) => {
-                reject(error)
-            })
-    })
+  return new Promise((resolve, reject) => {
+    axios
+      .post(url, params)
+      .then(
+        res => {
+          resolve(res.data);
+        },
+        err => {
+          reject(err.data);
+        }
+      )
+      .catch(err => {
+        reject(err.data);
+      });
+  });
 }
-////返回一个Promise(发送get请求)
-export function fetchGet(url, param) {
-    return new Promise((resolve, reject) => {
-        axios.get(url, {params: param})
-            .then(response => {
-                resolve(response)
-            }, err => {
-                reject(err)
-            })
-            .catch((error) => {
-                reject(error)
-            })
-    })
-}
-export default {
-    fetchPost,
-    fetchGet,
+export function fetchGet(url, params) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, {
+        params: params
+      })
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data);
+      });
+  });
 }
