@@ -27,7 +27,9 @@
               <span class="send">一天可以下载1000次</span>
               <span class="send">如次数不够可加购次数包</span>
             </div>
-            <div class="btn">立即购买</div>
+            <div class="btn"
+                 @click="HandChoice($event)"
+                 data-index="180">立即购买</div>
           </div>
           <div class="list_1">
             <div class="list_pirce">￥180</div>
@@ -40,7 +42,9 @@
               <span class="send">一天可以下载1000次</span>
               <span class="send">如次数不够可加购次数包</span>
             </div>
-            <div class="btn1">立即购买</div>
+            <div class="btn1"
+                 @click="HandChoice($event)"
+                 data-index="500">立即购买</div>
           </div>
           <div class="list_1">
             <div class="list_pirce1">￥180</div>
@@ -53,7 +57,9 @@
               <span class="send">一天可以下载1000次</span>
               <span class="send">如次数不够可加购次数包</span>
             </div>
-            <div class="btn2">立即购买</div>
+            <div class="btn2"
+                 @click="HandChoice($event)"
+                 data-index="600">立即购买</div>
           </div>
         </div>
       </div>
@@ -68,7 +74,19 @@ export default {
   components: {
     headWoke,
     tail
-  }
+  },
+  data () {
+    return {
+      choice: 99
+    }
+  },
+  methods: {
+    HandChoice: function (e) {
+      this.choice = e.target.dataset.index
+      localStorage.setItem('pirce', this.choice);
+      this.$router.push({ name: 'payment' });
+    }
+  },
 }
 </script>
 <style>

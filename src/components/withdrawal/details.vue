@@ -107,6 +107,7 @@
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
 import tail from '../../common/tail.vue'
+import https from '../../http.js'
 export default {
   components: {
     headWoke,
@@ -119,7 +120,6 @@ export default {
     }
   },
   methods: {
-
   },
   watch: {
 

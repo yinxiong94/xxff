@@ -69,14 +69,16 @@
               <div class="Recharge_Zfb">
                 支付宝
               </div>
-              <input type="text"
+              <input type="number"
                      class="input"
+                     v-model="HandPirce"
                      placeholder=""
                      value="">
               <div class="Recharge_balance">
                 188,000 <span>元</span>
               </div>
-              <div class="Recharge_Btn">
+              <div class="Recharge_Btn"
+                   @click="HandSub">
                 提现
               </div>
             </div>
@@ -114,7 +116,8 @@ export default {
   data () {
     return {
       off: 0,
-      title: '我的钱包'
+      title: '我的钱包',
+      HandPirce: ''
     }
   },
   methods: {
@@ -132,6 +135,16 @@ export default {
       } else {
         this.off = 0;
       }
+    },
+    HandSub: function () {
+      let prl = {
+        action: 'withdrawSave',
+        userid: 'a20e8d4e-3e4c-4773-a913-e8c7abb96b3f',
+        OrderPrice: this.HandPirce
+      }
+      this.$post('GetUserData.ashx', prl).then(res => {
+        console.log(res);
+      })
     }
   },
   watch: {
@@ -154,6 +167,7 @@ body {
   margin-left: 15px;
   padding: 0 20px;
   background: #fff;
+  overflow: hidden;
 }
 .wallet .title {
   width: 100%;
@@ -266,7 +280,7 @@ body {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   line-height: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 57px;
 }
 .Recharge .Recharge_right {
   flex: 1;
@@ -287,7 +301,7 @@ body {
   background: rgba(255, 255, 255, 1);
   border: 1px solid rgba(51, 104, 191, 1);
   border-radius: 5px;
-  margin-bottom: 42px;
+  margin-bottom: 34px;
   background-image: url("../../assets/choose.png");
   text-align: center;
   font-size: 20px;
@@ -303,7 +317,7 @@ body {
   background: rgba(255, 255, 255, 1);
   border: 1px solid rgba(204, 204, 204, 1);
   border-radius: 5px;
-  margin-bottom: 35px;
+  margin-bottom: 46px;
 }
 .Recharge .Recharge_right .Recharge_balance {
   height: 24px;
