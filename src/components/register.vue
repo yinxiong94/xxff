@@ -11,30 +11,30 @@
         <div class="login_input_text1">
           <div class="form item-fore">
             <img src="../assets/Login_user.png" alt />
-            <input type="text" placeholder="请输入您的用户名" />
+            <input type="text" placeholder="请输入您的用户名" ref="input1" />
             <span class="bit">*</span>
           </div>
           <div class="form item-fore">
             <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="请输入登入密码" />
+            <input type="text" placeholder="请输入登入密码" ref="input2" />
             <span class="bit">*</span>
           </div>
 
           <div class="form item-fore">
             <img src="../assets/shouji.png" alt />
-            <input type="text" placeholder="请输入您的手机号码" />
+            <input type="text" placeholder="请输入您的手机号码" ref="input3" />
           </div>
 
           <div class="form item-fore">
             <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="请输入验证码" />
+            <input type="text" placeholder="请输入验证码" ref="input4" />
             <span class="yzm">获取验证码</span>
           </div>
           <div class="form item-fore">
             <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="输入上级ID得10元优惠券(选填)" />
+            <input type="text" placeholder="输入上级ID得10元优惠券(选填)" ref="input5" />
           </div>
-          <div class="but">注册</div>
+          <div class="but" @click.stop="registerpost">注册</div>
           <div class="but1">已有账号去登入</div>
         </div>
       </div>
@@ -43,9 +43,28 @@
 </template>
 
 <script>
+import https from "../http";
 export default {
   data() {
     return {};
+  },
+
+  methods: {
+    registerpost() {
+      let input1 = this.$refs.input1.value; //用户名
+      let input2 = this.$refs.input2.value; //密码
+      let input3 = this.$refs.input3.value; //手机号码
+      let input4 = this.$refs.input4.value; //验证码
+      let input5 = this.$refs.input5.value; //优惠劵
+      if (!/^1[3-9]\d{9}&/.test(input3)) {
+        this.$message({
+          message: "手机号码不正确",
+          type: "warning"
+        });
+        return
+      }
+      
+    }
   }
 };
 </script>
@@ -92,6 +111,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
 }
 .login_bg .login_bgwhite .login_fangzi {
   width: 19%;

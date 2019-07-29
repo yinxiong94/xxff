@@ -4,6 +4,7 @@
     <div class="banxin">
       <div class="nav">
         <img src="../assets/logo.png" alt />
+
         <div class="nav_li" v-for="(item, index) in list" :key="item.id">
           <p
             :data-id="item.id"
@@ -11,12 +12,21 @@
             :class="index==id?'blue':''"
           >{{item.name}}</p>
         </div>
+
         <div class="nav_right">
           <div class="notice">
             <img src="../assets/notice.png" alt />
             <div>1</div>
           </div>
           <img src="../assets/tx.png" alt />
+        </div>
+
+        <div class="dengruzucv">
+          <div class="enter" @click.stop="doThis">
+            <img src="../assets/dengru.png" alt />
+            <span>登入</span>
+          </div>
+          <div class="register" @click.stop="register">注册</div>
         </div>
       </div>
     </div>
@@ -35,7 +45,7 @@ export default {
         { id: 4, name: "个人中心" }
       ],
       index: 0,
-      id:0
+      id: 0
     };
   },
   created() {},
@@ -54,12 +64,46 @@ export default {
         : this.index == 3 && this.id == 3
         ? this.$router.push({ path: "/adhibition" })
         : this.$router.push({ path: "/withdrawal" });
+    },
+
+    doThis() {
+      this.$router.push({ path: "/Login" });
+    },
+
+    register(){
+      this.$router.push({path:'/register'})
     }
   }
 };
 </script>
 
 <style>
+.header {
+  position: relative;
+}
+.dengruzucv {
+  position: absolute;
+  right: 151px;
+  top: 24px;
+  display: flex;
+  display: flex;
+  align-items: center;
+}
+.enter {
+  width: 84px;
+  height: 32px;
+  border: 1px solid rgba(51, 51, 51, 1);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.enter > img {
+  margin-right: 10px;
+}
+.register {
+  margin-left: 10px;
+}
 .nav {
   display: flex;
 }
