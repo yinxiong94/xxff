@@ -28,7 +28,7 @@
           <div class="form item-fore">
             <img src="../assets/Login_wpd.png" alt />
             <input type="text" placeholder="请输入验证码" ref="input4" />
-            <span class="yzm">获取验证码</span>
+            <span class="yzm" @click.stop="textCode">{{code}}</span>
           </div>
           <div class="form item-fore">
             <img src="../assets/Login_wpd.png" alt />
@@ -43,27 +43,105 @@
 </template>
 
 <script>
-import https from "../http";
 export default {
   data() {
-    return {};
+    return {
+      count: 60, //倒计时时间
+      code: "获取验证码"
+    };
   },
 
   methods: {
+    /**
+     * 提交注册
+     */
     registerpost() {
       let input1 = this.$refs.input1.value; //用户名
       let input2 = this.$refs.input2.value; //密码
       let input3 = this.$refs.input3.value; //手机号码
       let input4 = this.$refs.input4.value; //验证码
-      let input5 = this.$refs.input5.value; //优惠劵
-      if (!/^1[3-9]\d{9}&/.test(input3)) {
+      let input5 = this.$refs.input5.value; //推荐吗
+
+      if (input1 == "") {
+        this.$message({
+          message: "用户名不能为空",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (input2 == "") {
+        this.$message({
+          message: "密码不能为空",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (!/^1[3-9]\d{9}$/.test(input3)) {
         this.$message({
           message: "手机号码不正确",
           type: "warning"
         });
-        return
+        return;
       }
-      
+      let params = {
+        action: "Registe",
+        Tel: input3,
+        referral: input5,
+        NickName: input1,
+        PassWord: input2,
+        Code: input4
+      };
+      this.$post("GetCode.ashx", params).then(res => {
+        console.log(res);
+      });
+    },
+
+    /**
+     * 获取验证码
+     */
+    textCode() {
+      let input3 = this.$refs.input3.value; //手机号码
+      if (!/^1[3-9]\d{9}$/.test(input3)) {
+        this.$message({
+          message: "手机号码不正确",
+          type: "warning"
+        });
+        return;
+      } else {
+        this.$message({
+          message: "验证码已发送请查收",
+          type: "success"
+        });
+      }
+
+      if (this.code !== "获取验证码") {
+        this.$message({
+          message: "已发送验证码",
+          type: "warning"
+        });
+        return;
+      }
+
+      const countDown = setInterval(() => {
+        if (this.count <= 0) {
+          this.count = 60;
+          this.code = "获取验证码";
+          clearInterval(countDown);
+          return;
+        }
+        this.count--;
+        console.log();
+        this.code =
+          this.count < 10 ? `请等待0${this.count}s` : `请等待${this.count}s`;
+      }, 1000);
+      let params = { action: "GetAuthCode", Tel: input3 };
+      this.$post("GetCode.ashx", params)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(() => console.log("promise catch err")); //捕获异常
     }
   }
 };
@@ -209,9 +287,12 @@ a {
   font-size: 10px;
   color: #ffffff;
   border-radius: 20px;
-  width: 64px;
-  height: 20px;
+  width: 70px;
+  height: 25px;
   line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
