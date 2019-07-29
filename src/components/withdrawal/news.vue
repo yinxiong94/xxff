@@ -174,7 +174,7 @@ input[type="checkbox"]:checked::before {
   padding: 0;
 }
 .mian .mian_conter {
-  width: 100%;
+  flex: 1;
   margin: 0 auto;
   padding: 20px 63px 40px 25px;
   background-color: #fff;

@@ -80,7 +80,21 @@
             </div>
             <div class='Overview_date_nian'>
               <div class="dian"></div>
-              <dir class="Overview_date_ri">2009年09月</dir>
+              <dir class="Overview_date_ri"
+                   @click="openByDrop($event)"
+                   readonly>{{calendar3.display}}</dir>
+              <transition name="fade">
+                <div class="calendar-dropdown"
+                     :style="{'left':18+'px','top':calendar3.top+'px'}"
+                     v-if="calendar3.show">
+                  <calendar :zero="calendar3.zero"
+                            :lunar="calendar3.lunar"
+                            :value="calendar3.value"
+                            :begin="calendar3.begin"
+                            :end="calendar3.end"
+                            @select="calendar3.select"></calendar>
+                </div>
+              </transition>
               <div class="dian"></div>
               <div class="Overview_date_yue">月</div>
               <div class="Overview_date_coco">年</div>
@@ -115,19 +129,45 @@
 import headWoke from '../../common/header.vue'
 import navList from '../../common/navList.vue'
 import tail from '../../common/tail.vue'
+import calendar from './calendar.vue'
+
 export default {
   components: {
     headWoke,
     navList,
-    tail
+    tail,
+    calendar
   },
   data () {
     return {
-
+      calendar3: {
+        display: "2018/02/16",
+        show: false,
+        zero: true,
+        value: [2018, 2, 16], //默认日期
+        lunar: true, //显示农历
+        select: (value) => {
+          this.calendar3.show = false;
+          this.calendar3.value = value;
+          this.calendar3.display = value.join("/");
+        }
+      },
+      // 多选
     }
   },
   methods: {
+    openByDrop (e) {
+      this.calendar3.show = true;
+      this.calendar3.top = e.target.offsetTop + 70;
 
+      e.stopPropagation();
+      window.setTimeout(() => {
+        document.addEventListener("click", (e) => {
+          this.calendar3.show = false;
+          document.removeEventListener("click", () => { }, false);
+        }, false);
+      }, 1000)
+    }
   },
   watch: {
 
@@ -529,7 +569,7 @@ body {
 }
 
 .Overview_date .Overview_date_type {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding-bottom: 30px;
 }
@@ -561,6 +601,69 @@ body {
   .Overview_date_type_list1
   .coclor {
   color: #3368bf;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/*下拉框*/
+.calendar-dropdown {
+  background: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+}
+.calendar-dropdown:before {
+  position: absolute;
+  left: 30px;
+  top: -10px;
+  content: "";
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-bottom-color: #dedede;
+}
+.calendar-dropdown:after {
+  position: absolute;
+  left: 30px;
+  top: -9px;
+  content: "";
+  border: 5px solid rgba(0, 0, 0, 0);
+  border-bottom-color: #fff;
+}
+
+/*弹出框*/
+.calendar-dialog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.calendar-dialog-mask {
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.calendar-dialog-body {
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 2px;
 }
 </style>
 

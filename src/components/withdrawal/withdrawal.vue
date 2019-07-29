@@ -154,6 +154,7 @@ body {
   margin-left: 15px;
   padding: 0 20px;
   background: #fff;
+  overflow: hidden;
 }
 .wallet .title {
   width: 100%;
