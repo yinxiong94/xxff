@@ -1,6 +1,6 @@
 <template>
   <div class="pirce">
-    <headWoke></headWoke>
+    <Header :coou='1'></Header>
     <div class="main">
       <div class="banxin">
         <div class="mian_title">价格/发布次数</div>
@@ -68,11 +68,11 @@
   </div>
 </template>
 <script>
-import headWoke from '../../common/header.vue'
+import Header from '../../common/header.vue'
 import tail from '../../common/tail.vue'
 export default {
   components: {
-    headWoke,
+    Header,
     tail
   },
   data () {
@@ -88,13 +88,15 @@ export default {
     }
   },
   created () {
-    let prl = {
-      action: 'GetProduct',
-      IsType: 0
-    }
-    this.$post("GetUserData.ashx", prl).then(res => {
-      console.log(res);
-    })
+    let params = this.qs.stringify({
+      action: "GetProduct",
+      IsType: 0,
+    });
+    var url = "http://192.168.1.188:81/API/GetUserData.ashx";
+    this.axios.post(url, params).then(res => {
+      console.log(res.data.Result);
+
+    });
   }
 }
 </script>

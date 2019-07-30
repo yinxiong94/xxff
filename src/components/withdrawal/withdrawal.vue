@@ -1,6 +1,6 @@
 <template>
   <div class="withdrawal">
-    <headWoke></headWoke>
+    <headWoke :coou='4'></headWoke>
     <div class="mian">
       <dir class="banxin">
         <navList :cities='1'></navList>

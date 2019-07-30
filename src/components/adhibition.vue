@@ -1,16 +1,20 @@
 <template>
   <div class="withdrawal">
-    <Header></Header>
+    <Header :coou='3'></Header>
     <div class="search_withdrawal">
       <div class="search aa">
-        <img src="../assets/search.png" alt />
-        <input type="text" placeholder="搜索您的应用" />
-        <img src="../assets/chacha.png" alt />
+        <img src="../assets/search.png"
+             alt />
+        <input type="text"
+               placeholder="搜索您的应用" />
+        <img src="../assets/chacha.png"
+             alt />
       </div>
       <div class="searchTwo">
         <div class="One">
           <span>全部</span>
-          <img src="../assets/daosanjiao.png" alt />
+          <img src="../assets/daosanjiao.png"
+               alt />
         </div>
         <div class="Two">
           <span>发布</span>
@@ -28,12 +32,14 @@
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -58,19 +64,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -95,19 +105,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -132,19 +146,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -169,19 +187,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -206,19 +228,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -243,19 +269,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -280,19 +310,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -317,19 +351,23 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="searchTwoTwo">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png" alt />
+              <img src="../assets/apple.png"
+                   alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img src="../assets/xiaohongshu.png"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -354,11 +392,16 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
+          <img class="textCenter"
+               src="../assets/erweima.png"
+               alt />
         </div>
       </div>
       <div class="pagination">
-        <el-pagination background layout="prev, pager, next" :total="100" :size="10"></el-pagination>
+        <el-pagination background
+                       layout="prev, pager, next"
+                       :total="100"
+                       :size="10"></el-pagination>
       </div>
     </div>
     <Tail></Tail>
@@ -376,11 +419,11 @@ export default {
 </script>
 
 <style scoped>
-.pagination{
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.pagination {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .aa {
   display: flex;

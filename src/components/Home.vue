@@ -1,7 +1,6 @@
 <template>
   <div class>
-    <Header></Header>
-
+    <Header :coou='0'></Header>
     <div class="cont_bg">
       <div class="cont_text">
         <span class="cont_span1">国内最全面的APP分发服务商</span>
@@ -10,7 +9,8 @@
       </div>
       <div class="cont_sk_item_lk">
         <div class="lazyimg">
-          <img src="../assets/fabu.png" alt />
+          <img src="../assets/fabu.png"
+               alt />
           <div class="lazyimg_loaded">
             <p class="lazyimg_text">应用发布</p>
             <p class="icon"></p>
@@ -22,7 +22,8 @@
         </div>
 
         <div class="lazyimg">
-          <img src="../assets/neiche.png" alt />
+          <img src="../assets/neiche.png"
+               alt />
           <div class="lazyimg_loaded">
             <p class="lazyimg_text">内测应用</p>
             <p class="icon"></p>
@@ -34,7 +35,8 @@
         </div>
 
         <div class="lazyimg">
-          <img src="../assets/pingtai.png" alt />
+          <img src="../assets/pingtai.png"
+               alt />
           <div class="lazyimg_loaded">
             <p class="lazyimg_text">小熊分发</p>
             <p class="icon"></p>
@@ -59,27 +61,49 @@
         <p class="slider_next2">ETAGENTSMAKEWORKEASIER</p>
       </div>
       <div class="stage">
-        <div class="stage1" :class="curr==1?'setting':''" @click="junm($event)" data-cuur="1">
-          <div class="chosen_item_tit" data-cuur="1">
-            <img src="../assets/deng.png" alt data-cuur="2" />
-            <p class="stage_text" data-cuur="2">180元/年</p>
-            <p class="stage_text1" data-cuur="2">一天一千次分发次数</p>
+        <div class="stage1"
+             :class="curr==1?'setting':''"
+             @click="junm($event)"
+             data-cuur="1">
+          <div class="chosen_item_tit"
+               data-cuur="1">
+            <img src="../assets/deng.png"
+                 alt
+                 data-cuur="2" />
+            <p class="stage_text"
+               data-cuur="2">180元/年</p>
+            <p class="stage_text1"
+               data-cuur="2">一天一千次分发次数</p>
           </div>
         </div>
 
-        <div class="stage1" :class="curr==2?'setting':''" @click="junm($event)" data-curr="2">
-          <div class="chosen_item_tit" data-cuur="2">
-            <img src="../assets/laba.png" data-cuur="2" />
-            <p class="stage_text" data-cuur="2">500元/年</p>
-            <p class="stage_text1" data-cuur="2">一天五千次分发次数</p>
+        <div class="stage1"
+             :class="curr==2?'setting':''"
+             @click="junm($event)"
+             data-curr="2">
+          <div class="chosen_item_tit"
+               data-cuur="2">
+            <img src="../assets/laba.png"
+                 data-cuur="2" />
+            <p class="stage_text"
+               data-cuur="2">500元/年</p>
+            <p class="stage_text1"
+               data-cuur="2">一天五千次分发次数</p>
           </div>
         </div>
 
-        <div class="stage1" :class="curr==3?'setting':''" @click="junm($event)" data-curr="3">
-          <div class="chosen_item_tit" data-cuur="3">
-            <img src="../assets/bingzhuang.png" data-cuur="3" />
-            <p class="stage_text" data-cuur="3">299元/次数包</p>
-            <p class="stage_text1" data-cuur="3">
+        <div class="stage1"
+             :class="curr==3?'setting':''"
+             @click="junm($event)"
+             data-curr="3">
+          <div class="chosen_item_tit"
+               data-cuur="3">
+            <img src="../assets/bingzhuang.png"
+                 data-cuur="3" />
+            <p class="stage_text"
+               data-cuur="3">299元/次数包</p>
+            <p class="stage_text1"
+               data-cuur="3">
               购买此次数包必须先购买时
               长包后才能使用，购买此包
               后可有两千次的分发次数
@@ -117,20 +141,20 @@
             <p class="copyright_links_text">30</p>
             <p class="copyright_links_text1">2019.12.23</p>
           </div>
-          <img src="../assets/dongt1.png" alt />
+          <img src="../assets/dongt1.png"
+               alt />
           <div class="mod_copyright_auth_ico1 mod_copyright_auth_ico2">
             <p class="mod_copyright_auth_ico1_text">
-              <span
-                style=" width: 70%; display: block;
+              <span style=" width: 70%; display: block;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
-                  font-size:15px;"
-              >我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</span>
+                  font-size:15px;">我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</span>
             </p>
             <p class="mod_copyright_auth_ico1_text2">我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</p>
             <p class="mod_copyright_auth_ico1_img">
-              <img src="../assets/jiantou.png" alt />
+              <img src="../assets/jiantou.png"
+                   alt />
             </p>
           </div>
         </div>
@@ -140,20 +164,20 @@
             <p class="copyright_links_text">30</p>
             <p class="copyright_links_text1">2019.12.23</p>
           </div>
-          <img src="../assets/dongt1.png" alt />
+          <img src="../assets/dongt1.png"
+               alt />
           <div class="mod_copyright_auth_ico1 mod_copyright_auth_ico2">
             <p class="mod_copyright_auth_ico1_text">
-              <span
-                style=" width: 70%; display: block;
+              <span style=" width: 70%; display: block;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
-                  font-size:15px;"
-              >我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</span>
+                  font-size:15px;">我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</span>
             </p>
             <p class="mod_copyright_auth_ico1_text2">我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</p>
             <p class="mod_copyright_auth_ico1_img">
-              <img src="../assets/jiantou.png" alt />
+              <img src="../assets/jiantou.png"
+                   alt />
             </p>
           </div>
         </div>
@@ -163,20 +187,20 @@
             <p class="copyright_links_text">30</p>
             <p class="copyright_links_text1">2019.12.23</p>
           </div>
-          <img src="../assets/dongt1.png" alt />
+          <img src="../assets/dongt1.png"
+               alt />
           <div class="mod_copyright_auth_ico1 mod_copyright_auth_ico2">
             <p class="mod_copyright_auth_ico1_text">
-              <span
-                style=" width: 70%; display: block;
+              <span style=" width: 70%; display: block;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
-                  font-size:15px;"
-              >我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</span>
+                  font-size:15px;">我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</span>
             </p>
             <p class="mod_copyright_auth_ico1_text2">我是标题杀菌灯拉数据来看大家阿斯利康大家啊三六九等</p>
             <p class="mod_copyright_auth_ico1_img">
-              <img src="../assets/jiantou.png" alt />
+              <img src="../assets/jiantou.png"
+                   alt />
             </p>
           </div>
         </div>
@@ -188,18 +212,30 @@
         <p class="mod_price_text1">HENGXINGDYNAMICS</p>
       </div>
       <div class="mod_help_nav">
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
-        <img src="../assets/zhaos.png" alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
+        <img src="../assets/zhaos.png"
+             alt />
       </div>
     </div>
     <Tail></Tail>
@@ -214,13 +250,13 @@ export default {
     Header,
     Tail
   },
-  data() {
+  data () {
     return {
       curr: 0
     };
   },
   methods: {
-    junm(e) {
+    junm (e) {
       this.curr = e.target.dataset.cuur;
     }
   }
@@ -228,7 +264,6 @@ export default {
 </script>
 
 <style>
-
 .cont_top {
   height: 200px;
 }
@@ -561,5 +596,4 @@ p {
 .SkusCell1 .mod_price_text {
   margin: 0 !important;
 }
-
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="release">
-    <headWoke></headWoke>
+    <Header :coou='2'></Header>
     <div class="main">
       <div class="banxin">
         <div class="mian_title">发布应用</div>
@@ -8,12 +8,17 @@
       </div>
     </div>
     <div class="mian_content">
-      <el-upload drag multiple   action="https://jsonplaceholder.typicode.com/posts/">
+      <el-upload drag
+                 multiple
+                 action="https://jsonplaceholder.typicode.com/posts/">
         <div class="banxin">
           <div class="upload">
             <div class="upload_iife">
-              <input type="file" id="btn_file" style="display:none" />
-              <img src="../../assets/iife.png" alt />
+              <input type="file"
+                     id="btn_file"
+                     style="display:none" />
+              <img src="../../assets/iife.png"
+                   alt />
             </div>
             <div class="Notes">
               点击按钮选择应用的安装包，或拖拽文件到此区域
@@ -29,15 +34,15 @@
 </template>
 
 <script>
-import headWoke from "../../common/header.vue";
+import Header from "../../common/header.vue";
 import tail from "../../common/tail.vue";
 export default {
   components: {
-    headWoke,
+    Header,
     tail
   },
-  data() {
-    return{
+  data () {
+    return {
 
     }
   },
