@@ -5,7 +5,6 @@
       <div class="nav">
         <img src="../assets/logo.png"
              alt />
-
         <div class="nav_li"
              v-for="(item, index) in list"
              :key="item.id">
@@ -13,7 +12,6 @@
              @click="Jump($event,index)"
              :class="index==id?'blue':''">{{item.name}}</p>
         </div>
-
         <div class="nav_right">
           <div class="notice">
             <img src="../assets/notice.png"
@@ -23,7 +21,6 @@
           <img src="../assets/tx.png"
                alt />
         </div>
-
         <div class="dengruzucv">
           <div class="enter"
                @click.stop="doThis">
@@ -41,6 +38,7 @@
 <script>
 export default {
   name: "Header",
+  props: ['coou'],
   data () {
     return {
       list: [
@@ -54,13 +52,16 @@ export default {
       id: 0
     };
   },
-  created () { },
+  created () {
+    this.index = this.coou;
+    this.id = this.coou;
+    console.log(this.coou)
+  },
   beforeUpdate () { },
   methods: {
     Jump (e, index) {
       this.index = index;
       this.id = parseInt(e.target.dataset.id);
-      console.log(this.index, this.id);
       this.index == 0
         ? this.$router.push({ path: "/" })
         : this.index == 1 && this.id == 1
@@ -78,7 +79,7 @@ export default {
 
     register () {
       this.$router.push({ path: '/register' })
-    }
+    },
   }
 };
 </script>
