@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios'
 Vue.prototype.axios = axios
-
+// axios.defaults.baseURL = 'http://192.168.1.188:8035/API/'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

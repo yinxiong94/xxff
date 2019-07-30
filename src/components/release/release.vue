@@ -1,6 +1,6 @@
 <template>
   <div class="release">
-    <Header :coou='2'></Header>
+    <Header :coou="2"></Header>
     <div class="main">
       <div class="banxin">
         <div class="mian_title">发布应用</div>
@@ -8,26 +8,19 @@
       </div>
     </div>
     <div class="mian_content">
-      <el-upload drag
-                 multiple
-                 action="https://jsonplaceholder.typicode.com/posts/">
-        <div class="banxin">
-          <div class="upload">
-            <div class="upload_iife">
-              <input type="file"
-                     id="btn_file"
-                     style="display:none" />
-              <img src="../../assets/iife.png"
-                   alt />
-            </div>
-            <div class="Notes">
-              点击按钮选择应用的安装包，或拖拽文件到此区域
-              （支持.ipa或.apk文件，单个文件最大支持
-              <span>600M</span> ）
-            </div>
+      <div class="banxin">
+        <div class="upload">
+          <div class="upload_iife" @click.stop="release">
+            <input type="file" id="btn_file" style="display:none" />
+            <img src="../../assets/iife.png" alt />
+          </div>
+          <div class="Notes">
+            点击按钮选择应用的安装包，或拖拽文件到此区域
+            （支持.ipa或.apk文件，单个文件最大支持
+            <span>600M</span> ）
           </div>
         </div>
-      </el-upload>
+      </div>
     </div>
     <tail></tail>
   </div>
@@ -41,12 +34,36 @@ export default {
     Header,
     tail
   },
-  data () {
-    return {
-
+  data() {
+    return {};
+  },
+  beforeMount(){
+   
+  },
+  created(){
+    /**
+     *
+     */
+    initialize() {
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      var postData = this.qs.stringify({
+        action: "GetLeibie",
+        FathId: ""
+      });
+      this.axios.post(url, postData).then(res => {
+        console.log(res);
+      });
     }
   },
   methods: {
+    /**
+     * 跳转到应用发布
+     */
+    release() {
+      this.$router.push({ path: "/Application" });
+    },
+
+    
   }
 };
 </script>

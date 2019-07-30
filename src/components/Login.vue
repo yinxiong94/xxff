@@ -76,8 +76,9 @@ export default {
           localStorage.setItem("UserId", res.data.Result.UserId);
           // 存获取到的头像
           localStorage.setItem("UserImg", res.data.Result.UserImg);
-
-          var UserId = localStorage.getItem('UserId')
+          // 手机号码
+          localStorage.setItem("UserTel", res.data.Result.UserTel);
+          var UserTel = localStorage.getItem('UserTel')
           console.log(UserId)
           setInterval(() => {
             this.$router.push({ path: "/" });
