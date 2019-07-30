@@ -18,9 +18,10 @@
                  alt />
             <div>1</div>
           </div>
-          <img src="../assets/tx.png"
+          <img :src="UserImg"
                alt />
         </div>
+
         <div class="dengruzucv">
           <div class="enter"
                @click.stop="doThis">
@@ -49,13 +50,16 @@ export default {
         { id: 4, name: "个人中心" }
       ],
       index: 0,
-      id: 0
+      id: 0,
+      UserImg:"",
     };
   },
   created () {
     this.index = this.coou;
     this.id = this.coou;
     console.log(this.coou)
+    this.UserImg = localStorage.getItem('UserImg')
+
   },
   beforeUpdate () { },
   methods: {
@@ -151,6 +155,7 @@ export default {
   height: 50px;
   margin-top: 9px;
   margin-left: 25px;
+  border-radius: 50%;
 }
 .nav .nav_right .notice img {
   width: 21px;
