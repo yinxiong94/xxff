@@ -91,7 +91,7 @@ export default {
 .dengruzucv {
   position: absolute;
   right: 151px;
-  top: 24px;
+  top: 18px;
   display: flex;
   display: flex;
   align-items: center;
