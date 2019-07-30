@@ -11,11 +11,11 @@
         <div class="login_input_text1">
           <div class="form item-fore">
             <img src="../assets/Login_user.png" alt />
-            <input type="text" placeholder="请输入您的用户名" ref="input1" />
+            <input type="text" placeholder="请输入您的手机号码" ref="input1" />
           </div>
           <div class="form">
             <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="请输入登入密码" ref="input2" />
+            <input type="password" placeholder="请输入登入密码" ref="input2" />
           </div>
           <div class="form1">
             <label>
@@ -52,14 +52,29 @@ export default {
       let input1 = this.$refs.input1.value; //用户名
       let input2 = this.$refs.input2.value; //密码
       let postData = this.qs.stringify({
-        action:"Login",
-        Tel:input1,
-        PassWord:input2,
-      })
-      let url = "http://192.168.1.188:81/API/GetUserData.ashx";
-      this.axios.post(url,postData).then(res=>{
-        console.log(res)
-      })
+        action: "Login",
+        Tel: input1,
+        PassWord: input2
+      });
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, postData).then(res => {
+        console.log(res.data.Msg !== null);
+        if (res.data.Msg !== null) {
+          this.$message.error("账号或密码错误");
+        } else {
+          this.$message({
+            message: "登入成功",
+            type: "success"
+          });
+          localStorage.setItem("UserId", res.data.Result.UserId);
+
+          var UserId = localStorage.getItem('UserId')
+          console.log(UserId)
+          setInterval(() => {
+            this.$router.push({ path: "/" });
+          }, 2000);
+        }
+      });
     }
   }
 };
