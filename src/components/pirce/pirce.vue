@@ -12,7 +12,7 @@
           购买发布包
           <div class="package_k">
             <div class="click1">时长包</div>
-            <div class="click2">次数包</div>
+            <!-- <div class="click2">次数包</div> -->
           </div>
         </div>
         <div class="list">
@@ -87,6 +87,15 @@ export default {
       this.$router.push({ name: 'payment' });
     }
   },
+  created () {
+    let prl = {
+      action: 'GetProduct',
+      IsType: 0
+    }
+    this.$post("GetUserData.ashx", prl).then(res => {
+      console.log(res);
+    })
+  }
 }
 </script>
 <style>

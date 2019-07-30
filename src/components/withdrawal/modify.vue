@@ -3,7 +3,7 @@
     <headWoke></headWoke>
     <div class="mian">
       <dir class="banxin">
-        <navList></navList>
+        <navList :cities='2'></navList>
         <!-- <div class="wallet">
           <div class="title">修改资料</div>
           <div class="wallet_data">
@@ -108,14 +108,16 @@
           <div class="wallet_wallet">
             <span>手机验证码</span>
             <div class="wallet_send">
-              <input type="text" maxlength="11">
+              <input type="text"
+                     maxlength="11">
               <div class="wallet_send_btn">获取验证码</div>
             </div>
           </div>
           <div class="wallet_wallet">
             <span>输入新手机号码</span>
             <div class="wallet_send">
-              <input type="text" maxlength="11">
+              <input type="text"
+                     maxlength="11">
             </div>
           </div>
           <div class="wallet_wallet">
@@ -129,7 +131,6 @@
             确定修改
           </div>
         </div>
-        
         <!-- 修改密码 -->
         <!-- <div class="wallet">
           <div class="title">修改密码</div>
@@ -174,6 +175,9 @@ export default {
   },
   watch: {
 
+  },
+  created () {
+    console.log(this.list);
   }
 }
 </script>

@@ -3,30 +3,36 @@
     <!-- 头部 -->
     <div class="banxin">
       <div class="nav">
-        <img src="../assets/logo.png" alt />
+        <img src="../assets/logo.png"
+             alt />
 
-        <div class="nav_li" v-for="(item, index) in list" :key="item.id">
-          <p
-            :data-id="item.id"
-            @click="Jump($event,index)"
-            :class="index==id?'blue':''"
-          >{{item.name}}</p>
+        <div class="nav_li"
+             v-for="(item, index) in list"
+             :key="item.id">
+          <p :data-id="item.id"
+             @click="Jump($event,index)"
+             :class="index==id?'blue':''">{{item.name}}</p>
         </div>
 
         <div class="nav_right">
           <div class="notice">
-            <img src="../assets/notice.png" alt />
+            <img src="../assets/notice.png"
+                 alt />
             <div>1</div>
           </div>
-          <img src="../assets/tx.png" alt />
+          <img src="../assets/tx.png"
+               alt />
         </div>
 
         <div class="dengruzucv">
-          <div class="enter" @click.stop="doThis">
-            <img src="../assets/dengru.png" alt />
+          <div class="enter"
+               @click.stop="doThis">
+            <img src="../assets/dengru.png"
+                 alt />
             <span>登入</span>
           </div>
-          <div class="register" @click.stop="register">注册</div>
+          <div class="register"
+               @click.stop="register">注册</div>
         </div>
       </div>
     </div>
@@ -35,7 +41,7 @@
 <script>
 export default {
   name: "Header",
-  data() {
+  data () {
     return {
       list: [
         { id: 0, name: "主页" },
@@ -48,30 +54,30 @@ export default {
       id: 0
     };
   },
-  created() {},
-  beforeUpdate() {},
+  created () { },
+  beforeUpdate () { },
   methods: {
-    Jump(e, index) {
+    Jump (e, index) {
       this.index = index;
       this.id = parseInt(e.target.dataset.id);
       console.log(this.index, this.id);
       this.index == 0
         ? this.$router.push({ path: "/" })
         : this.index == 1 && this.id == 1
-        ? this.$router.push({ path: "/pirce" })
-        : this.index == 2 && this.id == 2
-        ? this.$router.push({ path: "/release" })
-        : this.index == 3 && this.id == 3
-        ? this.$router.push({ path: "/adhibition" })
-        : this.$router.push({ path: "/withdrawal" });
+          ? this.$router.push({ path: "/pirce" })
+          : this.index == 2 && this.id == 2
+            ? this.$router.push({ path: "/release" })
+            : this.index == 3 && this.id == 3
+              ? this.$router.push({ path: "/adhibition" })
+              : this.$router.push({ path: "/withdrawal" });
     },
 
-    doThis() {
+    doThis () {
       this.$router.push({ path: "/Login" });
     },
 
-    register(){
-      this.$router.push({path:'/register'})
+    register () {
+      this.$router.push({ path: '/register' })
     }
   }
 };

@@ -3,7 +3,7 @@
     <headWoke></headWoke>
     <div class="mian">
       <div class="banxin">
-        <navList></navList>
+        <navList :cities='0'></navList>
         <div class="mian_right">
           <div class="Overview_data">
             <div class="Overview_data_top">

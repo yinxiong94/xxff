@@ -3,8 +3,8 @@
     <headWoke></headWoke>
     <div class="mian">
       <dir class="banxin">
-        <navList></navList>
-        <div class="wallet">
+        <navList :cities='1'></navList>
+        <div id="wallet">
           <div :class="off == 0?'title':'title1'"
                @click="Previous">{{title}}</div>
           <div class="list"
@@ -83,17 +83,13 @@
               </div>
             </div>
           </div>
-
           <div class="Tips">
             <div class="title"
                  style="border-bottom:0">温馨提示</div>
             <div class="Tips_num">
               <ul>
-                <li>1.为了您的账户资金安全，请在充值前开通第三方资金托管账户、设置交易密码；</li>
-                <li>2.充值过程中不收取任何手续费</li>
-                <li>4.根据不同的安全认证方式，充值单笔限额和每日限额会不同，具体请咨询银行客服；</li>
-                <li>5.严禁利用充值功能进行信用卡套现、转账、洗钱等行为；</li>
-                <li>6.充值期间，请勿关闭浏览器，待充值成功并返回会员中心后，所充资金才能入账，如有疑问请及时联系我们：*************</li>
+                <li v-for="item in list"
+                    v-bind:key="item.id">{{item.text}}</li>
               </ul>
             </div>
           </div>
@@ -117,7 +113,14 @@ export default {
     return {
       off: 0,
       title: '我的钱包',
-      HandPirce: ''
+      HandPirce: '',
+      list: [
+        { text: '1.为了您的账户资金安全，请在充值前开通第三方资金托管账户、设置交易密码；', id: 1 },
+        { text: '2.充值过程中不收取任何手续费', id: 2 },
+        { text: '4.根据不同的安全认证方式，充值单笔限额和每日限额会不同，具体请咨询银行客服；', id: 3 },
+        { text: '5.严禁利用充值功能进行信用卡套现、转账、洗钱等行为；', id: 4 },
+        { text: '6.充值期间，请勿关闭浏览器，待充值成功并返回会员中心后，所充资金才能入账，如有疑问请及时联系我们：*************', id: 5 },
+      ]
     }
   },
   methods: {
@@ -140,11 +143,11 @@ export default {
       let prl = {
         action: 'withdrawSave',
         userid: 'a20e8d4e-3e4c-4773-a913-e8c7abb96b3f',
-        OrderPrice: this.HandPirce
+        Moeny: this.HandPirce
       }
-      this.$post('GetUserData.ashx', prl).then(res => {
+      this.$post("GetUserData.ashx", prl).then(res => {
         console.log(res);
-      })
+      }).catch(() => console.log("promise catch err"));
     }
   },
   watch: {
@@ -162,14 +165,14 @@ body {
 .mian .banxin {
   display: flex;
 }
-.wallet {
+#wallet {
   flex: 1;
   margin-left: 15px;
   padding: 0 20px;
   background: #fff;
   overflow: hidden;
 }
-.wallet .title {
+#wallet .title {
   width: 100%;
   height: 80px;
   font-size: 32px;
@@ -179,7 +182,7 @@ body {
   line-height: 80px;
   border-bottom: 1px solid #f1efee;
 }
-.wallet .title1 {
+#wallet .title1 {
   width: 100%;
   height: 80px;
   font-size: 32px;
@@ -194,35 +197,35 @@ body {
   background-position: 0 27px;
   text-indent: 40px;
 }
-.wallet .list {
+#wallet .list {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.wallet .list .send {
+#wallet .list .send {
   width: 50%;
   height: 188px;
   background-image: url("../../assets/item1.png");
   background-size: 494px 188px;
 }
-.wallet .list .send:nth-child(2) {
+#wallet .list .send:nth-child(2) {
   background-image: url("../../assets/item2.png");
 }
-.wallet .list .send:nth-child(3) {
+#wallet .list .send:nth-child(3) {
   background-image: url("../../assets/item3.png");
 }
-.wallet .list .send:nth-child(4) {
+#wallet.list .send:nth-child(4) {
   background-image: url("../../assets/item4.png");
 }
-.wallet .list .send .send_conter {
+#wallet .list .send .send_conter {
   flex: 1;
   margin-left: 154px;
   display: flex;
   flex-direction: column;
 }
-.wallet .list .send .send_conter .center,
-.wallet .list .send .send_conter .center1 {
+#wallet .list .send .send_conter .center,
+#wallet .list .send .send_conter .center1 {
   text-align: center;
   line-height: 188px;
   font-size: 36px;
@@ -230,11 +233,11 @@ body {
   font-weight: bold;
   color: rgba(37, 143, 252, 1);
 }
-.wallet .list .send .send_conter .center1 {
+#wallet .list .send .send_conter .center1 {
   color: #fe8810;
 }
-.wallet .list .send .send_pirce,
-.wallet .list .send .send_pirce1 {
+#wallet .list .send .send_pirce,
+#wallet .list .send .send_pirce1 {
   font-size: 36px;
   font-family: MicrosoftYaHei-Bold;
   font-weight: bold;
@@ -244,21 +247,21 @@ body {
   height: 30px;
   line-height: 30px;
 }
-.wallet .list .send .send_pirce {
+#wallet .list .send .send_pirce {
   color: #00b775;
 }
-.wallet .list .send .send_Total {
+#wallet .list .send .send_Total {
   text-align: center;
   margin-top: 38px;
 }
-.wallet .Tips {
+#wallet .Tips {
   margin-top: 20px;
 }
-.wallet .Tips .Tips_num {
+#wallet .Tips .Tips_num {
   margin-top: 34px;
   padding-bottom: 27px;
 }
-.wallet .Tips .Tips_num ul li {
+#wallet .Tips .Tips_num ul li {
   font-size: 24px;
   color: #666666;
   margin-bottom: 10px;
