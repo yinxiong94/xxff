@@ -16,7 +16,7 @@
           </div>
           <div class="form item-fore">
             <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="请输入登入密码" ref="input2" />
+            <input type="password" placeholder="请输入登入密码" ref="input2" />
             <span class="bit">*</span>
           </div>
 
@@ -35,7 +35,7 @@
             <input type="text" placeholder="输入上级ID得10元优惠券(选填)" ref="input5" />
           </div>
           <div class="but" @click.stop="registerpost">注册</div>
-          <div class="but1">已有账号去登入</div>
+          <div class="but1" @click.stop="doThis">已有账号去登入</div>
         </div>
       </div>
     </div>
@@ -85,16 +85,26 @@ export default {
         });
         return;
       }
-      let params = {
+      let params = this.qs.stringify({
         action: "Registe",
         Tel: input3,
         referral: input5,
         NickName: input1,
         PassWord: input2,
         Code: input4
-      };
-      this.$post("GetCode.ashx", params).then(res => {
-        console.log(res);
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res.data.Result);
+        if (res.data.Result !== "") {
+          this.$message({
+            message: "注册成功",
+            type: "success"
+          });
+          setInterval(() => {
+            this.$router.push({ path: "/Login" });
+          }, 2000);
+        }
       });
     },
 
@@ -136,12 +146,31 @@ export default {
         this.code =
           this.count < 10 ? `请等待0${this.count}s` : `请等待${this.count}s`;
       }, 1000);
-      let params = { action: "GetAuthCode", Tel: input3 };
-      this.$post("GetCode.ashx", params)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(() => console.log("promise catch err")); //捕获异常
+
+      let params = this.qs.stringify({
+        action: "GetAuthCode",
+        Tel: input3
+      });
+      var url = "http://192.168.1.188:8035/API/GetCode.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res.data.Msg);
+        if (res.data.Msg == "此账号已被注册") {
+          this.$message({
+            message: "此账号已被注册",
+            type: "warning"
+          });
+        }
+      });
+
+      // let params = { action: "GetAuthCode", Tel: input3 };
+      // this.$post("", params)
+      //   .then(res => {})
+      //   .catch(() => console.log("promise catch err")); //捕获异常
+    },
+
+    /**跳转到登入 */
+    doThis() {
+      this.$router.push({ path: "/Login" });
     }
   }
 };

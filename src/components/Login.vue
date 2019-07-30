@@ -11,11 +11,11 @@
         <div class="login_input_text1">
           <div class="form item-fore">
             <img src="../assets/Login_user.png" alt />
-            <input type="text" placeholder="请输入您的用户名" />
+            <input type="text" placeholder="请输入您的用户名" ref="input1" />
           </div>
           <div class="form">
             <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="请输入登入密码" />
+            <input type="text" placeholder="请输入登入密码" ref="input2" />
           </div>
           <div class="form1">
             <label>
@@ -24,9 +24,9 @@
             <a href>忘记密码？</a>
           </div>
 
-          <div class="but">登入</div>
+          <div class="but" @click.stop="login">登入</div>
 
-          <div class="but1">注册</div>
+          <div class="but1" @click.stop="register">注册</div>
         </div>
       </div>
     </div>
@@ -39,6 +39,28 @@ export default {
     return {
       checked: true
     };
+  },
+
+  methods: {
+    register() {
+      this.$router.push({ path: "/register" });
+    },
+    /**
+     * 登入
+     */
+    login() {
+      let input1 = this.$refs.input1.value; //用户名
+      let input2 = this.$refs.input2.value; //密码
+      let postData = this.qs.stringify({
+        action:"Login",
+        Tel:input1,
+        PassWord:input2,
+      })
+      let url = "http://192.168.1.188:81/API/GetUserData.ashx";
+      this.axios.post(url,postData).then(res=>{
+        console.log(res)
+      })
+    }
   }
 };
 </script>

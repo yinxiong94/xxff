@@ -90,7 +90,6 @@ export default {
   height: 810px;
   background-color: #dfd9d9;
   position: relative;
-  margin-top: 50px;
 }
 .banxin .upload .upload_iife {
   width: 18.4%;
