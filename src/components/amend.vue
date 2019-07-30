@@ -3,7 +3,7 @@
     <headWoke></headWoke>
     <div class="mian">
       <dir class="banxin">
-        <navList></navList>
+        <navList :cities='3'></navList>
         <div class="wallet">
           <div class="wallet1">
             <div class="wallet_top">
@@ -23,7 +23,8 @@
           <div class="wallet3">
             <div class="wallet3_list">
               <div class="wallet3_hb">
-                <img src="../assets/chengg.png" alt />
+                <img src="../assets/chengg.png"
+                     alt />
                 <span>新人推荐优惠卷</span>
               </div>
               <div class="wallet3_hb">
@@ -39,7 +40,8 @@
             </div>
             <div class="wallet3_list">
               <div class="wallet3_hb">
-                <img src="../assets/chengg.png" alt />
+                <img src="../assets/chengg.png"
+                     alt />
                 <span>新人推荐优惠卷</span>
               </div>
               <div class="wallet3_hb">
@@ -55,7 +57,8 @@
             </div>
             <div class="wallet3_list">
               <div class="wallet3_hb">
-                <img src="../assets/chengg.png" alt />
+                <img src="../assets/chengg.png"
+                     alt />
                 <span>新人推荐优惠卷</span>
               </div>
               <div class="wallet3_hb">
@@ -71,7 +74,8 @@
             </div>
             <div class="wallet3_list">
               <div class="wallet3_hb">
-                <img src="../assets/chengg.png" alt />
+                <img src="../assets/chengg.png"
+                     alt />
                 <span>新人推荐优惠卷</span>
               </div>
               <div class="wallet3_hb">
@@ -87,7 +91,8 @@
             </div>
             <div class="wallet3_list">
               <div class="wallet3_hb">
-                <img src="../assets/chengg.png" alt />
+                <img src="../assets/chengg.png"
+                     alt />
                 <span>新人推荐优惠卷</span>
               </div>
               <div class="wallet3_hb">
@@ -102,7 +107,10 @@
               </div>
             </div>
             <div class="wallet3_list wallet3_list_fy">
-              <el-pagination background layout="prev, pager, next" :total="100" size="4"></el-pagination>
+              <el-pagination background
+                             layout="prev, pager, next"
+                             :total="100"
+                             size="4"></el-pagination>
             </div>
           </div>
         </div>
@@ -205,9 +213,9 @@ body {
 .wallet3_cl {
   color: red;
 }
-.wallet3_list_fy{
-    align-items: center;
-    justify-content: center;
+.wallet3_list_fy {
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
