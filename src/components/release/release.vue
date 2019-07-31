@@ -37,24 +37,7 @@ export default {
   data() {
     return {};
   },
-  beforeMount(){
-   
-  },
-  created(){
-    /**
-     *
-     */
-    initialize() {
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      var postData = this.qs.stringify({
-        action: "GetLeibie",
-        FathId: ""
-      });
-      this.axios.post(url, postData).then(res => {
-        console.log(res);
-      });
-    }
-  },
+
   methods: {
     /**
      * 跳转到应用发布

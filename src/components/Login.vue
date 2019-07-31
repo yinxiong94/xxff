@@ -78,11 +78,14 @@ export default {
           localStorage.setItem("UserImg", res.data.Result.UserImg);
           // 手机号码
           localStorage.setItem("UserTel", res.data.Result.UserTel);
-          var UserTel = localStorage.getItem('UserTel')
-          console.log(UserId)
-          setInterval(() => {
-            this.$router.push({ path: "/" });
+         
+         
+         const countDown = setInterval(() => {
+            this.$router.push({ path: "/" });+
+
+             clearInterval(countDown)
           }, 2000);
+          
         }
       });
     }
