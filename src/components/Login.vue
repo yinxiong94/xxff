@@ -51,6 +51,11 @@ export default {
     login() {
       let input1 = this.$refs.input1.value; //用户名
       let input2 = this.$refs.input2.value; //密码
+
+      if(input1==""|| input2==""){
+        this.$message.error("账号或密码不能为空");
+        return
+      }
       let postData = this.qs.stringify({
         action: "Login",
         Tel: input1,
@@ -66,13 +71,21 @@ export default {
             message: "登入成功",
             type: "success"
           });
-          localStorage.setItem("UserId", res.data.Result.UserId);
 
-          var UserId = localStorage.getItem('UserId')
-          console.log(UserId)
-          setInterval(() => {
-            this.$router.push({ path: "/" });
+          // 存获取到的UserId
+          localStorage.setItem("UserId", res.data.Result.UserId);
+          // 存获取到的头像
+          localStorage.setItem("UserImg", res.data.Result.UserImg);
+          // 手机号码
+          localStorage.setItem("UserTel", res.data.Result.UserTel);
+         
+         
+         const countDown = setInterval(() => {
+            this.$router.push({ path: "/" });+
+
+             clearInterval(countDown)
           }, 2000);
+          
         }
       });
     }
