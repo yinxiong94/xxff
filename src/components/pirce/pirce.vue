@@ -16,50 +16,22 @@
           </div>
         </div>
         <div class="list">
-          <div class="list_1">
-            <div class="list_pirce">￥180</div>
+          <div class="list_1"
+               v-for="(item,index) in list"
+               v-bind:key="index">
+            <div class="list_pirce">￥{{item.Price}}</div>
             <div class="list_cc">
-              <span>180/年</span>
-              <span>一天下载次数1千次</span>
+              <span>{{item.ProductName}}</span>
+              <span>一天下载次数{{item.MayCount}}次</span>
               <span>专属时长包</span>
               <span>一个包只针对一个APP</span>
-              <span class="send">180元一年</span>
-              <span class="send">一天可以下载1000次</span>
+              <span class="send">{{item.ProductName}}</span>
+              <span class="send">一天可以下载{{item.MayCount}}次</span>
               <span class="send">如次数不够可加购次数包</span>
             </div>
-            <div class="btn"
+            <div :class="index == 0?'btn':index==1?'btn1':'btn2'"
                  @click="HandChoice($event)"
                  data-index="180">立即购买</div>
-          </div>
-          <div class="list_1">
-            <div class="list_pirce">￥180</div>
-            <div class="list_cc">
-              <span>180/年</span>
-              <span>一天下载次数1千次</span>
-              <span>专属时长包</span>
-              <span>一个包只针对一个APP</span>
-              <span class="send">180元一年</span>
-              <span class="send">一天可以下载1000次</span>
-              <span class="send">如次数不够可加购次数包</span>
-            </div>
-            <div class="btn1"
-                 @click="HandChoice($event)"
-                 data-index="500">立即购买</div>
-          </div>
-          <div class="list_1">
-            <div class="list_pirce1">￥180</div>
-            <div class="list_cc">
-              <span>180/年</span>
-              <span>一天下载次数1千次</span>
-              <span>专属时长包</span>
-              <span>一个包只针对一个APP</span>
-              <span class="send">180元一年</span>
-              <span class="send">一天可以下载1000次</span>
-              <span class="send">如次数不够可加购次数包</span>
-            </div>
-            <div class="btn2"
-                 @click="HandChoice($event)"
-                 data-index="600">立即购买</div>
           </div>
         </div>
       </div>
@@ -77,7 +49,8 @@ export default {
   },
   data () {
     return {
-      choice: 99
+      choice: 99,
+      list: []
     }
   },
   methods: {
@@ -92,10 +65,10 @@ export default {
       action: "GetProduct",
       IsType: 0,
     });
-    var url = "http://192.168.1.188:81/API/GetUserData.ashx";
+    var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
     this.axios.post(url, params).then(res => {
-      console.log(res.data.Result);
-
+      this.list = res.data.Result
+      console.log(this.list);
     });
   }
 }

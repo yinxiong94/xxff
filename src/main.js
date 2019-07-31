@@ -2,14 +2,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-import qs from 'qs'
 import axios from 'axios'
+import qs from 'qs'
 import 'element-ui/lib/theme-chalk/index.css'
 // import { fetchGet, fetchPost} from './http'
 // Vue.prototype.$get = fetchGet
 // Vue.prototype.$post = fetchPost
-import qs from 'qs'
-import axios from 'axios'
 Vue.prototype.axios = axios
 Vue.prototype.qs = qs
 

@@ -109,7 +109,9 @@
             <span>手机验证码</span>
             <div class="wallet_send">
               <input type="text"
-                     maxlength="11">
+                     maxlength="11"
+                     value=""
+                     >
               <div class="wallet_send_btn">获取验证码</div>
             </div>
           </div>
@@ -177,7 +179,8 @@ export default {
 
   },
   created () {
-    console.log(this.list);
+    var UserTel = localStorage.getItem('UserTel');
+    console.log(UserTel);
   }
 }
 </script>

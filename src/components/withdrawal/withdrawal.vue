@@ -140,14 +140,15 @@ export default {
       }
     },
     HandSub: function () {
-      let prl = {
-        action: 'withdrawSave',
-        userid: 'a20e8d4e-3e4c-4773-a913-e8c7abb96b3f',
-        Moeny: this.HandPirce
-      }
-      this.$post("GetUserData.ashx", prl).then(res => {
-        console.log(res);
-      }).catch(() => console.log("promise catch err"));
+      let params = this.qs.stringify({
+        action: "Zhifu",
+        type: 2,
+        OrderPrice: this.HandPirce
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res.data.result);
+      });
     }
   },
   watch: {
