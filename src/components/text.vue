@@ -1,22 +1,35 @@
-
-
 <template>
   <div>
-    <input type="file" class="file" @change="file" />
+    <el-upload
+      action="https://jsonplaceholder.typicode.com/posts/"
+      list-type="picture-card"
+      :on-preview="handlePictureCardPreview"
+      :on-remove="handleRemove"
+    >
+      <i class="el-icon-plus"></i>
+    </el-upload>
+    <el-dialog :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt />
+    </el-dialog>
   </div>
 </template>
+
+
 <script>
 export default {
   data() {
-    return {};
+    return {
+      dialogImageUrl: "",
+      dialogVisible: false
+    };
   },
   methods: {
-    file() {
-      var formData = new FormData(); // 声明一个FormData对象
-      var formData = new window.FormData(); // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
-      formData.append('userfile', document.querySelector('input[type=file]').files[0]) 
-
-      console.log( formData.append('userfile', document.querySelector('input[type=file]').files[0]) )
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
     }
   }
 };
