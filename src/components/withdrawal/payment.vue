@@ -64,7 +64,9 @@ export default {
     return {
       radio: '1',
       mode: 1,
-      pirce: 99
+      pirce: 99,
+      tcid: '',
+      applicationId: ''
     };
   },
   methods: {
@@ -72,15 +74,19 @@ export default {
       this.mode = e.target.dataset.index
     },
     HandSubmission: function () {
+      var UserId = localStorage.getItem('UserId')
       if (this.mode == '0') {
-        let prl = {
-          action: 'Zhifu',
+        let params = this.qs.stringify({
+          action: "payment",
           type: 2,
-          OrderPrice: this.pirce
-        }
-        this.$post('GetUserData.ashx', prl).then(res => {
+          UserId: UserId,
+          ProductId: this.tcid,
+          OrderDetailsId: this.applicationId
+        });
+        var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+        this.axios.post(url, params).then(res => {
           console.log(res);
-        })
+        });
       }
     }
   },
@@ -93,8 +99,11 @@ export default {
   },
   mounted () {
     this.pirce = localStorage.getItem('pirce');
+    this.tcid = localStorage.getItem('tcid');
+    this.applicationId = localStorage.getItem('applicationId');
   },
   created () {
+    console.log(this.$route.query.row.id);
   }
 }
 </script>

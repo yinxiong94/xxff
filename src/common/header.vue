@@ -51,7 +51,7 @@ export default {
       ],
       index: 0,
       id: 0,
-      UserImg:"",
+      UserImg: "",
     };
   },
   created () {
@@ -91,6 +91,7 @@ export default {
 <style>
 .header {
   position: relative;
+  overflow: hidden;
 }
 .dengruzucv {
   position: absolute;
