@@ -319,8 +319,6 @@ export default {
         _this.imgBase64 = e.target.result;
       }
       reader.readAsDataURL(file);
-      var obj = new FormData(document.getElementById("myform"));
-      obj.append("name", "wzh");
       console.log(obj);
       // this.handshangc();
     },
