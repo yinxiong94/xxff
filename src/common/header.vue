@@ -163,7 +163,6 @@ export default {
         userid: userid
       });
       this.axios.post(url, postData).then(res => {
-        console.log(res);
         this.list1 = res.data.Result;
       });
     },
