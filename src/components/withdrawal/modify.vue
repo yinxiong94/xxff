@@ -3,37 +3,31 @@
     <headWoke></headWoke>
     <div class="mian">
       <dir class="banxin">
-        <navList :cities='2'></navList>
-        <div class="wallet"
-             v-if="num==0">
+        <navList :cities="2"></navList>
+        <div class="wallet" v-if="num==0">
           <div class="title">修改资料</div>
           <div class="wallet_data">
             <div class="wallet_list">头像</div>
-            <img :src="imgBase64"
-                 alt="">
+            <img :src="imgBase64" alt />
             <div class="wallet_btn">
-              <form id="upload"
-                    enctype="multipart/form-data"
-                    method="post">
-                <input name="upfile"
-                       class="ggg"
-                       id="upfile"
-                       type="file"
-                       @change="changeImage($event)"
-                       ref="inputer"
-                       accept="image/*">
+              <form id="upload" enctype="multipart/form-data" method="post">
+                <input
+                  name="upfile"
+                  class="ggg"
+                  id="upfile"
+                  type="file"
+                  @change="changeImage($event)"
+                  ref="inputer"
+                  accept="image/*"
+                />
               </form>
-              <label for='upfile'>修改头像</label>
+              <label for="upfile">修改头像</label>
             </div>
           </div>
           <div class="wallet_data">
             <div class="wallet_list">用户名</div>
             <div class="wallet_num">{{user.NickName}}</div>
-            <div class="wallet_btn"
-                 @click="handNum($event)"
-                 data-index="1">
-              修改用户名
-            </div>
+            <div class="wallet_btn" @click="handNum($event)" data-index="1">修改用户名</div>
           </div>
           <!-- <div class="wallet_data">
             <div class="wallet_list">邮箱地址</div>
@@ -41,48 +35,32 @@
             <div class="wallet_btn">
               修改邮箱
             </div>
-          </div> -->
+          </div>-->
           <div class="wallet_data">
             <div class="wallet_list">手机号码</div>
             <div class="wallet_num">+86 {{tel}}</div>
-            <div class="wallet_btn"
-                 @click="handNum($event)"
-                 data-index="2">
-              修改手机号
-            </div>
+            <div class="wallet_btn" @click="handNum($event)" data-index="2">修改手机号</div>
           </div>
           <div class="wallet_data">
             <div class="wallet_list">登录密码</div>
             <div class="wallet_num">********</div>
-            <div class="wallet_btn"
-                 @click="handNum($event)"
-                 data-index="3">
-              修改密码
-            </div>
+            <div class="wallet_btn" @click="handNum($event)" data-index="3">修改密码</div>
           </div>
         </div>
         <!-- 修改用户名 -->
-        <div class="wallet"
-             v-if="num==1">
-          <div class="title1"
-               @click="handReturn">修改用户名</div>
+        <div class="wallet" v-if="num==1">
+          <div class="title1" @click="handReturn">修改用户名</div>
           <div class="wallet_wallet">
-            <span> 用户名</span>
-            <div class="wallet_send">
-              {{user.NickName}}
-            </div>
+            <span>用户名</span>
+            <div class="wallet_send">{{user.NickName}}</div>
           </div>
           <div class="wallet_wallet">
             <span>输入新用户名</span>
             <div class="wallet_send">
-              <input type="text"
-                     v-model="userName">
+              <input type="text" v-model="userName" />
             </div>
           </div>
-          <div class="wallet_btn1"
-               @click="handUserName">
-            确定修改
-          </div>
+          <div class="wallet_btn1" @click="handUserName">确定修改</div>
         </div>
         <!-- 修改邮箱 -->
         <!-- <div class="wallet">
@@ -104,86 +82,55 @@
           </div>
         </div>-->
         <!-- 修改手机号 -->
-        <div class="wallet"
-             v-if="num==2">
-          <div class="title1"
-               @click="handReturn">原手机号</div>
-          <div class="wallet_wallet"
-               v-if="telFalse == 1">
-            <span> 请输原手机验证码</span>
-            <div class="wallet_send">
-              {{tel}}
-            </div>
+        <div class="wallet" v-if="num==2">
+          <div class="title1" @click="handReturn">原手机号</div>
+          <div class="wallet_wallet" v-if="telFalse == 1">
+            <span>请输原手机验证码</span>
+            <div class="wallet_send">{{tel}}</div>
           </div>
-          <div class="wallet_wallet"
-               v-if="telFalse == 1">
+          <div class="wallet_wallet" v-if="telFalse == 1">
             <span>手机验证码</span>
             <div class="wallet_send">
-              <input type="text"
-                     maxlength="11"
-                     v-model="NewCellPhone">
-              <div class="wallet_send_btn"
-                   @click="Verification">获取验证码</div>
+              <input type="text" maxlength="11" v-model="NewCellPhone" />
+              <div class="wallet_send_btn" @click="Verification">获取验证码</div>
             </div>
           </div>
-          <div class="wallet_wallet"
-               v-if="telFalse == 0">
+          <div class="wallet_wallet" v-if="telFalse == 0">
             <span>输入新手机号码</span>
             <div class="wallet_send">
-              <input type="text"
-                     v-model="newTel">
+              <input type="text" v-model="newTel" />
             </div>
           </div>
-          <div class="wallet_wallet"
-               v-if="telFalse == 0">
+          <div class="wallet_wallet" v-if="telFalse == 0">
             <span>新手机验证码</span>
             <div class="wallet_send">
-              <input type="text"
-                     v-model="NewCellPhone">
-              <div class="wallet_send_btn"
-                   @click="Verification1">获取验证码</div>
+              <input type="text" v-model="NewCellPhone" />
+              <div class="wallet_send_btn" @click="Verification1">获取验证码</div>
             </div>
           </div>
-          <div class="wallet_btn1"
-               v-if="telFalse == 1"
-               @click="Nextstep">
-            下一步
-          </div>
-          <div class="wallet_btn1"
-               @click="Determine"
-               v-if="telFalse == 0">
-            确定修改
-          </div>
+          <div class="wallet_btn1" v-if="telFalse == 1" @click="Nextstep">下一步</div>
+          <div class="wallet_btn1" @click="Determine" v-if="telFalse == 0">确定修改</div>
         </div>
         <!-- 修改密码 -->
-        <div class="wallet"
-             v-if="num==3">
-          <div class="title1"
-               @click="handReturn">修改密码</div>
+        <div class="wallet" v-if="num==3">
+          <div class="title1" @click="handReturn">修改密码</div>
           <div class="wallet_wallet">
-            <span> 原密码</span>
-            <div class="wallet_send">
-              **********
-            </div>
+            <span>原密码</span>
+            <div class="wallet_send">**********</div>
           </div>
           <div class="wallet_wallet">
             <span>请输入原密码</span>
             <div class="wallet_send">
-              <input type="text"
-                     v-model="psw">
+              <input type="text" v-model="psw" />
             </div>
           </div>
           <div class="wallet_wallet">
             <span>请输入新密码</span>
             <div class="wallet_send">
-              <input type="text"
-                     v-model="psw1">
+              <input type="text" v-model="psw1" />
             </div>
           </div>
-          <div class="wallet_btn1"
-               @click="handpsw">
-            确定修改
-          </div>
+          <div class="wallet_btn1" @click="handpsw">确定修改</div>
         </div>
       </dir>
     </div>
@@ -200,36 +147,36 @@ export default {
     navList,
     tail
   },
-  data () {
+  data() {
     return {
-      tel: '',
-      tel1: '',
-      NewCellPhone: '',
+      tel: "",
+      tel1: "",
+      NewCellPhone: "",
       telFalse: 1,
-      newTel: '',
+      newTel: "",
       user: [],
       num: 0,
-      imgBase64: require('../../assets/xia.png'),
-      psw: '',
-      psw1: '',
-      userName: ''
-    }
+      imgBase64: require("../../assets/xia.png"),
+      psw: "",
+      psw1: "",
+      userName: ""
+    };
   },
   methods: {
-    Determine: function () {
+    Determine: function() {
       this.modifyMobile();
     },
-    Nextstep: function () {
+    Nextstep: function() {
       // 下一步
-      var UserTel = localStorage.getItem('UserTel');
+      var UserTel = localStorage.getItem("UserTel");
       this.tel1 = UserTel;
       this.VerificationCode();
     },
-    Verification: function () {
+    Verification: function() {
       // 获取验证码
       if (this.telFalse == 1) {
-        var UserTel = localStorage.getItem('UserTel');
-        this.tel1 = UserTel
+        var UserTel = localStorage.getItem("UserTel");
+        this.tel1 = UserTel;
       }
       let params = this.qs.stringify({
         action: "GetAuthCodeMima",
@@ -240,7 +187,7 @@ export default {
         console.log(res);
       });
     },
-    Verification1: function () {
+    Verification1: function() {
       // 获取验证码
 
       let params = this.qs.stringify({
@@ -252,9 +199,9 @@ export default {
         console.log(res);
       });
     },
-    VerificationCode: function () {
+    VerificationCode: function() {
       // 验证验证码
-      console.log('验证验证码');
+      console.log("验证验证码");
       let params = this.qs.stringify({
         action: "ExistAuthCode",
         Tel: this.tel1,
@@ -264,7 +211,7 @@ export default {
       this.axios.post(url, params).then(res => {
         console.log(res);
         if (res.data.Result == true) {
-          this.NewCellPhone = '';
+          this.NewCellPhone = "";
           this.$message({
             message: "验证成功",
             type: "success"
@@ -275,9 +222,9 @@ export default {
         }
       });
     },
-    modifyMobile: function () {
-      var UserId = localStorage.getItem('UserId');
-      console.log(this.NewCellPhone, this.tel1, this.newTel)
+    modifyMobile: function() {
+      var UserId = localStorage.getItem("UserId");
+      console.log(this.NewCellPhone, this.tel1, this.newTel);
       let params = this.qs.stringify({
         action: "EditTel",
         Code: this.NewCellPhone,
@@ -289,8 +236,8 @@ export default {
         console.log(res);
       });
     },
-    Information: function () {
-      var UserId = localStorage.getItem('UserId')
+    Information: function() {
+      var UserId = localStorage.getItem("UserId");
       let params = this.qs.stringify({
         action: "withdrawIndex",
         userid: UserId
@@ -298,43 +245,38 @@ export default {
       var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       this.axios.post(url, params).then(res => {
         console.log(res);
-        this.user = res.data.Result
+        this.user = res.data.Result;
       });
     },
-    handNum: function (e) {
+    handNum: function(e) {
       this.num = e.target.dataset.index;
-      console.log(e.target.dataset.index)
+      console.log(e.target.dataset.index);
     },
-    handReturn () {
+    handReturn() {
       this.num = 0;
     },
-    changeImage: function () {
+    changeImage: function() {
       // 文件预览
       var _this = this;
       var event = event || window.event;
       var file = event.target.files[0];
-      var reader = new FileReader();
-      //转base64
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         _this.imgBase64 = e.target.result;
-      }
+      };
       reader.readAsDataURL(file);
       console.log(obj);
       // this.handshangc();
     },
-    handshangc: function () {
+    handshangc: function(reader) {
       // 文件上传
-      let params = this.qs.stringify({
-        Base: this.imgBase64
-      });
       var url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post(url, reader).then(res => {
         console.log(res);
-        this.imgBase64 = res.data.Result
       });
     },
-    modifyUser: function () {
-      var UserId = localStorage.getItem('UserId');
+
+    modifyUser: function() {
+      var UserId = localStorage.getItem("UserId");
       console.log(this.user);
       // let params = this.qs.stringify({
       //   action: 'Registe',
@@ -347,11 +289,11 @@ export default {
       //   this.user = res.data.Result
       // });
     },
-    handpsw: function () {
+    handpsw: function() {
       // 修改密码
-      var UserId = localStorage.getItem('UserId');
+      var UserId = localStorage.getItem("UserId");
       let params = this.qs.stringify({
-        action: 'EditPwd',
+        action: "EditPwd",
         userid: UserId,
         pwd: this.psw,
         editpwd: this.psw1
@@ -360,7 +302,7 @@ export default {
       this.axios.post(url, params).then(res => {
         console.log(res);
         if (res.data.Result == "修改成功") {
-          this.NewCellPhone = '';
+          this.NewCellPhone = "";
           this.$message({
             message: "修改成功",
             type: "success"
@@ -371,10 +313,10 @@ export default {
         }
       });
     },
-    handUserName: function () {
-      var UserId = localStorage.getItem('UserId');
+    handUserName: function() {
+      var UserId = localStorage.getItem("UserId");
       let params = this.qs.stringify({
-        action: 'Registe',
+        action: "Registe",
         userid: UserId,
         NickName: this.userName
       });
@@ -382,7 +324,7 @@ export default {
       this.axios.post(url, params).then(res => {
         console.log(res);
         if (res.data.Result == "1") {
-          this.NewCellPhone = '';
+          this.NewCellPhone = "";
           this.$message({
             message: "修改成功",
             type: "success"
@@ -394,16 +336,13 @@ export default {
       });
     }
   },
-  watch: {
-
-  },
-  created () {
-    var UserTel = localStorage.getItem('UserTel');
+  watch: {},
+  created() {
+    var UserTel = localStorage.getItem("UserTel");
     var tel = "" + UserTel;
-    var tel1 = tel.substr(0, 3) + "****" + tel.substr(7)
+    var tel1 = tel.substr(0, 3) + "****" + tel.substr(7);
     this.tel = tel1;
     this.Information();
-
   }
 };
 </script>

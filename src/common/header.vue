@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="header" class="header">
     <!-- 头部 -->
     <div class="banxin">
       <div class="nav">
@@ -16,31 +16,34 @@
         <div class="nav_right" v-if="isshow">
           <div class="notice">
             <img src="../assets/notice.png" alt />
-            <div>1</div>
+            <div>{{sum || 0}}</div>
           </div>
           <div>
             <!-- <img :src="UserImg" alt /> -->
             <img
-              src="../assets/tx.png"
+              :src="list1.UserImg"
               alt
               width="50px"
               height="50px"
-              style="margin-top:10px;margin-left:30px"
+              style="margin-top:10px;margin-left:30px;border-radius: 50%"
               @click="show"
             />
             <div class="xl" v-if="isshow2">
               <div style="padding-bottom: 10px;border-bottom: 1px solid #ccc;width: 100%">
-                <img src="../assets/tx.png" alt style="width: 66px;height: 66px;margin-top: 15px" />
-                <p style="position: absolute;top:34px;left: 90px">123456</p>
+                <img
+                  :src="list1.UserImg"
+                  alt
+                  style="width: 66px;height: 66px;margin-top: 15px;border-radius: 50%"
+                />
                 <p
-                  style="position: absolute;top:68px;left: 90px;font-size:16px;color:rgba(180,180,180,1);"
-                >个人版</p>
+                  style="position: absolute;top:34px;left: 90px;line-height: 60px;font-size: 28px;"
+                >{{list1.NickName}}</p>
               </div>
               <div class="tx">
                 <img src="../assets/ye.png" alt />
                 <div style="width:100%;margin-top: 10px;font-size:16px;">
                   余额￥
-                  <span style="font-size:16px;">0.00</span>
+                  <span style="font-size:16px;">{{list1.Price.toFixed(2)}}</span>
                 </div>
               </div>
               <div class="tx">
@@ -51,14 +54,14 @@
                 <img src="../assets/tz.png" alt style="width:18px;height:21px" />
                 <div style="width:100%;margin-top: 10px;font-size:16px;">
                   通知中心
-                  <span style="font-size:16px;">0.00</span>
+                  <!-- <span style="font-size:16px;">0.00</span> -->
                 </div>
               </div>
               <div class="tx">
                 <img src="../assets/tc.png" alt style="width:22px;height:18px" />
-                <router-link to="">
-                <div style="width:100%;margin-top: 10px;font-size:16px;" @click="exit">退出</div>
-                </router-link> 
+                <router-link to>
+                  <div style="width:100%;margin-top: 10px;font-size:16px;" @click="exit">退出</div>
+                </router-link>
               </div>
             </div>
           </div>
@@ -91,9 +94,16 @@ export default {
       index: 0,
       id: 0,
       UserImg: "",
+      isshow: false,
+      isshow1: true,
+      isshow2: false,
+      list1: [],
+      sum: ""
     };
   },
   created() {
+    this.getxx();
+    this.getuser();
     this.index = this.coou;
     this.id = this.coou;
     this.UserImg = localStorage.getItem("UserImg");
@@ -139,9 +149,41 @@ export default {
       }
     },
 
-    exit(){
-      localStorage.clear()
-      location.reload()
+    exit() {
+      localStorage.clear();
+      location.reload();
+    },
+
+    // 获取用户信息
+    getuser() {
+      let userid = localStorage.getItem("UserId");
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData = this.qs.stringify({
+        action: "withdrawIndex",
+        userid: userid
+      });
+      this.axios.post(url, postData).then(res => {
+        this.list1 = res.data.Result;
+      });
+    },
+
+    // 消息列表
+    getxx() {
+      var sum;
+      let UserId = localStorage.getItem("UserId");
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData = this.qs.stringify({
+        action: "Xiaoxi",
+        UserId: UserId
+      });
+      this.axios.post(url, postData).then(res => {
+        for (var i = 0; i < res.data.Result.length; i++) {
+          if (res.data.Result[i].Num == 0) {
+            sum += 1;
+          }
+        }
+        this.sum = sum;
+      });
     }
   }
 };
@@ -149,8 +191,9 @@ export default {
 
 <style>
 .header {
-  position: relative;
-  overflow: hidden;
+  /* position: fixed; */
+  z-index: 100000;
+  width: 100%;
 }
 .tx {
   display: flex;
@@ -199,7 +242,7 @@ export default {
   display: flex;
 }
 .blue {
-  color: #258ffc;
+  color: #258ffc !important;
 }
 .nav > img {
   width: 178px;
