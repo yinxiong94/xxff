@@ -1,20 +1,16 @@
 <template>
   <div class="withdrawal">
-    <Header :coou='3'></Header>
+    <Header :coou="3"></Header>
     <div class="search_withdrawal">
       <div class="search aa">
-        <img src="../assets/search.png"
-             alt />
-        <input type="text"
-               placeholder="搜索您的应用" />
-        <img src="../assets/chacha.png"
-             alt />
+        <img src="../assets/search.png" alt />
+        <input type="text" placeholder="搜索您的应用" />
+        <img src="../assets/chacha.png" alt />
       </div>
       <div class="searchTwo">
         <div class="One">
           <span>全部</span>
-          <img src="../assets/daosanjiao.png"
-               alt />
+          <img src="../assets/daosanjiao.png" alt />
         </div>
         <div class="Two">
           <span>发布</span>
@@ -32,14 +28,12 @@
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
+              <img src="../assets/apple.png" alt />
               <span>IOS</span>
             </div>
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
+            <img src="../assets/xiaohongshu.png" alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -64,344 +58,11 @@
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
-        </div>
-      </div>
-      <div class="searchTwoTwo">
-        <div class="lanmuOne flex">
-          <div class="ContentOne">
-            <div class="flexOne">
-              <img src="../assets/apple.png"
-                   alt />
-              <span>IOS</span>
-            </div>
-          </div>
-          <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png"
-                 alt />
-          </div>
-          <div class="Contentthree">
-            <div class="textCenterTwo">
-              <span class>小红书APP</span>
-              <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
-            </div>
-            <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
-              <span class="yellow">预览</span>
-              <span class="red">删除</span>
-            </div>
-          </div>
-        </div>
-        <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
-        </div>
-        <div class="lanmuThree">
-          <span class="textCenter">999</span>
-        </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter"
-               src="../assets/erweima.png"
-               alt />
+          <img class="textCenter" src="../assets/erweima.png" alt />
         </div>
       </div>
       <div class="pagination">
-        <el-pagination background
-                       layout="prev, pager, next"
-                       :total="100"
-                       :size="10"></el-pagination>
+        <el-pagination background layout="prev, pager, next" :total="10" :size="100"></el-pagination>
       </div>
     </div>
     <Tail></Tail>
@@ -414,8 +75,25 @@ export default {
   components: {
     Header,
     Tail
-  }
+  },
+  data() {
+    return {
+      
+    }
+  },
+  created(){
+    this.obtain()
+  },
+  methods: {
+    obtain(){
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url).then(res=>{
+          console.log(res)
+      })
+    },
+  },
 };
+
 </script>
 
 <style scoped>

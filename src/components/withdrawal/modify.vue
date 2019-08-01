@@ -3,7 +3,7 @@
     <headWoke></headWoke>
     <div class="mian">
       <dir class="banxin">
-        <navList :cities='2'></navList>
+        <navList :cities="2"></navList>
         <!-- <div class="wallet">
           <div class="title">修改资料</div>
           <div class="wallet_data">
@@ -42,7 +42,7 @@
               修改密码
             </div>
           </div>
-        </div> -->
+        </div>-->
 
         <!-- 修改用户名 -->
         <!-- <div class="wallet">
@@ -76,7 +76,7 @@
           <div class="wallet_btn1">
             确定修改
           </div>
-        </div> -->
+        </div>-->
         <!-- 修改邮箱 -->
         <!-- <div class="wallet">
           <div class="title">修改邮箱</div>
@@ -95,43 +95,35 @@
           <div class="wallet_btn1">
             确定修改
           </div>
-        </div> -->
+        </div>-->
         <!-- 修改手机号 -->
         <div class="wallet">
           <div class="title">原手机号</div>
           <div class="wallet_wallet">
-            <span> 请输原手机验证码</span>
-            <div class="wallet_send">
-              138****4528
-            </div>
+            <span>请输原手机验证码</span>
+            <div class="wallet_send">138****4528</div>
           </div>
           <div class="wallet_wallet">
             <span>手机验证码</span>
             <div class="wallet_send">
-              <input type="text"
-                     maxlength="11"
-                     value=""
-                     >
+              <input type="text" maxlength="11" value />
               <div class="wallet_send_btn">获取验证码</div>
             </div>
           </div>
           <div class="wallet_wallet">
             <span>输入新手机号码</span>
             <div class="wallet_send">
-              <input type="text"
-                     maxlength="11">
+              <input type="text" maxlength="11" />
             </div>
           </div>
           <div class="wallet_wallet">
             <span>新手机验证码</span>
             <div class="wallet_send">
-              <input type="text">
+              <input type="text" />
               <div class="wallet_send_btn">获取验证码</div>
             </div>
           </div>
-          <div class="wallet_btn1">
-            确定修改
-          </div>
+          <div class="wallet_btn1">确定修改</div>
         </div>
         <!-- 修改密码 -->
         <!-- <div class="wallet">
@@ -151,38 +143,93 @@
           <div class="wallet_btn1">
             确定修改
           </div>
-        </div> -->
+        </div>-->
       </dir>
     </div>
     <tail></tail>
   </div>
 </template>
 <script>
-import headWoke from '../../common/header.vue'
-import navList from '../../common/navList.vue'
-import tail from '../../common/tail.vue'
+import headWoke from "../../common/header.vue";
+import navList from "../../common/navList.vue";
+import tail from "../../common/tail.vue";
 export default {
   components: {
     headWoke,
     navList,
     tail
   },
-  data () {
+  data() {
     return {
-
-    }
+      count: 60,
+      code: "获取验证码"
+    };
+  },
+  methods: {},
+  watch: {},
+  created() {
+    var UserTel = localStorage.getItem("UserTel");
+    console.log(UserTel);
   },
   methods: {
+    textCode() {
+      let input3 = this.$refs.input3.value; //手机号码
+      if (!/^1[3-9]\d{9}$/.test(input3)) {
+        this.$message({
+          message: "手机号码不正确",
+          type: "warning"
+        });
+        return;
+      } else {
+        this.$message({
+          message: "验证码已发送请查收",
+          type: "success"
+        });
+      }
 
-  },
-  watch: {
+      if (this.code !== "获取验证码") {
+        this.$message({
+          message: "已发送验证码",
+          type: "warning"
+        });
+        return;
+      }
 
-  },
-  created () {
-    var UserTel = localStorage.getItem('UserTel');
-    console.log(UserTel);
+      const countDown = setInterval(() => {
+        if (this.count <= 0) {
+          this.count = 60;
+          this.code = "获取验证码";
+          clearInterval(countDown);
+          return;
+        }
+        this.count--;
+        console.log();
+        this.code =
+          this.count < 10 ? `请等待0${this.count}s` : `请等待${this.count}s`;
+      }, 1000);
+
+      let params = this.qs.stringify({
+        action: "GetAuthCode",
+        Tel: input3
+      });
+      var url = "http://192.168.1.188:8035/API/GetCode.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res.data.Msg);
+        if (res.data.Msg == "此账号已被注册") {
+          this.$message({
+            message: "此账号已被注册",
+            type: "warning"
+          });
+        }
+      });
+
+      // let params = { action: "GetAuthCode", Tel: input3 };
+      // this.$post("", params)
+      //   .then(res => {})
+      //   .catch(() => console.log("promise catch err")); //捕获异常
+    }
   }
-}
+};
 </script>
 <style>
 body {
