@@ -31,8 +31,22 @@
             </div>
             <div :class="index == 0?'btn':index==1?'btn1':'btn2'"
                  @click="HandChoice($event)"
-                 data-index="180">立即购买</div>
+                 :data-index="index">立即购买</div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="center11"
+         v-if="off==0">
+      <div class="center11_item">
+        <div class="center11_list"
+             @click="handXuan($event)"
+             :data-index="index"
+             v-for="(item,index) in item"
+             v-bind:key="index">
+          <img :src="item.OrderDetailsImg"
+               alt="">
+          <div class="cocos">{{item.OrderDetailsName}}</div>
         </div>
       </div>
     </div>
@@ -50,13 +64,43 @@ export default {
   data () {
     return {
       choice: 99,
-      list: []
+      list: [],
+      item: [],
+      idList: '',
+      off: 1
     }
   },
   methods: {
     HandChoice: function (e) {
-      this.choice = e.target.dataset.index
-      localStorage.setItem('pirce', this.choice);
+      this.off = 0;
+      var index = e.target.dataset.index
+      var tcid = this.list[index].ProductId
+      var pirce = this.list[index].Price
+      localStorage.setItem('tcid', tcid);
+      localStorage.setItem('pirce', pirce);
+
+    },
+    handObtainList: function () {
+      // 获取应用列表
+      var UserId = localStorage.getItem('UserId');
+      let params = this.qs.stringify({
+        action: "GetOrderDetails",
+        IsOk: 0,
+        UserId: UserId,
+        pid: 0,
+        psize: 999,
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        this.item = res.data.Result;
+      });
+    },
+    handXuan: function (e) {
+      // 选择应用效果
+      var index = e.currentTarget.dataset.index;
+      var applicationId = this.item[index].OrderDetailsId;
+      localStorage.setItem('applicationId', applicationId);
+      this.off = 1;
       this.$router.push({ name: 'payment' });
     }
   },
@@ -68,9 +112,21 @@ export default {
     var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
     this.axios.post(url, params).then(res => {
       this.list = res.data.Result
-      console.log(this.list);
     });
+    this.handObtainList();
+
   }
+  // handList: function () {
+  //   let params = this.qs.stringify({
+  //     action: "GetOrderDetails",
+  //     type: 2,
+  //     OrderPrice: this.pirce
+  //   });
+  //   var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+  //   this.axios.post(url, params).then(res => {
+  //     console.log(res);
+  //   });
+  // }
 }
 </script>
 <style>
@@ -213,5 +269,41 @@ export default {
 }
 .list .list_1 .btn2 {
   background: rgba(101, 150, 220, 1);
+}
+.center11 {
+  width: 600px;
+  height: 730px;
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.21);
+  background: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-top: 0;
+}
+.center11 .center11_item {
+}
+.center11 .center11_item .center11_list {
+  margin-right: 20px;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+.center11 .center11_item .center11_list img {
+  width: 60px;
+  height: 60px;
+}
+.center11 .center11_item .center11_list .cocos {
+  flex: 1;
+  line-height: 60px;
+  font-size: 22px;
+  height: 30px;
+  margin-left: 20px;
+}
+.center11 .center11_item .center11_list:nth-child(3n) {
+  margin-right: 0;
 }
 </style>

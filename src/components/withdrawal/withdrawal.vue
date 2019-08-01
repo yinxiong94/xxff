@@ -38,9 +38,9 @@
           <div class="Recharge"
                v-if="off == 1">
             <div class="Recharge_left">
-              <div class="Recharge_text">提现方式：</div>
-              <div class="Recharge_text">提现金额：</div>
-              <div class="Recharge_text">当前可提现余额：</div>
+              <div class="Recharge_text">充值方式：</div>
+              <div class="Recharge_text">充值金额：</div>
+              <div class="Recharge_text">当前可用现余额：</div>
             </div>
             <div class="Recharge_right">
               <div class="Recharge_Tips">发起提现后，24小时内会有工作人员与您联系</div>
@@ -52,7 +52,7 @@
                 188,000 <span>元</span>
               </div>
               <div class="Recharge_Btn">
-                提现
+                充值
               </div>
             </div>
           </div>
@@ -126,11 +126,11 @@ export default {
   methods: {
     Recharge: function () {
       this.off = 1;
-      this.title = '账户提现'
+      this.title = '账户充值'
     },
     withdrawal: function () {
       this.off = 2;
-      this.title = '账户充值'
+      this.title = '账户提现'
     },
     Previous: function () {
       if (this.off == 0) {
@@ -140,14 +140,25 @@ export default {
       }
     },
     HandSub: function () {
+      var UserId = localStorage.getItem('UserId')
       let params = this.qs.stringify({
-        action: "Zhifu",
-        type: 2,
-        OrderPrice: this.HandPirce
+        action: "withdrawSave",
+        userid: UserId,
+        Moeny: this.HandPirce
       });
       var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       this.axios.post(url, params).then(res => {
-        console.log(res.data.result);
+        console.log(res);
+        if (res.data.Msg == "提现申请成功") {
+          this.NewCellPhone = '';
+          this.$message({
+            message: "提现申请成功",
+            type: "success"
+          });
+          this.telFalse = 0;
+        } else {
+          this.$message.error("提现失败");
+        }
       });
     }
   },

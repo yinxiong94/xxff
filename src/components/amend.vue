@@ -4,7 +4,7 @@
     <div class="mian">
       <dir class="banxin">
         <navList :cities='3'></navList>
-        <div class="wallet">
+        <div id="wallet11">
           <div class="wallet1">
             <div class="wallet_top">
               <p class="wallet_top_text">我的优惠劵</p>
@@ -143,59 +143,59 @@ body {
 .mian .banxin {
   display: flex;
 }
-.wallet {
+#wallet11 {
   flex: 1;
   margin-left: 15px;
   height: 100px;
 }
-.wallet1 {
+#wallet11 .wallet1 {
   background: #fff;
   padding: 0 20px;
 }
-.wallet_top {
+#wallet11 .wallet_top {
   height: 60px;
   display: flex;
   align-items: center;
 }
-.wallet_top {
+#wallet11 .wallet_top {
   border-bottom: 1px solid rgb(211, 210, 209);
 }
-.wallet_top_text {
+#wallet11 .wallet_top_text {
   color: #333333;
   font-size: 22px;
 }
-.wallet_top1 {
+#wallet11 .wallet_top1 {
   display: flex;
   height: 40px;
   display: flex;
   align-items: center;
 }
-.wallet_top_mg {
+#wallet11 .wallet_top_mg {
   margin-right: 20px;
 }
-.wallet2 > span {
+#wallet11 .wallet2 > span {
   color: #6e6e6e;
   font-size: 15px;
   padding: 0 20px;
 }
-.wallet2 {
+#wallet11 .wallet2 {
   display: flex;
   justify-content: space-between;
   height: 30px;
   align-items: center;
 }
-.wallet3 {
+#wallet11 .wallet3 {
   background: #fff;
   padding: 0 20px;
 }
-.wallet3_list {
+#wallet11 .wallet3_list {
   height: 100px;
   border-bottom: 1px solid #e7e7e7;
   display: flex;
   justify-content: space-between;
 }
 
-.wallet3_hb {
+#wallet11 .wallet3_hb {
   color: #333333;
   font-size: 15px;
   font-weight: bold;
@@ -204,16 +204,16 @@ body {
   height: 100%;
 }
 
-.wallet3_hb1 {
+#wallet11 .wallet3_hb1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-weight: normal !important;
 }
-.wallet3_cl {
+#wallet11 .wallet3_cl {
   color: red;
 }
-.wallet3_list_fy {
+#wallet11 .wallet3_list_fy {
   align-items: center;
   justify-content: center;
 }

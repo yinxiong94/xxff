@@ -9,91 +9,36 @@
             <h4>我的消息</h4>
           </div>
           <div class="xiaoxi">
-            <div class="item">
+            <div class="item"
+                 v-for="(item,index) in list"
+                 v-bind:key="index">
               <input type="checkbox"
                      name="btn"
                      id="btn1"><label for="btn1"></label>
-              <div class="yuan"></div>
+              <div :class="item.Num == 0? 'yuan1':'yuan'"></div>
               <div class="item_right">
                 <div class="notice">
                   <div class="text">消息通知</div>
                   <div class="xian"></div>
-                  <img src="../../assets/xia.png"
+                  <img :src="item.off?img1:img"
+                       @click="handSee($event)"
+                       :data-index='index'
                        alt="" />
-                  <div class="time">2019-05-26</div>
+                  <div class="time">{{item.AddTime}}</div>
                 </div>
-                <div class="xia">
-                  你的刚刚上传的一舟分发APP，已经通过审核
+                <div class="xia"
+                     v-if="item.off">
+                  {{item.Text}}
                 </div>
-              </div>
-            </div>
-            <div class="item">
-              <input type="checkbox"
-                     name="btn"
-                     id="btn1"><label for="btn1"></label>
-              <div class="yuan"></div>
-              <div class="item_right">
-                <div class="notice">
-                  <div class="text">消息通知</div>
-                  <div class="xian"></div>
-                  <img src="../../assets/xia.png"
-                       alt="" />
-                  <div class="time">2019-05-26</div>
-                </div>
-                <div class="xia">
-                  你的刚刚上传的一舟分发APP，已经通过审核
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <input type="checkbox"
-                     name="btn"
-                     id="btn1"><label for="btn1"></label>
-              <div class="yuan"></div>
-              <div class="item_right">
-                <div class="notice">
-                  <div class="text">消息通知</div>
-                  <div class="xian"></div>
-                  <img src="../../assets/xia.png"
-                       alt="" />
-                  <div class="time">2019-05-26</div>
-                </div>
-                <div class="xia">
-                  你的刚刚上传的一舟分发APP，已经通过审核
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <input type="checkbox"
-                     name="btn"
-                     id="btn1"><label for="btn1"></label>
-              <div class="yuan"></div>
-              <div class="item_right">
-                <div class="notice">
-                  <div class="text">消息通知</div>
-                  <div class="xian"></div>
-                  <img src="../../assets/xia.png"
-                       alt="" />
-                  <div class="time">2019-05-26</div>
-                </div>
-                <div class="xia"></div>
               </div>
             </div>
           </div>
-          <div class="mian_footer">
-            <div class="Previous">上一页</div>
-            <div class="center">
-              <div class="item1">
-                1
-              </div>
-              <div class="item1">
-                2
-              </div>
-              <div class="item2">
-                ...
-              </div>
-            </div>
-            <div class="Previous bai">下一页</div>
+          <div class="wallet3_list wallet3_list_fy">
+            <el-pagination background
+                           layout="prev, pager, next"
+                           :total="total"
+                           @current-change="handleCurrentChange"
+                           :page-size='2'></el-pagination>
           </div>
         </div>
       </div>
@@ -114,14 +59,67 @@ export default {
   },
   data () {
     return {
-
+      pid: 1,
+      list: [],
+      total: 5,
+      img: require('../../assets/right.png'),
+      img1: require('../../assets/xia.png'),
+      pagesize: 2,
+      textcount: ''
     }
   },
   methods: {
+    handNews: function () {
+      // 消息列表
+      var UserId = localStorage.getItem('UserId')
+      let params = this.qs.stringify({
+        action: "Xiaoxi",
+        UserId: UserId,
+        pid: this.pid,
+        pagesize: this.pagesize
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res);
+        this.list = res.data.Result;
+        this.$set(this.list, "off", false)
+        this.total = this.list.length;
+      });
+    },
+    handleCurrentChange (curPage) {
+      console.log(curPage)
+    },
+    handSee: function (e) {
+      // 展开效果
+      let index = e.target.dataset.index;
+      this.$set(this.list[index], "off", !this.list[index].off)
+      if (this.list[index].Num == 1) {
+        return
+      } else {
+        this.list[index].Num = 1;
+        this.textcount = this.list[index].TextId
 
+        this.handXxztxg();
+      }
+
+    },
+    handXxztxg: function () {
+      let params = this.qs.stringify({
+        action: "SetXiaoxiType",
+        textcount: this.textcount,
+        type: 2
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res);
+      });
+    }
   },
   watch: {
 
+  },
+  created () {
+    this.handNews();
   }
 }
 </script>
@@ -129,6 +127,14 @@ export default {
 <style>
 body {
   background: #f1efee;
+}
+.wallet3_list {
+  height: 100px;
+  border-bottom: 1px solid #e7e7e7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
 input[type="checkbox"] {
   width: 15px;
@@ -139,7 +145,7 @@ input[type="checkbox"] {
   line-height: 18px;
   position: relative;
   margin-right: 20px;
-  margin-top: 1px;
+  margin-top: 3px;
 }
 input[type="checkbox"]::before {
   content: "";
@@ -205,6 +211,15 @@ input[type="checkbox"]:checked::before {
   border-radius: 50%;
   background-color: #cccccc;
   margin-right: 25px;
+  margin-top: 3px;
+}
+.mian .item .yuan1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #258ffc;
+  margin-right: 25px;
+  margin-top: 3px;
 }
 .mian .item .item_right {
   flex: 1;
@@ -213,26 +228,27 @@ input[type="checkbox"]:checked::before {
   display: flex;
 }
 .mian .item .item_right .notice .text {
-  width: 79px;
-  height: 20px;
-  font-size: 16px;
+  width: 100px;
+  height: 26px;
+  font-size: 24px;
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   margin-right: 40px;
-  line-height: 20px;
+  line-height: 26px;
 }
 .mian .item .item_right .notice .xian {
   width: 490px;
   height: 1px;
   background-color: #ccc;
-  margin-top: 10px;
+  margin-top: 14px;
   margin-right: 10px;
 }
 .mian .item .item_right .notice img {
   width: 20px;
   height: 20px;
   margin-right: 10px;
+  margin-top: 4px;
 }
 .mian .item .item_right .notice .time {
   font-size: 16px;
@@ -240,6 +256,7 @@ input[type="checkbox"]:checked::before {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   height: 20px;
+  margin-top: 4px;
 }
 .mian .item .item_right .xia {
   width: 100%;
