@@ -17,6 +17,7 @@ import nothing from "../components/nothing";
 import amend from "../components/amend";
 import introduce from "../components/introduce";
 import adhibition from "../components/adhibition";
+import text from "../components/text"
 
 Vue.use(Router);
 
@@ -122,6 +123,11 @@ export default new Router({
       path: "/introduce",
       name: "introduce",
       component: introduce
+    },
+    {
+      path: "/text",
+      name: "text",
+      component: text
     },
     {
       path: "/adhibition",

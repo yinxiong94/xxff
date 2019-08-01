@@ -82,7 +82,6 @@ export default {
          
          const countDown = setInterval(() => {
             this.$router.push({ path: "/" });+
-
              clearInterval(countDown)
           }, 2000);
           

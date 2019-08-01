@@ -1,5 +1,4 @@
 <template>
-
   <div class="Application">
     <headWoke></headWoke>
     <div class="mian">
@@ -7,8 +6,7 @@
         <div class="app">
           <div class="left">
             <div class="left_img">
-              <img src="../../assets/anz.png"
-                   alt="" />
+              <img src="../../assets/anz.png" alt />
             </div>
             <p>安卓应用</p>
           </div>
@@ -25,57 +23,72 @@
           <h5>基本信息</h5>
           <div class="information_form">
             <div class="information_name">
-              *<span>应用名称</span>
-              <input class="name"
-                     type="text"
-                     placeholder="应用名称最多输入20个汉字" />
+              *
+              <span>应用名称</span>
+              <input class="name" type="text" placeholder="应用名称最多输入20个汉字" ref="input1" />
               <em>输入格式错误!</em>
             </div>
             <div class="informatio_game">
-              <div class="game_left">*<span>应用类型</span></div>
+              <div class="game_left">
+                *
+                <span>应用类型</span>
+              </div>
               <div class="game_right">
-                <div class="game">
-                  <a class="yuan"></a>
-                  游戏
-                </div>
-                <div class="Software">
-                  <a class="yuan"></a>
-                  软件
+                <div
+                  class="game"
+                  :class="{Software:i==index}"
+                  v-for="(item,index) in list"
+                  :key="item.id"
+                  @click.stop="select($event,index)"
+                  :data-LeibieId="item.LeibieId"
+                >
+                  <a class="yuan" @click.stop="select($event,index)" :data-LeibieId="item.LeibieId"></a>
+                  {{item.LeibieName}}
                 </div>
               </div>
             </div>
             <div class="informatio_Software">
-              <div class="left">*<span>应用子分类</span></div>
+              <div class="left">
+                *
+                <span>应用子分类</span>
+              </div>
               <div class="right">
-                <select name=""
-                        id="right_bei">
-                  <option value="请选择子分类">请选择子分类</option>
+                <select name id="right_bei" @change="selAll($event)">
+                  <option
+                    :value="item.LeibieName"
+                    v-for="item in arr"
+                    :key="item.Pid"
+                  >{{item.LeibieName}}</option>
                 </select>
               </div>
             </div>
 
             <div class="informatio_brief">
-              <div class="left">*<span>应用子分类</span></div>
+              <div class="left">
+                *
+                <span>应用简介</span>
+              </div>
               <div class="right">
-                <div class="chebox"
-                     contenteditable="true"></div>
+                <div class="chebox" contenteditable="true" @input="changeText"></div>
               </div>
             </div>
-            <div class="brief"
-                 id="informatio_v">
-              <div class="left">*<span>版本号</span></div>
+            <div class="brief" id="informatio_v">
+              <div class="left">
+                *
+                <span>版本号</span>
+              </div>
               <div class="right">
-                <input type="text"
-                       placeholder="最多输入10个字符不能输入中文" />
+                <input type="text" placeholder="最多输入10个字符不能输入中文" ref="input3" />
               </div>
               <em>输入格式错误!</em>
             </div>
-            <div class="brief"
-                 id="brief">
-              <div class="left">*<span>应用子分类</span></div>
+            <div class="brief" id="brief">
+              <div class="left">
+                *
+                <span>一句话简介</span>
+              </div>
               <div class="right">
-                <input type="text"
-                       placeholder="一句话简介（5至15个汉字）" />
+                <input type="text" placeholder="一句话简介（5至15个汉字）" ref="input2" />
               </div>
               <em>输入格式错误!</em>
             </div>
@@ -84,52 +97,118 @@
         <div class="information_1">
           <h5>安装包</h5>
           <div class="information_1_app">
-            <div class="information_1_left">*<span>应用子分类</span></div>
+            <div class="information_1_left">
+              *
+              <span>应用子分类</span>
+            </div>
+
+            <el-upload
+              action="https://jsonplaceholder.typicode.com/posts/"
+              list-type="picture-card"
+              :before-upload="beforeAvatarUpload"
+              :headers="headers"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
+              :limit="1"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt />
+            </el-dialog>
+
             <div class="information_1_right">
-              <div class="information_1_img">
-                <img src="../../assets/zu.png"
-                     alt="" />
-              </div>
+              <!-- <el-upload action="#" :before-upload="beforeAvatarUpload" :headers="headers">
+                <div class="information_1_img">
+                  <img src="../../assets/zu.png" alt />
+                </div>
+              </el-upload>-->
               <span>（限100M以内安装包，参数）</span>
             </div>
           </div>
           <div class="information_1_app">
-            <div class="information_1_left">*<span>应用图标</span></div>
+            <div class="information_1_left">
+              *
+              <span>应用图标</span>
+            </div>
+
+            <el-upload
+              action="https://jsonplaceholder.typicode.com/posts/"
+              list-type="picture-card"
+              :before-upload="beforeAvatarUpload1"
+              :headers="headers"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
+              :limit="1"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt />
+            </el-dialog>
             <div class="information_1_right">
-              <div class="information_1_img">
-                <img src="../../assets/zu.png"
-                     alt="" />
-              </div>
+              <!-- <div class="information_1_img">
+                <img src="../../assets/zu.png" alt />
+              </div>-->
               <span>（尺寸160*160，大小200K以内）</span>
             </div>
           </div>
           <div class="information_1_app">
-            <div class="information_1_left"><span> 应用截图</span></div>
+            <div class="information_1_left">
+              <span>应用截图</span>
+            </div>
+
+            <el-upload
+              action="https://jsonplaceholder.typicode.com/posts/"
+              list-type="picture-card"
+              :before-upload="beforeAvatarUpload2"
+              :headers="headers"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
+              :limit="5"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt />
+            </el-dialog>
             <div class="information_1_right">
-              <div class="information_1_right_flex">
+              <!-- <div class="information_1_right_flex">
                 <div class="information_1_img doutu">
-                  <img src="../../assets/zu.png"
-                       alt="" />
+                  <img src="../../assets/zu.png" alt />
                 </div>
-              </div>
-              <span>
-                （请上传2-5张截图（尺寸保持一致），单张图片不超过1M。截图不能小于320*480像素，推荐480*800像素。JPG、PNG格式)
-              </span>
+              </div>-->
+              <span>（请上传2-5张截图（尺寸保持一致），单张图片不超过1M。截图不能小于320*480像素，推荐480*800像素。JPG、PNG格式)</span>
             </div>
           </div>
         </div>
         <div class="information_1 two">
           <h5>版权证明</h5>
           <div class="information_1_app">
-            <div class="information_1_left"><span>版权证明</span></div>
+            <div class="information_1_left">
+              <span>版权证明</span>
+            </div>
+
+            <el-upload
+              action="https://jsonplaceholder.typicode.com/posts/"
+              list-type="picture-card"
+              :before-upload="beforeAvatarUpload3"
+              :headers="headers"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
+              :limit="5"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt />
+            </el-dialog>
+
             <div class="information_1_right">
-              <div class="information_1_img">
-                <img src="../../assets/zu.png"
-                     alt="" />
-              </div>
-              <span>
-                （软件著作权证、商标注册证、ICP经营许可证或其他行业相关的经营许可证）
-              </span>
+              <!-- <div class="information_1_img">
+                <img src="../../assets/zu.png" alt />
+              </div>-->
+              <span>（软件著作权证、商标注册证、ICP经营许可证或其他行业相关的经营许可证）</span>
             </div>
           </div>
         </div>
@@ -137,12 +216,8 @@
     </div>
     <div class="Release">
       <div class="Release_box">
-        <div class="Release_left fl">
-          返回
-        </div>
-        <div class="Release_right fr">
-          发布
-        </div>
+        <div class="Release_left fl">返回</div>
+        <div class="Release_right fr" @click="issue">发布</div>
         <div class="Release_right"></div>
       </div>
     </div>
@@ -151,8 +226,8 @@
 </template>
 
 <script>
-import headWoke from '../../common/header.vue'
-import tail from '../../common/tail.vue'
+import headWoke from "../../common/header.vue";
+import tail from "../../common/tail.vue";
 export default {
   components: {
     headWoke,
@@ -160,25 +235,253 @@ export default {
   },
   data() {
     return {
-      
-    }
+      list: [],
+      i: 0,
+      arr: [],
+      fileList: [],
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+      dialogImageUrl: "",
+      dialogVisible: false,
+      limit: 1,
+      ProductActive: "", //当前选中项
+      LeibieId: "", //应用子分类id
+      changeText1: "", //应用简介
+      zfl: "", //子分类应用
+      zfl1: "", //应用图片
+      zfl2: "", //应用截图
+      zfl3: "", //版权说明
+      size: "" //应用包大小
+    };
   },
-  mounted(){
+  mounted() {
     this.initialize();
   },
   methods: {
-     initialize() {
+    changeText(e) {
+      this.changeText1 = e.target.innerHTML;
+    },
+
+    initialize() {
       let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       var postData = this.qs.stringify({
         action: "GetLeibie",
-        FathId: ""
+        FathId: "0"
+      });
+      this.axios.post(url, postData).then(res => {
+        this.list = res.data.Result;
+      });
+    },
+
+    select(e, index) {
+      // 获取LeibieId
+      let LeibieId = e.target.getAttribute("data-LeibieId");
+      this.LeibieId = LeibieId;
+      this.i = index;
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      var postData = this.qs.stringify({
+        action: "GetLeibie",
+        FathId: LeibieId
+      });
+      this.axios.post(url, postData).then(res => {
+        // console.log(res.data.Result);
+        // this.list = res.data.Result
+        this.arr = res.data.Result;
+      });
+    },
+
+    /**
+     * 文件上传
+     */
+    // 获取当前选中项
+    selAll(e) {
+      this.ProductActive = event.target.value;
+    },
+    beforeAvatarUpload(file) {
+      var fileName = new Array();
+      fileName = file.name.split(".");
+      // 获取上传文件的格式
+      const extension = fileName[fileName.length - 1] === "apk";
+      const extension2 = fileName[fileName.length - 1] === "ipa";
+      // 获取上传文件的大小
+      this.size = file.size;
+      const isLt2M = file.size / 1024 / 1024 <= 100;
+      if (!extension && !extension2) {
+        this.$message({
+          message: "上传应用只能是apk、ipa格式!",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (!isLt2M) {
+        this.$message({
+          message: "上传应用大小不能超过 100MB!",
+          type: "warning"
+        });
+        return;
+      }
+
+      let fd = new FormData();
+      fd.append("file", file);
+      this.newImport(fd);
+    },
+    beforeAvatarUpload1(file) {
+      var fileName = new Array();
+      fileName = file.name.split(".");
+      // 获取上传文件的格式
+      const extension = fileName[fileName.length - 1] === "jpg";
+      const extension2 = fileName[fileName.length - 1] === "png";
+      // 获取上传文件的大小
+      const isLt2M = file.size / 1024 / 1024 <= 1;
+      if (!extension && !extension2) {
+        this.$message({
+          message: "上传应用只能是jpg、png格式!",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (!isLt2M) {
+        this.$message({
+          message: "上传应用大小不能超过 1M!",
+          type: "warning"
+        });
+        return;
+      }
+
+      let fd = new FormData();
+      fd.append("file", file);
+      this.newImport1(fd);
+    },
+    beforeAvatarUpload2(file) {
+      var fileName = new Array();
+      fileName = file.name.split(".");
+      // 获取上传文件的格式
+      const extension = fileName[fileName.length - 1] === "jpg";
+      const extension2 = fileName[fileName.length - 1] === "png";
+      // 获取上传文件的大小
+      const isLt2M = file.size / 1024 / 1024 <= 1;
+      if (!extension && !extension2) {
+        this.$message({
+          message: "上传应用只能是jpg、png格式!",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (!isLt2M) {
+        this.$message({
+          message: "上传应用大小不能超过 1M!",
+          type: "warning"
+        });
+        return;
+      }
+
+      let fd = new FormData();
+      fd.append("file", file);
+      this.newImport2(fd);
+    },
+    beforeAvatarUpload3(file) {
+      var fileName = new Array();
+      fileName = file.name.split(".");
+      // 获取上传文件的格式
+      const extension = fileName[fileName.length - 1] === "jpg";
+      const extension2 = fileName[fileName.length - 1] === "png";
+      // 获取上传文件的大小
+      const isLt2M = file.size / 1024 / 1024 <= 1;
+      if (!extension && !extension2) {
+        this.$message({
+          message: "上传应用只能是jpg、png格式!",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (!isLt2M) {
+        this.$message({
+          message: "上传应用大小不能超过 1M!",
+          type: "warning"
+        });
+        return;
+      }
+
+      let fd = new FormData();
+      fd.append("file", file);
+      this.newImport3(fd);
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+
+    newImport(data) {
+      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
+      this.axios.post(url, data).then(res => {
+        this.zfl = res.data.Result.url;
+      });
+    },
+
+    newImport1(data) {
+      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
+      this.axios.post(url, data).then(res => {
+        this.zfl1 = res.data.Result.url;
+      });
+    },
+
+    newImport2(data) {
+      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
+      this.axios.post(url, data).then(res => {
+        this.zfl2 = res.data.Result.url;
+      });
+    },
+
+    newImport3(data) {
+      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
+      this.axios.post(url, data).then(res => {
+        this.zfl3 = res.data.Result.url;
+      });
+    },
+    issue() {
+      let input1 = this.$refs.input1.value; //安装包名称
+      let input2 = this.$refs.input2.value; //一句话简介
+      let input3 = this.$refs.input3.value; //应用版本号
+      var UserId = localStorage.getItem("UserId");
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData = this.qs.stringify({
+        action: "shangchuan",
+        UserId: UserId,
+        name: input1,
+        fenlei: this.ProductActive,
+        zifenlei: this.LeibieId,
+        Yjianjie: this.changeText1,
+        yjhjianjie: input2,
+        anzhuangbao: this.zfl,
+        Ytubiao: this.zfl1,
+        pics: this.zfl2,
+        Ybanquan: this.zfl3,
+        size: this.size,
+        VersionNum: input3
       });
       this.axios.post(url, postData).then(res => {
         console.log(res);
+        if (res.Msg == null) {
+          this.$message({
+            message: "发布成功",
+            type: "success"
+          });
+        } else {
+          this.$message.error("发布失败请稍后在试");
+        }
       });
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
@@ -373,15 +676,15 @@ a {
   margin-right: 8px;
   box-sizing: border-box;
 }
-.mian
+/* .mian
   .banxin
   .information
   .information_form
   .informatio_game
   .game_right
   .Software {
-  flex: 1;
-}
+   flex: 1; 
+} */
 .mian
   .banxin
   .information
@@ -534,9 +837,9 @@ a {
   color: #000;
 }
 .mian .banxin .information_1 .information_1_app .information_1_right {
-  float: left;
-  width: 80%;
-  height: 186px;
+  /* float: left;
+  width: 80%; */
+  /* height: 186px; */
 }
 .mian
   .banxin
@@ -572,6 +875,7 @@ a {
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: #939393;
+  margin-left: 150px;
 }
 .mian .banxin .two {
   height: 340px;
@@ -655,5 +959,3 @@ body {
   background-color: #efefef;
 }
 </style>
-
-

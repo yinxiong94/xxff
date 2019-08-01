@@ -102,7 +102,7 @@
           <div class="wallet_btn1">
             确定修改
           </div>
-        </div> -->
+        </div>-->
         <!-- 修改手机号 -->
         <div class="wallet"
              v-if="num==2">
@@ -191,9 +191,9 @@
   </div>
 </template>
 <script>
-import headWoke from '../../common/header.vue'
-import navList from '../../common/navList.vue'
-import tail from '../../common/tail.vue'
+import headWoke from "../../common/header.vue";
+import navList from "../../common/navList.vue";
+import tail from "../../common/tail.vue";
 export default {
   components: {
     headWoke,
@@ -407,7 +407,7 @@ export default {
     this.Information();
 
   }
-}
+};
 </script>
 <style>
 body {

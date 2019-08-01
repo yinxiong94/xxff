@@ -3,28 +3,23 @@
     <headWoke></headWoke>
     <div class="mian">
       <div class="banxin">
-        <navList :cities='0'></navList>
+        <navList :cities="0"></navList>
         <div class="mian_right">
           <div class="Overview_data">
             <div class="Overview_data_top">
               <div class="Overview_data_top_tx">
-                <img src="../../assets/tx.png"
-                     alt="">
+                <img src="../../assets/tx.png" alt />
                 <div class="Overview_data_top_tx_right">
                   <span>快乐的小浣熊</span>
                   <span>ID:951687459</span>
                   <div class="Overview_data_top_tx_right_tb">
-                    <img src="../../assets/tb1.png"
-                         alt="">
-                    <img src="../../assets/tb2.png"
-                         alt="">
+                    <img src="../../assets/tb1.png" alt />
+                    <img src="../../assets/tb2.png" alt />
                   </div>
                 </div>
               </div>
               <div class="Overview_data_bottom">
-                <input type="text"
-                       name=""
-                       placeholder="填写邀请码得好礼">
+                <input type="text" name placeholder="填写邀请码得好礼" />
                 <div class="Overview_data_bottom_btn">提交</div>
               </div>
             </div>
@@ -43,17 +38,26 @@
             <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">共上传APP数量</div>
-              <div class="item_num">4<span>个</span></div>
+              <div class="item_num">
+                4
+                <span>个</span>
+              </div>
             </div>
             <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">共上传APP数量</div>
-              <div class="item_num">4<span>个</span></div>
+              <div class="item_num">
+                4
+                <span>个</span>
+              </div>
             </div>
             <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">分佣钱包</div>
-              <div class="item_num">4<span>元(可提现)</span></div>
+              <div class="item_num">
+                4
+                <span>元(可提现)</span>
+              </div>
             </div>
           </div>
           <div class="xiaoxi">
@@ -64,41 +68,64 @@
                 <div class="notice">
                   <div class="text">消息通知</div>
                   <div class="xian"></div>
-                  <img src="../../assets/xia.png"
-                       alt="" />
+                  <img src="../../assets/xia.png" alt />
                   <div class="time">2019-05-26</div>
                 </div>
-                <div class="xia">
-                  你的刚刚上传的一舟分发APP，已经通过审核
-                </div>
+                <div class="xia">你的刚刚上传的一舟分发APP，已经通过审核</div>
               </div>
             </div>
           </div>
           <div class="Overview_date">
-            <div class="Overview_date_title">
-              交易明细
-            </div>
-            <div class='Overview_date_nian'>
+            <div class="Overview_date_title">交易明细</div>
+            <div class="Overview_date_nian">
               <div class="dian"></div>
-              <dir class="Overview_date_ri"
-                   @click="openByDrop($event)"
-                   readonly>{{calendar3.display}}</dir>
+              <dir
+                class="Overview_date_ri"
+                @click="openByDrop($event)"
+                readonly
+              >{{calendar3.display}}</dir>
               <transition name="fade">
-                <div class="calendar-dropdown"
-                     :style="{'left':18+'px','top':calendar3.top+'px'}"
-                     v-if="calendar3.show">
-                  <calendar :zero="calendar3.zero"
-                            :lunar="calendar3.lunar"
-                            :value="calendar3.value"
-                            :begin="calendar3.begin"
-                            :end="calendar3.end"
-                            @select="calendar3.select"></calendar>
+                <div
+                  class="calendar-dropdown"
+                  :style="{'left':18+'px','top':calendar3.top+'px'}"
+                  v-if="calendar3.show"
+                >
+                  <calendar
+                    :zero="calendar3.zero"
+                    :lunar="calendar3.lunar"
+                    :value="calendar3.value"
+                    :begin="calendar3.begin"
+                    :end="calendar3.end"
+                    @select="calendar3.select"
+                  ></calendar>
                 </div>
               </transition>
               <div class="dian"></div>
+              <div class="dian"></div>
+              <dir
+                class="Overview_date_ri"
+                @click="openByDrop1($event)"
+                readonly
+              >{{calendar4.display}}</dir>
+              <transition name="fade">
+                <div
+                  class="calendar-dropdown"
+                  :style="{'left':18+'px','top':calendar4.top+'px'}"
+                  v-if="calendar4.show"
+                >
+                  <calendar
+                    :zero="calendar4.zero"
+                    :lunar="calendar4.lunar"
+                    :value="calendar4.value"
+                    :begin="calendar4.begin"
+                    :end="calendar4.end"
+                    @select="calendar4.select"
+                  ></calendar>
+                </div>
+              </transition>
               <div class="Overview_date_yue">月</div>
               <div class="Overview_date_coco">年</div>
-              <a href="#">返回本月</a>
+              <a  @click.stop="record">确认查询</a>
             </div>
             <div class="Overview_date_type">
               <div class="Overview_date_type_item">
@@ -106,16 +133,14 @@
                 <div class="Overview_date_type_list1">交易时间</div>
                 <div class="Overview_date_type_list1">变动金额</div>
               </div>
-              <div class="Overview_date_type_item">
-                <div class="Overview_date_type_list1">购买发布时长包</div>
-                <div class="Overview_date_type_list1">2019-07-21 19 : 26 </div>
-                <div class="Overview_date_type_list1"><span>-10,000.00</span></div>
+              <div class="Overview_date_type_item" v-for="item in list" :key="item.pid">
+                <div class="Overview_date_type_list1">{{item.Remark}}</div>
+                <div class="Overview_date_type_list1">{{item.RecordTime}}</div>
+                <div class="Overview_date_type_list1">
+                  <span>{{item.Remark}}</span>
+                </div>
               </div>
-              <div class="Overview_date_type_item">
-                <div class="Overview_date_type_list1">下级用户购买时长包</div>
-                <div class="Overview_date_type_list1">2019-07-21 19 : 26 </div>
-                <div class="Overview_date_type_list1"><span class="coclor">+800.00</span></div>
-              </div>
+            
             </div>
           </div>
         </div>
@@ -126,10 +151,10 @@
 </template>
 
 <script>
-import headWoke from '../../common/header.vue'
-import navList from '../../common/navList.vue'
-import tail from '../../common/tail.vue'
-import calendar from './calendar.vue'
+import headWoke from "../../common/header.vue";
+import navList from "../../common/navList.vue";
+import tail from "../../common/tail.vue";
+import calendar from "./calendar.vue";
 
 export default {
   components: {
@@ -138,41 +163,98 @@ export default {
     tail,
     calendar
   },
-  data () {
+  data() {
     return {
       calendar3: {
-        display: "2018/02/16",
+        display: "2019/01/01",
         show: false,
         zero: true,
-        value: [2018, 2, 16], //默认日期
+        value: [2019, 1, 1], //默认日期
         lunar: true, //显示农历
-        select: (value) => {
+        select: value => {
           this.calendar3.show = false;
           this.calendar3.value = value;
           this.calendar3.display = value.join("/");
         }
       },
-      // 多选
-    }
+
+      calendar4: {
+        display: "2019/01/01",
+        show: false,
+        zero: true,
+        value: [2019, 1, 1], //默认日期
+        lunar: true, //显示农历
+        select: value => {
+          this.calendar4.show = false;
+          this.calendar4.value = value;
+          this.calendar4.display = value.join("/");
+        }
+      },
+      list:{},
+
+    };
+  },
+  created() {
+    // this.record()
   },
   methods: {
-    openByDrop (e) {
+    // 开始时间
+    openByDrop(e) {
       this.calendar3.show = true;
       this.calendar3.top = e.target.offsetTop + 70;
-
       e.stopPropagation();
       window.setTimeout(() => {
-        document.addEventListener("click", (e) => {
-          this.calendar3.show = false;
-          document.removeEventListener("click", () => { }, false);
-        }, false);
-      }, 1000)
+        document.addEventListener(
+          "click",
+          e => {
+            this.calendar3.show = false;
+            document.removeEventListener("click", () => {}, false);
+          },
+          false
+        );
+        
+      }, 1000);
+    },
+    // 结束时间
+
+    openByDrop1(e) {
+      this.calendar4.show = true;
+      this.calendar4.top = e.target.offsetTop + 70;
+      e.stopPropagation();
+      window.setTimeout(() => {
+        document.addEventListener(
+          "click",
+          e => {
+            this.calendar4.show = false;
+            document.removeEventListener("click", () => {}, false);
+          },
+          false
+        );
+        
+      }, 1000);
+     
+      // this.record()
+    },
+
+    record() {
+      let myDate = new Date().toLocaleDateString();
+      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let UserId = localStorage.getItem("UserId");
+      let postData = this.qs.stringify({
+        action: "GetRecordList",
+        UserId: UserId,
+        pid: 1,
+        psize: 10,
+        BeginTime: this.calendar3.display,
+        EndTime: this.calendar4.display
+      });
+      this.axios.post(url, postData).then(res => {
+        this.list=res.data.Result;
+      });
     }
   },
-  watch: {
-
-  }
-}
+  watch: {}
+};
 </script>
 
 <style>
@@ -469,10 +551,10 @@ body {
   background-color: #ccc;
   margin-top: 10px;
   margin-right: 10px;
-}
+}/*  */
 .xiaoxi_item .item_right .notice img {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-right: 10px;
 }
 .xiaoxi_item .item_right .notice .time {
@@ -566,6 +648,7 @@ body {
   color: rgba(37, 143, 252, 1);
   line-height: 70px;
   margin-left: 67px;
+   cursor:pointer;
 }
 
 .Overview_date .Overview_date_type {
