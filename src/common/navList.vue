@@ -136,7 +136,7 @@ ol {
 }
 .navList ul .blue {
   background: #258ffc;
-  color: #fff;
+  color: #fff !important;
 }
 .navList ul li img {
   width: 37px;
