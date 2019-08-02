@@ -506,7 +506,6 @@ p {
   position: absolute;
   background: #258ffc;
   height: 60px;
-  width: 60px;
   right: -10px;
   top: -10px;
   display: flex;
@@ -526,11 +525,10 @@ p {
 
 .mod_copyright_auth_ico1 {
   background: #258ffc;
-  width: 80%;
   height: 50px;
   position: absolute;
   bottom: -18px;
-  left: 35px;
+  left: -28px;
   overflow: hidden;
 }
 
