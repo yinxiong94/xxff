@@ -44,7 +44,7 @@
               <div class="item_xian"></div>
               <div class="item_z">共上传APP数量</div>
               <div class="item_num">
-                4
+                {{APPlength}}
                 <span>个</span>
               </div>
             </div>
@@ -68,16 +68,18 @@
           <div class="xiaoxi">
             <div class="xiaoxi_title">我的消息</div>
             <div class="xiaoxi_item">
-              <div class="yuan"></div>
+              <div :class="item.Num == 0? 'yuan1':'yuan'"></div>
               <div class="item_right">
                 <div class="notice">
                   <div class="text">消息通知</div>
                   <div class="xian"></div>
-                  <img src="../../assets/xia.png"
-                       alt />
-                  <div class="time">2019-05-26</div>
+                  <img :src="item.off? img1 : img "
+                       @click="handSee()"
+                       alt="" />
+                  <div class="time">{{item.AddTime}}</div>
                 </div>
-                <div class="xia">你的刚刚上传的一舟分发APP，已经通过审核</div>
+                <div class="xia"
+                     v-if="item.off">{{item.Text}}</div>
               </div>
             </div>
           </div>
@@ -161,11 +163,11 @@ export default {
   },
   data () {
     return {
+      img: require('../../assets/right.png'),
+      img1: require('../../assets/xia.png'),
       calendar3: {
         display: "2019/01/01",
         show: false,
-        img: require('../../assets/right.png'),
-        img1: require('../../assets/xia.png'),
         zero: true,
         value: [2019, 1, 1], //默认日期
         lunar: true, //显示农历
@@ -189,19 +191,73 @@ export default {
         }
       },
       list: {},
-      user: []
+      user: [],
+      item: [],
+      textcount: '',
+      APPlength: ''
     };
   },
   created () {
     // this.record()
     this.Information();
     this.InforTcList();
+    this.handXiaoxi();
   },
   methods: {
+    // 消息
+    handXiaoxi: function () {
+      var UserId = localStorage.getItem('UserId')
+      let params = this.qs.stringify({
+        action: "Xiaoxi",
+        UserId: UserId,
+        pid: this.pid,
+        pagesize: this.pagesize
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        this.$set(res.data.Result[0], "off", false);
+        this.item = res.data.Result[0];
+      });
+    },
+    // 修改状态
+    handXxztxg: function () {
+      let params = this.qs.stringify({
+        action: "SetXiaoxiType",
+        textcount: this.textcount,
+        type: 2
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res);
+      });
+    },
+    handSee: function () {
+      // 展开效果
+      this.$set(this.item, "off", !this.item.off)
+      if (this.item.Num == 1) {
+        return
+      } else {
+        this.$set(this.item, "Num", 1);
+        this.textcount = this.item.TextId
+        this.handXxztxg();
+      }
+      console.log(this.item.Num);
+      console.log(this.textcount);
+    },
     // 获取应用列表
     InforTcList: function () {
-      let yylength = localStorage.getItem("yylength");
-      console.log(yylength);
+      var UserId = localStorage.getItem('UserId')
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData = this.qs.stringify({
+        action: "GetOrderDetails",
+        UserId: UserId,
+        pid: 1,
+        psize: 999
+      })
+      this.axios.post(url, postData).then(res => {
+        console.log(res.data.Result.length);
+        this.APPlength = res.data.Result.length;
+      })
     },
     // 获取用户信息
     Information: function () {
@@ -543,8 +599,16 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  background-color: #cccccc;
+  margin-right: 25px;
+}
+.mian .item .yuan1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   background-color: #258ffc;
   margin-right: 25px;
+  margin-top: 3px;
 }
 .xiaoxi_item .item_right {
   flex: 1;
@@ -563,7 +627,7 @@ body {
   line-height: 20px;
 }
 .xiaoxi_item .xian {
-  width: 70%;
+  width: 50%;
   height: 2px;
   background-color: #ccc;
   margin-top: 10px;
@@ -580,6 +644,7 @@ body {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   height: 20px;
+  line-height: 20px;
 }
 .xiaoxi_item .item_right .xia {
   width: 100%;
