@@ -43,15 +43,17 @@
               <div class="Recharge_text">当前可用现余额：</div>
             </div>
             <div class="Recharge_right">
-              <div class="Recharge_Tips">发起提现后，24小时内会有工作人员与您联系</div>
+              <div class="Recharge_Zfb">支付宝</div>
               <input type="text"
                      class="input"
                      placeholder=""
+                     v-model="OrderPrice"
                      value="">
               <div class="Recharge_balance">
                 188,000 <span>元</span>
               </div>
-              <div class="Recharge_Btn">
+              <div class="Recharge_Btn"
+                   @click="handchong">
                 充值
               </div>
             </div>
@@ -97,6 +99,7 @@
       </dir>
     </div>
     <tail></tail>
+    <!-- <div v-html="from">{{from}}</div> -->
   </div>
 </template>
 <script>
@@ -114,6 +117,8 @@ export default {
       off: 0,
       title: '我的钱包',
       HandPirce: '',
+      OrderPrice: '',
+      from: '',
       list: [
         { text: '1.为了您的账户资金安全，请在充值前开通第三方资金托管账户、设置交易密码；', id: 1 },
         { text: '2.充值过程中不收取任何手续费', id: 2 },
@@ -160,6 +165,12 @@ export default {
           this.$message.error("提现失败");
         }
       });
+    },
+    handchong: function () {
+      localStorage.setItem("OrderPrice", this.OrderPrice);
+      this.$router.push({ name: "zhifubao"})
+      // 充值
+
     }
   },
   watch: {
@@ -360,8 +371,7 @@ body {
 }
 </style>
 
-
-                            
+                           
 
 
                         

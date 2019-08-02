@@ -33,7 +33,7 @@
                 <span>钱包余额</span>
                 <span>充值后可购买应用发布包</span>
               </div>
-              <div class="Overview_data_right_pirce">{{user.Price}}</div>
+              <div class="Overview_data_right_pirce">{{user.Price || 0}}元</div>
               <div class="Overview_data_right_btn">
                 <div class="Overview_data_right_btn1">充值</div>
               </div>
@@ -50,17 +50,17 @@
             </div>
             <div class="item">
               <div class="item_xian"></div>
-              <div class="item_z">共上传APP数量</div>
+              <div class="item_z">拥有优惠券数量</div>
               <div class="item_num">
                 4
-                <span>个</span>
+                <span>张</span>
               </div>
             </div>
             <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">分佣钱包</div>
               <div class="item_num">
-                4
+                {{user.Earnings}}
                 <span>元(可提现)</span>
               </div>
             </div>
@@ -164,6 +164,8 @@ export default {
       calendar3: {
         display: "2019/01/01",
         show: false,
+        img: require('../../assets/right.png'),
+        img1: require('../../assets/xia.png'),
         zero: true,
         value: [2019, 1, 1], //默认日期
         lunar: true, //显示农历
@@ -193,8 +195,14 @@ export default {
   created () {
     // this.record()
     this.Information();
+    this.InforTcList();
   },
   methods: {
+    // 获取应用列表
+    InforTcList: function () {
+      let yylength = localStorage.getItem("yylength");
+      console.log(yylength);
+    },
     // 获取用户信息
     Information: function () {
       var UserId = localStorage.getItem('UserId')
@@ -205,7 +213,6 @@ export default {
       var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       this.axios.post(url, params).then(res => {
         this.user = res.data.Result;
-        console.log(this.user);
       });
     },
     // 开始时间

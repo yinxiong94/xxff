@@ -78,14 +78,24 @@ export default {
       if (this.mode == '0') {
         let params = this.qs.stringify({
           action: "payment",
-          type: 2,
+          type: 0,
           UserId: UserId,
-          ProductId: this.tcid,
+          price: this.tcid,
           OrderDetailsId: this.applicationId
         });
         var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
         this.axios.post(url, params).then(res => {
           console.log(res);
+          if (res.data.Result == "1") {
+            this.NewCellPhone = "";
+            this.$message({
+              message: "支付成功",
+              type: "success"
+            });
+            this.telFalse = 0;
+          } else {
+            this.$message.error("支付失败");
+          }
         });
       }
     }
@@ -103,7 +113,6 @@ export default {
     this.applicationId = localStorage.getItem('applicationId');
   },
   created () {
-    console.log(this.$route.query.row.id);
   }
 }
 </script>
