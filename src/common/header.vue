@@ -30,14 +30,8 @@
             />
             <div class="xl" v-if="isshow2">
               <div style="padding-bottom: 10px;border-bottom: 1px solid #ccc;width: 100%">
-                <img
-                  :src="list1.UserImg"
-                  alt
-                  style="width: 66px;height: 66px;margin-top: 15px;border-radius: 50%"
-                />
-                <p
-                  style="position: absolute;top:34px;left: 90px;line-height: 60px;font-size: 28px;"
-                >{{list1.NickName}}</p>
+                <img :src="list1.UserImg" alt style="width: 66px;height: 66px;margin-top: 15px;border-radius: 50%" />
+                <p style="position: absolute;top:34px;left: 90px;line-height: 60px;font-size: 28px;">{{list1.NickName}}</p>
               </div>
               <div class="tx">
                 <img src="../assets/ye.png" alt />
@@ -98,7 +92,7 @@ export default {
       isshow1: true,
       isshow2: false,
       list1: [],
-      sum: ""
+      sum:""
     };
   },
   created() {
@@ -106,6 +100,7 @@ export default {
     this.getuser();
     this.index = this.coou;
     this.id = this.coou;
+    console.log(this.coou);
     this.UserImg = localStorage.getItem("UserImg");
     if (!localStorage.getItem("UserId")) {
       (this.isshow1 = true), (this.isshow = false);
@@ -163,27 +158,28 @@ export default {
         userid: userid
       });
       this.axios.post(url, postData).then(res => {
+        console.log(res)
         this.list1 = res.data.Result;
       });
     },
 
     // 消息列表
-    getxx() {
+    getxx(){
       var sum;
-      let UserId = localStorage.getItem("UserId");
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      let postData = this.qs.stringify({
-        action: "Xiaoxi",
-        UserId: UserId
-      });
-      this.axios.post(url, postData).then(res => {
-        for (var i = 0; i < res.data.Result.length; i++) {
-          if (res.data.Result[i].Num == 0) {
-            sum += 1;
+      let UserId= localStorage.getItem("UserId");
+      let url="http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData=this.qs.stringify({
+            action:"Xiaoxi",
+            UserId:UserId
+      })
+      this.axios.post(url,postData).then(res=>{
+        for(var i=0;i<res.data.Result.length;i++){
+          if(res.data.Result[i].Num==0){
+              sum+=1
           }
         }
-        this.sum = sum;
-      });
+        this.sum=sum
+      })
     }
   }
 };
@@ -193,7 +189,7 @@ export default {
 .header {
   /* position: fixed; */
   z-index: 100000;
-  width: 100%;
+  width: 100%
 }
 .tx {
   display: flex;
@@ -242,7 +238,7 @@ export default {
   display: flex;
 }
 .blue {
-  color: #258ffc !important;
+  color: #258ffc;
 }
 .nav > img {
   width: 178px;
