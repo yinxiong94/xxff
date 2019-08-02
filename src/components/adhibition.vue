@@ -125,6 +125,7 @@ export default {
         localStorage.setItem("yylength", res.data.Result.length);
       });
     },
+    // 搜索
     jumpcx(){
       this.obtain(this.val)
     },
