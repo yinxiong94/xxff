@@ -4,7 +4,7 @@
     <div class="search_withdrawal">
       <div class="search aa">
         <img src="../assets/search.png" alt />
-        <input type="text" placeholder="搜索您的应用" />
+        <input type="text" placeholder="搜索您的应用" ref="input1"/>
         <img src="../assets/chacha.png" alt />
       </div>
       <div class="searchTwo">
@@ -24,23 +24,23 @@
         <span class="lanmuThree">下载次数</span>
         <span class="lanmuFour">下载方式</span>
       </div>
-      <div class="searchTwoTwo">
+      <div class="searchTwoTwo" v-for="item in list" :key="item.AppId">
         <div class="lanmuOne flex">
           <div class="ContentOne">
-            <div class="flexOne">
+            <!-- <div class="flexOne">
               <img src="../assets/apple.png" alt />
               <span>IOS</span>
-            </div>
+            </div> -->
           </div>
           <div class="ContentTwo">
-            <img src="../assets/xiaohongshu.png" alt />
+            <img :src="item.OrderDetailsImg" alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
-              <span class>小红书APP</span>
+              <span class>{{item.OrderDetailsName}}</span>
               <span class="gray">更新时间：</span>
-              <span class="gray">2019-04-11</span>
-              <span class="gray">23:22</span>
+              <span class="gray">{{item.showtime}}</span>
+              <!-- <span class="gray">23:22</span> -->
             </div>
             <div class="flexTwo textCenterTwoSpan">
               <span class="blue">更新</span>
@@ -51,10 +51,10 @@
           </div>
         </div>
         <div class="lanmuTwo">
-          <span class="textCenter">1.0.3XXX</span>
+          <span class="textCenter">{{item.VersionNum}}</span>
         </div>
         <div class="lanmuThree">
-          <span class="textCenter">999</span>
+          <span class="textCenter">{{item.XiazaiNum}}</span>
         </div>
         <div class="lanmuFour">
           <span class="textCenter">pppppppppp</span>
@@ -78,7 +78,7 @@ export default {
   },
   data() {
     return {
-      
+      list:[],
     }
   },
   created(){
@@ -86,9 +86,21 @@ export default {
   },
   methods: {
     obtain(){
+      // let input1 = this.$refs.input1.value;
       var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url).then(res=>{
-          console.log(res)
+       let UserId = localStorage.getItem("UserId");
+    
+      let postData = this.qs.stringify({
+        action:"GetOrderDetails",
+        UserId:UserId,
+        pid:1,
+        psize:10,
+        name:"",
+      })
+      this.axios.post(url,postData).then(res=>{
+          console.log(res.data.Result)
+          this.list = res.data.Result
+           localStorage.setItem("yylength", res.data.Result.length);
       })
     },
   },
