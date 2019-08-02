@@ -17,7 +17,8 @@ import nothing from "../components/nothing";
 import amend from "../components/amend";
 import introduce from "../components/introduce";
 import adhibition from "../components/adhibition";
-import text from "../components/text"
+import text from "../components/text";
+import zhifubao from "../components/withdrawal/zhifubao"
 
 Vue.use(Router);
 
@@ -29,6 +30,14 @@ export default new Router({
       component: Home,
       meta: {
         title: "首页"
+      }
+    },
+    {
+      path: "/zhifubao",
+      name: "zhifubao",
+      component: zhifubao,
+      meta: {
+        title: "支付"
       }
     },
     {

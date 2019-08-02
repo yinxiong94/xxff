@@ -264,11 +264,8 @@ export default {
         _this.imgBase64 = e.target.result;
       };
       reader.readAsDataURL(file);
-
-      
-      var reader = new FormData();
-      reader.append("name", file);
-      this.handshangc(reader);
+      console.log(obj);
+      // this.handshangc();
     },
     handshangc: function(reader) {
       // 文件上传

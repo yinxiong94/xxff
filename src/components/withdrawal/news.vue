@@ -12,9 +12,6 @@
             <div class="item"
                  v-for="(item,index) in list"
                  v-bind:key="index">
-              <input type="checkbox"
-                     name="btn"
-                     id="btn1"><label for="btn1"></label>
               <div :class="item.Num == 0? 'yuan1':'yuan'"></div>
               <div class="item_right">
                 <div class="notice">
@@ -64,7 +61,7 @@ export default {
       total: 5,
       img: require('../../assets/right.png'),
       img1: require('../../assets/xia.png'),
-      pagesize: 2,
+      pagesize: 5,
       textcount: ''
     }
   },
@@ -75,8 +72,8 @@ export default {
       let params = this.qs.stringify({
         action: "Xiaoxi",
         UserId: UserId,
+        psize: this.pagesize,
         pid: this.pid,
-        pagesize: this.pagesize
       });
       var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       this.axios.post(url, params).then(res => {
@@ -88,6 +85,8 @@ export default {
     },
     handleCurrentChange (curPage) {
       console.log(curPage)
+      this.pid = curPage;
+      this.handNews();
     },
     handSee: function (e) {
       // 展开效果

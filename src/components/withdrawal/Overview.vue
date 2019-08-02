@@ -8,18 +8,23 @@
           <div class="Overview_data">
             <div class="Overview_data_top">
               <div class="Overview_data_top_tx">
-                <img src="../../assets/tx.png" alt />
+                <img :src="user.UserImg"
+                     alt />
                 <div class="Overview_data_top_tx_right">
-                  <span>快乐的小浣熊</span>
-                  <span>ID:951687459</span>
+                  <span>{{user.NickName}}</span>
+                  <span>ID:{{user.OpenID}}</span>
                   <div class="Overview_data_top_tx_right_tb">
-                    <img src="../../assets/tb1.png" alt />
-                    <img src="../../assets/tb2.png" alt />
+                    <img src="../../assets/tb1.png"
+                         alt />
+                    <img src="../../assets/tb2.png"
+                         alt />
                   </div>
                 </div>
               </div>
               <div class="Overview_data_bottom">
-                <input type="text" name placeholder="填写邀请码得好礼" />
+                <input type="text"
+                       name
+                       placeholder="填写邀请码得好礼" />
                 <div class="Overview_data_bottom_btn">提交</div>
               </div>
             </div>
@@ -28,7 +33,7 @@
                 <span>钱包余额</span>
                 <span>充值后可购买应用发布包</span>
               </div>
-              <div class="Overview_data_right_pirce">366.89</div>
+              <div class="Overview_data_right_pirce">{{user.Price || 0}}元</div>
               <div class="Overview_data_right_btn">
                 <div class="Overview_data_right_btn1">充值</div>
               </div>
@@ -39,23 +44,23 @@
               <div class="item_xian"></div>
               <div class="item_z">共上传APP数量</div>
               <div class="item_num">
-                4
+                {{APPlength}}
                 <span>个</span>
               </div>
             </div>
             <div class="item">
               <div class="item_xian"></div>
-              <div class="item_z">共上传APP数量</div>
+              <div class="item_z">拥有优惠券数量</div>
               <div class="item_num">
                 4
-                <span>个</span>
+                <span>张</span>
               </div>
             </div>
             <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">分佣钱包</div>
               <div class="item_num">
-                4
+                {{user.Earnings}}
                 <span>元(可提现)</span>
               </div>
             </div>
@@ -63,15 +68,18 @@
           <div class="xiaoxi">
             <div class="xiaoxi_title">我的消息</div>
             <div class="xiaoxi_item">
-              <div class="yuan"></div>
+              <div :class="item.Num == 0? 'yuan1':'yuan'"></div>
               <div class="item_right">
                 <div class="notice">
                   <div class="text">消息通知</div>
                   <div class="xian"></div>
-                  <img src="../../assets/xia.png" alt />
-                  <div class="time">2019-05-26</div>
+                  <img :src="item.off? img1 : img "
+                       @click="handSee()"
+                       alt="" />
+                  <div class="time">{{item.AddTime}}</div>
                 </div>
-                <div class="xia">你的刚刚上传的一舟分发APP，已经通过审核</div>
+                <div class="xia"
+                     v-if="item.off">{{item.Text}}</div>
               </div>
             </div>
           </div>
@@ -79,53 +87,41 @@
             <div class="Overview_date_title">交易明细</div>
             <div class="Overview_date_nian">
               <div class="dian"></div>
-              <dir
-                class="Overview_date_ri"
-                @click="openByDrop($event)"
-                readonly
-              >{{calendar3.display}}</dir>
+              <dir class="Overview_date_ri"
+                   @click="openByDrop($event)"
+                   readonly>{{calendar3.display}}</dir>
               <transition name="fade">
-                <div
-                  class="calendar-dropdown"
-                  :style="{'left':18+'px','top':calendar3.top+'px'}"
-                  v-if="calendar3.show"
-                >
-                  <calendar
-                    :zero="calendar3.zero"
-                    :lunar="calendar3.lunar"
-                    :value="calendar3.value"
-                    :begin="calendar3.begin"
-                    :end="calendar3.end"
-                    @select="calendar3.select"
-                  ></calendar>
+                <div class="calendar-dropdown"
+                     :style="{'left':18+'px','top':calendar3.top+'px'}"
+                     v-if="calendar3.show">
+                  <calendar :zero="calendar3.zero"
+                            :lunar="calendar3.lunar"
+                            :value="calendar3.value"
+                            :begin="calendar3.begin"
+                            :end="calendar3.end"
+                            @select="calendar3.select"></calendar>
                 </div>
               </transition>
               <div class="dian"></div>
               <div class="dian"></div>
-              <dir
-                class="Overview_date_ri"
-                @click="openByDrop1($event)"
-                readonly
-              >{{calendar4.display}}</dir>
+              <dir class="Overview_date_ri"
+                   @click="openByDrop1($event)"
+                   readonly>{{calendar4.display}}</dir>
               <transition name="fade">
-                <div
-                  class="calendar-dropdown"
-                  :style="{'left':18+'px','top':calendar4.top+'px'}"
-                  v-if="calendar4.show"
-                >
-                  <calendar
-                    :zero="calendar4.zero"
-                    :lunar="calendar4.lunar"
-                    :value="calendar4.value"
-                    :begin="calendar4.begin"
-                    :end="calendar4.end"
-                    @select="calendar4.select"
-                  ></calendar>
+                <div class="calendar-dropdown"
+                     :style="{'left':18+'px','top':calendar4.top+'px'}"
+                     v-if="calendar4.show">
+                  <calendar :zero="calendar4.zero"
+                            :lunar="calendar4.lunar"
+                            :value="calendar4.value"
+                            :begin="calendar4.begin"
+                            :end="calendar4.end"
+                            @select="calendar4.select"></calendar>
                 </div>
               </transition>
               <div class="Overview_date_yue">月</div>
               <div class="Overview_date_coco">年</div>
-              <a  @click.stop="record">确认查询</a>
+              <a @click.stop="record">确认查询</a>
             </div>
             <div class="Overview_date_type">
               <div class="Overview_date_type_item">
@@ -133,14 +129,16 @@
                 <div class="Overview_date_type_list1">交易时间</div>
                 <div class="Overview_date_type_list1">变动金额</div>
               </div>
-              <div class="Overview_date_type_item" v-for="item in list" :key="item.pid">
+              <div class="Overview_date_type_item"
+                   v-for="item in list"
+                   :key="item.pid">
                 <div class="Overview_date_type_list1">{{item.Remark}}</div>
                 <div class="Overview_date_type_list1">{{item.RecordTime}}</div>
                 <div class="Overview_date_type_list1">
                   <span>{{item.Remark}}</span>
                 </div>
               </div>
-            
+
             </div>
           </div>
         </div>
@@ -163,8 +161,10 @@ export default {
     tail,
     calendar
   },
-  data() {
+  data () {
     return {
+      img: require('../../assets/right.png'),
+      img1: require('../../assets/xia.png'),
       calendar3: {
         display: "2019/01/01",
         show: false,
@@ -190,16 +190,89 @@ export default {
           this.calendar4.display = value.join("/");
         }
       },
-      list:{},
-
+      list: {},
+      user: [],
+      item: [],
+      textcount: '',
+      APPlength: ''
     };
   },
-  created() {
+  created () {
     // this.record()
+    this.Information();
+    this.InforTcList();
+    this.handXiaoxi();
   },
   methods: {
+    // 消息
+    handXiaoxi: function () {
+      var UserId = localStorage.getItem('UserId')
+      let params = this.qs.stringify({
+        action: "Xiaoxi",
+        UserId: UserId,
+        pid: this.pid,
+        pagesize: this.pagesize
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        this.$set(res.data.Result[0], "off", false);
+        this.item = res.data.Result[0];
+      });
+    },
+    // 修改状态
+    handXxztxg: function () {
+      let params = this.qs.stringify({
+        action: "SetXiaoxiType",
+        textcount: this.textcount,
+        type: 2
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        console.log(res);
+      });
+    },
+    handSee: function () {
+      // 展开效果
+      this.$set(this.item, "off", !this.item.off)
+      if (this.item.Num == 1) {
+        return
+      } else {
+        this.$set(this.item, "Num", 1);
+        this.textcount = this.item.TextId
+        this.handXxztxg();
+      }
+      console.log(this.item.Num);
+      console.log(this.textcount);
+    },
+    // 获取应用列表
+    InforTcList: function () {
+      var UserId = localStorage.getItem('UserId')
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData = this.qs.stringify({
+        action: "GetOrderDetails",
+        UserId: UserId,
+        pid: 1,
+        psize: 999
+      })
+      this.axios.post(url, postData).then(res => {
+        console.log(res.data.Result.length);
+        this.APPlength = res.data.Result.length;
+      })
+    },
+    // 获取用户信息
+    Information: function () {
+      var UserId = localStorage.getItem('UserId')
+      let params = this.qs.stringify({
+        action: "withdrawIndex",
+        userid: UserId
+      });
+      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      this.axios.post(url, params).then(res => {
+        this.user = res.data.Result;
+      });
+    },
     // 开始时间
-    openByDrop(e) {
+    openByDrop (e) {
       this.calendar3.show = true;
       this.calendar3.top = e.target.offsetTop + 70;
       e.stopPropagation();
@@ -208,16 +281,16 @@ export default {
           "click",
           e => {
             this.calendar3.show = false;
-            document.removeEventListener("click", () => {}, false);
+            document.removeEventListener("click", () => { }, false);
           },
           false
         );
-        
+
       }, 1000);
     },
     // 结束时间
 
-    openByDrop1(e) {
+    openByDrop1 (e) {
       this.calendar4.show = true;
       this.calendar4.top = e.target.offsetTop + 70;
       e.stopPropagation();
@@ -226,17 +299,17 @@ export default {
           "click",
           e => {
             this.calendar4.show = false;
-            document.removeEventListener("click", () => {}, false);
+            document.removeEventListener("click", () => { }, false);
           },
           false
         );
-        
+
       }, 1000);
-     
+
       // this.record()
     },
 
-    record() {
+    record () {
       let myDate = new Date().toLocaleDateString();
       let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let UserId = localStorage.getItem("UserId");
@@ -249,7 +322,7 @@ export default {
         EndTime: this.calendar4.display
       });
       this.axios.post(url, postData).then(res => {
-        this.list=res.data.Result;
+        this.list = res.data.Result;
       });
     }
   },
@@ -526,8 +599,16 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  background-color: #cccccc;
+  margin-right: 25px;
+}
+.mian .item .yuan1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   background-color: #258ffc;
   margin-right: 25px;
+  margin-top: 3px;
 }
 .xiaoxi_item .item_right {
   flex: 1;
@@ -546,12 +627,12 @@ body {
   line-height: 20px;
 }
 .xiaoxi_item .xian {
-  width: 70%;
+  width: 50%;
   height: 2px;
   background-color: #ccc;
   margin-top: 10px;
   margin-right: 10px;
-}/*  */
+} /*  */
 .xiaoxi_item .item_right .notice img {
   width: 15px;
   height: 15px;
@@ -563,6 +644,7 @@ body {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   height: 20px;
+  line-height: 20px;
 }
 .xiaoxi_item .item_right .xia {
   width: 100%;
@@ -648,7 +730,7 @@ body {
   color: rgba(37, 143, 252, 1);
   line-height: 70px;
   margin-left: 67px;
-   cursor:pointer;
+  cursor: pointer;
 }
 
 .Overview_date .Overview_date_type {
