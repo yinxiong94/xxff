@@ -1,10 +1,11 @@
 <template>
   <div class="withdrawal">
     <Header :coou="3"></Header>
-    <div class="search_withdrawal">
+
+    <div class="search_withdrawal" v-if="show">
       <div class="search aa">
         <img src="../assets/search.png" alt />
-        <input type="text" placeholder="搜索您的应用" ref="input1"/>
+        <input type="text" placeholder="搜索您的应用" v-model="val" @input="jumpcx"/>
         <img src="../assets/chacha.png" alt />
       </div>
       <div class="searchTwo">
@@ -30,7 +31,7 @@
             <!-- <div class="flexOne">
               <img src="../assets/apple.png" alt />
               <span>IOS</span>
-            </div> -->
+            </div>-->
           </div>
           <div class="ContentTwo">
             <img :src="item.OrderDetailsImg" alt />
@@ -46,7 +47,11 @@
               <span class="blue">更新</span>
               <span class="green">编辑</span>
               <span class="yellow">预览</span>
-              <span class="red">删除</span>
+              <span
+                class="red"
+                :data-OrderDetailsId="item.OrderDetailsId"
+                @click="jumpdel($event)"
+              >删除</span>
             </div>
           </div>
         </div>
@@ -56,16 +61,23 @@
         <div class="lanmuThree">
           <span class="textCenter">{{item.XiazaiNum}}</span>
         </div>
-        <div class="lanmuFour">
-          <span class="textCenter">pppppppppp</span>
-          <img class="textCenter" src="../assets/erweima.png" alt />
-        </div>
+        <el-dropdown>
+          <div class="lanmuFour">
+            <span class="textCenter">pppppppppp</span>
+            <img class="textCenter" src="../assets/erweima.png" alt />
+          </div>
+          <el-dropdown-menu slot="dropdown">
+            <img :src="item.Ytubiao" alt class="lanmuFour_img" />
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
       <div class="pagination">
         <el-pagination background layout="prev, pager, next" :total="10" :size="100"></el-pagination>
       </div>
     </div>
-    <Tail></Tail>
+
+    <div v-if="heide" class="heide">您还没有应用哦~</div>
+    <Tail class="tail"></Tail>
   </div>
 </template>
 <script>
@@ -78,34 +90,70 @@ export default {
   },
   data() {
     return {
-      list:[],
-    }
+      list: [],//列表
+      val:"", //用户输入的
+      show:false,
+      heide:true,
+    };
   },
-  created(){
-    this.obtain()
+  created() {
+    this.obtain();
   },
   methods: {
-    obtain(){
-      // let input1 = this.$refs.input1.value;
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-       let UserId = localStorage.getItem("UserId");
     
+    obtain(val) {
+      // let input1 = this.$refs.input1.value;
+      // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
-        action:"GetOrderDetails",
-        UserId:UserId,
-        pid:1,
-        psize:10,
-        name:"",
-      })
-      this.axios.post(url,postData).then(res=>{
-          console.log(res.data.Result)
-          this.list = res.data.Result
-           localStorage.setItem("yylength", res.data.Result.length);
-      })
+        action: "GetOrderDetails",
+        UserId: UserId,
+        pid: 1,
+        psize: 10,
+        name: val
+      });
+      this.axios.post("GetUserData.ashx", postData).then(res => {
+        console.log(res.data.Result);
+        if(res.data.Result==[]){
+            this.show=true,
+            this.heide=false
+        }else{
+           this.show=false,
+            this.heide=true
+        }
+        this.list = res.data.Result;
+        localStorage.setItem("yylength", res.data.Result.length);
+      });
     },
-  },
+    jumpcx(){
+      this.obtain(this.val)
+    },
+    // 删除应用
+    jumpdel(e) {
+      let orderdetailsid = e.target.dataset.orderdetailsid;
+      // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
+      let postData = this.qs.stringify({
+        action: "Del",
+        OrderDetailsId: orderdetailsid
+      });
+      this.axios.post("GetUserData.ashx", postData).then(res => {
+        if (res.data.Result == true) {
+          this.$message({
+            message: "删除成功",
+            type: "success"
+          });
+          this.obtain();
+        } else {
+          this.$message({
+            showClose: true,
+            message: "删除失败请稍后再试",
+            type: "error"
+          });
+        }
+      });
+    }
+  }
 };
-
 </script>
 
 <style scoped>
@@ -114,6 +162,26 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.tail{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.heide{
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0088FF;
+  font-size: 30px;
+  font-weight: bold;
+}
+.lanmuFour_img {
+  width: 150px;
+  height: 150px;
 }
 .aa {
   display: flex;
@@ -180,10 +248,18 @@ span {
 .lanmuFour {
   width: 15%;
 }
+.lanmuFour img {
+  height: 16px;
+  width: 15px;
+}
 .lanmuTwo,
 .lanmuThree,
 .lanmuFour {
   text-align: center;
+  display: flex;
+  align-items: center;
+  /*justify-content: center; */
+  cursor: pointer;
 }
 .searchBack {
   background: #f2f2f2;
@@ -227,17 +303,21 @@ span {
 .blue {
   background: deepskyblue;
   margin-right: 20px;
+  cursor: pointer;
 }
 .green {
   background: forestgreen;
   margin-right: 20px;
+  cursor: pointer;
 }
 .yellow {
   background: darkgoldenrod;
   margin-right: 20px;
+  cursor: pointer;
 }
 .red {
   background: darksalmon;
+  cursor: pointer;
 }
 .textCenter {
   line-height: 80px;
