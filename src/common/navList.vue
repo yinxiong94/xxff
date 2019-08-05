@@ -42,13 +42,6 @@ export default {
           off: false
         },
         {
-          id: 3,
-          title: "我的优惠券",
-          Selection: require("../assets/nav14.png"),
-          noSelection: require("../assets/nav4.png"),
-          off: false
-        },
-        {
           id: 4,
           title: "我的消息",
           Selection: require("../assets/nav15.png"),
@@ -83,9 +76,8 @@ export default {
           ? this.$router.push({ path: "/withdrawal" })
           : index == 2
             ? this.$router.push({ path: "/modify" })
-            : index == 3
-              ? this.$router.push({ path: "/amend" }) :
-              index == 4 ? this.$router.push({ path: "/news" }) : ""
+            :
+            index == 4 ? this.$router.push({ path: "/news" }) : ""
         ;
     }
   },

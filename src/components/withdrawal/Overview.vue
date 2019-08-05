@@ -23,9 +23,10 @@
               </div>
               <div class="Overview_data_bottom">
                 <input type="text"
-                       name
+                       v-model="code"
                        placeholder="填写邀请码得好礼" />
-                <div class="Overview_data_bottom_btn">提交</div>
+                <div class="Overview_data_bottom_btn"
+                     @click="Recommendation">提交</div>
               </div>
             </div>
             <div class="Overview_data_right">
@@ -165,6 +166,7 @@ export default {
     return {
       img: require('../../assets/right.png'),
       img1: require('../../assets/xia.png'),
+      code: '',
       calendar3: {
         display: "2019/01/01",
         show: false,
@@ -204,6 +206,27 @@ export default {
     this.handXiaoxi();
   },
   methods: {
+    // 推荐码
+    Recommendation: function () {
+      var UserId = localStorage.getItem('UserId')
+      let params = this.qs.stringify({
+        action: "GetInvitation",
+        UserId: UserId,
+        referral: this.code
+      });
+      this.axios.post('GetUserData.ashx', params).then(res => {
+        console.log(res);
+        if (res.data.Msg == '填写成功') {
+          this.$message({
+            message: "填写成功",
+            type: "success"
+          });
+        } else {
+          this.$message.error("填写失败");
+        }
+      });
+
+    },
     // 消息
     handXiaoxi: function () {
       var UserId = localStorage.getItem('UserId')
