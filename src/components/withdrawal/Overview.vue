@@ -213,8 +213,7 @@ export default {
         pid: this.pid,
         pagesize: this.pagesize
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         this.$set(res.data.Result[0], "off", false);
         this.item = res.data.Result[0];
       });
@@ -226,8 +225,7 @@ export default {
         textcount: this.textcount,
         type: 2
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res);
       });
     },
@@ -247,14 +245,13 @@ export default {
     // 获取应用列表
     InforTcList: function () {
       var UserId = localStorage.getItem('UserId')
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let postData = this.qs.stringify({
         action: "GetOrderDetails",
         UserId: UserId,
         pid: 1,
         psize: 999
       })
-      this.axios.post(url, postData).then(res => {
+      this.axios.post('GetUserData.ashx', postData).then(res => {
         console.log(res.data.Result.length);
         this.APPlength = res.data.Result.length;
       })
@@ -266,8 +263,7 @@ export default {
         action: "withdrawIndex",
         userid: UserId
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         this.user = res.data.Result;
       });
     },
@@ -311,7 +307,6 @@ export default {
 
     record () {
       let myDate = new Date().toLocaleDateString();
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
         action: "GetRecordList",
@@ -321,7 +316,7 @@ export default {
         BeginTime: this.calendar3.display,
         EndTime: this.calendar4.display
       });
-      this.axios.post(url, postData).then(res => {
+      this.axios.post('GetUserData.ashx', postData).then(res => {
         this.list = res.data.Result;
       });
     }

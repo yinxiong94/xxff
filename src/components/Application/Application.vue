@@ -278,12 +278,11 @@ export default {
     },
 
     initialize () {
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       var postData = this.qs.stringify({
         action: "GetLeibie",
         FathId: "0"
       });
-      this.axios.post(url, postData).then(res => {
+      this.axios.post('GetUserData.ashx', postData).then(res => {
         this.list = res.data.Result;
       });
     },
@@ -293,12 +292,11 @@ export default {
       let LeibieId = e.target.getAttribute("data-LeibieId");
       this.LeibieId = LeibieId;
       this.i = index;
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       var postData = this.qs.stringify({
         action: "GetLeibie",
         FathId: LeibieId
       });
-      this.axios.post(url, postData).then(res => {
+      this.axios.post('GetUserData.ashx', postData).then(res => {
         // console.log(res.data.Result);
         // this.list = res.data.Result
         this.arr = res.data.Result;
@@ -435,29 +433,25 @@ export default {
     },
 
     newImport (data) {
-      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      this.axios.post(url, data).then(res => {
+      this.axios.post('FileUpLoad.ashx', data).then(res => {
         this.zfl = res.data.Result.url;
       });
     },
 
     newImport1 (data) {
-      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      this.axios.post(url, data).then(res => {
+      this.axios.post('FileUpLoad.ashx', data).then(res => {
         this.zfl1 = res.data.Result.url;
       });
     },
 
     newImport2 (data) {
-      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      this.axios.post(url, data).then(res => {
+      this.axios.post('FileUpLoad.ashx', data).then(res => {
         this.zfl2 = res.data.Result.url;
       });
     },
 
     newImport3 (data) {
-      let url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      this.axios.post(url, data).then(res => {
+      this.axios.post('FileUpLoad.ashx', data).then(res => {
         this.zfl3 = res.data.Result.url;
       });
     },
@@ -471,7 +465,6 @@ export default {
         let input2 = this.$refs.input2.value; //一句话简介
         let input3 = this.$refs.input3.value; //应用版本号
         var UserId = localStorage.getItem("UserId");
-        let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
         let postData = this.qs.stringify({
           action: "shangchuan",
           UserId: UserId,
@@ -487,7 +480,7 @@ export default {
           size: this.size,
           VersionNum: input3
         });
-        this.axios.post(url, postData).then(res => {
+        this.axios.post('GetUserData.ashx', postData).then(res => {
           console.log(res);
           if (res.Msg == null) {
             this.$message({
@@ -503,7 +496,6 @@ export default {
         let input2 = this.$refs.input2.value; //一句话简介
         let input3 = this.$refs.input3.value; //应用版本号
         var UserId = localStorage.getItem("UserId");
-        let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
         let postData = this.qs.stringify({
           action: "shangchuan",
           UserId: UserId,
@@ -520,7 +512,7 @@ export default {
           VersionNum: input3,
           OrderDetailsId: OrderDetailsII
         });
-        this.axios.post(url, postData).then(res => {
+        this.axios.post('GetUserData.ashx', postData).then(res => {
           console.log(res);
           if (res.Msg == null) {
             this.$message({

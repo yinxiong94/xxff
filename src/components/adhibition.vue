@@ -134,7 +134,6 @@ export default {
     },
     obtain (val) {
       // let input1 = this.$refs.input1.value;
-      // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
         action: "GetOrderDetails",
@@ -163,7 +162,6 @@ export default {
     // 删除应用
     jumpdel (e) {
       let orderdetailsid = e.target.dataset.orderdetailsid;
-      // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let postData = this.qs.stringify({
         action: "Del",
         OrderDetailsId: orderdetailsid

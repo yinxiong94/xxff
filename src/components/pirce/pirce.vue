@@ -90,8 +90,7 @@ export default {
         pid: 0,
         psize: 999,
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         this.item = res.data.Result;
       });
     },
@@ -109,8 +108,7 @@ export default {
       action: "GetProduct",
       IsType: 0,
     });
-    var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-    this.axios.post(url, params).then(res => {
+    this.axios.post('GetUserData.ashx', params).then(res => {
       this.list = res.data.Result
     });
     this.handObtainList();
