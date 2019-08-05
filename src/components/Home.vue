@@ -528,8 +528,9 @@ p {
   height: 50px;
   position: absolute;
   bottom: -18px;
-  left: -28px;
+  left: 49px;
   overflow: hidden;
+  width: 250px;
 }
 
 .SkusCell_img {
@@ -549,6 +550,7 @@ p {
   justify-content: center;
   color: #fff;
   font-size: 14px;
+  width: 100%;
 }
 
 .mod_copyright_auth_ico1_text2 {

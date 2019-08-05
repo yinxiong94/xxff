@@ -117,7 +117,6 @@ export default {
     this.getuser();
     this.index = this.coou;
     this.id = this.coou;
-    console.log(this.coou);
     this.UserImg = localStorage.getItem("UserImg");
     if (!localStorage.getItem("UserId")) {
       (this.isshow1 = true), (this.isshow = false);
@@ -175,7 +174,6 @@ export default {
         userid: userid
       });
       this.axios.post(url, postData).then(res => {
-        console.log(res)
         this.list1 = res.data.Result;
       });
     },
