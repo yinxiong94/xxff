@@ -226,7 +226,7 @@ export default {
         type: 2
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res);
+
       });
     },
     handSee: function () {
@@ -239,8 +239,7 @@ export default {
         this.textcount = this.item.TextId
         this.handXxztxg();
       }
-      console.log(this.item.Num);
-      console.log(this.textcount);
+    
     },
     // 获取应用列表
     InforTcList: function () {
@@ -252,7 +251,7 @@ export default {
         psize: 999
       })
       this.axios.post('GetUserData.ashx', postData).then(res => {
-        console.log(res.data.Result.length);
+
         this.APPlength = res.data.Result.length;
       })
     },

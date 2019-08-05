@@ -36,7 +36,7 @@ export default {
 
 <style>
 body {
-  padding-bottom: 300px;
+  /* padding-bottom: 300px; */
 
 }
 .cont_body_bg4 {
@@ -47,9 +47,9 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  left: 0;
+  left: 0; */
 }
 .mod_help_list_text {
   color: #fff;

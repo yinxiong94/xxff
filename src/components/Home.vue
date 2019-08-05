@@ -206,7 +206,7 @@
         </div>
       </div>
     </div>
-    <div class="cont_body_bg3">
+    <!-- <div class="cont_body_bg3">
       <div class="SkusCell SkusCell1">
         <p class="mod_price_text">合作企业</p>
         <p class="mod_price_text1">HENGXINGDYNAMICS</p>
@@ -237,7 +237,7 @@
         <img src="../assets/zhaos.png"
              alt />
       </div>
-    </div>
+    </div> -->
     <Tail></Tail>
   </div>
 </template>

@@ -183,7 +183,7 @@ export default {
         Tel: this.tel1
       });
       this.axios.post('GetCode.ashx', params).then(res => {
-        console.log(res);
+
       });
     },
     Verification1: function() {
@@ -194,19 +194,19 @@ export default {
         Tel: this.newTel
       });
       this.axios.post('GetCode.ashx', params).then(res => {
-        console.log(res);
+
       });
     },
     VerificationCode: function() {
       // 验证验证码
-      console.log("验证验证码");
+
       let params = this.qs.stringify({
         action: "ExistAuthCode",
         Tel: this.tel1,
         Code: this.NewCellPhone
       });
       this.axios.post('GetCode.ashx', params).then(res => {
-        console.log(res);
+ 
         if (res.data.Result == true) {
           this.NewCellPhone = "";
           this.$message({
@@ -221,7 +221,6 @@ export default {
     },
     modifyMobile: function() {
       var UserId = localStorage.getItem("UserId");
-      console.log(this.NewCellPhone, this.tel1, this.newTel);
       let params = this.qs.stringify({
         action: "EditTel",
         Code: this.NewCellPhone,
@@ -229,7 +228,6 @@ export default {
         EditTel: this.newTel
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res);
       });
     },
     Information: function() {
@@ -239,13 +237,11 @@ export default {
         userid: UserId
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res);
         this.user = res.data.Result;
       });
     },
     handNum: function(e) {
       this.num = e.target.dataset.index;
-      console.log(e.target.dataset.index);
     },
     handReturn() {
       this.num = 0;
@@ -259,13 +255,13 @@ export default {
         _this.imgBase64 = e.target.result;
       };
       reader.readAsDataURL(file);
-      console.log(obj);
+
       // this.handshangc();
     },
     handshangc: function(reader) {
       // 文件上传
       this.axios.post('FileUpLoad.ashx', reader).then(res => {
-        console.log(res);
+       
       });
     },
 
@@ -277,7 +273,6 @@ export default {
         NickName: ''
       });
       this.axios.post('FileUpLoad.ashx', params).then(res => {
-        console.log(res);
         this.user = res.data.Result
       });
     },

@@ -76,14 +76,14 @@ export default {
         pid: this.pid,
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res);
+
         this.list = res.data.Result;
         this.$set(this.list, "off", false)
         this.total = this.list.length;
       });
     },
     handleCurrentChange (curPage) {
-      console.log(curPage)
+
       this.pid = curPage;
       this.handNews();
     },
@@ -108,7 +108,7 @@ export default {
         type: 2
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res);
+
       });
     }
   },

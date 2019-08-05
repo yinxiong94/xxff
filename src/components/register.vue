@@ -94,7 +94,6 @@ export default {
         Code: input4
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res.data.Result);
         if (res.data.Result !== "") {
           this.$message({
             message: "注册成功",
@@ -141,7 +140,6 @@ export default {
           return;
         }
         this.count--;
-        console.log();
         this.code =
           this.count < 10 ? `请等待0${this.count}s` : `请等待${this.count}s`;
       }, 1000);
@@ -152,7 +150,6 @@ export default {
       });
       var url = "http://192.168.1.188:8035/API/GetCode.ashx";
       this.axios.post(url, params).then(res => {
-        console.log(res.data.Msg);
         if (res.data.Msg == "此账号已被注册") {
           this.$message({
             message: "此账号已被注册",
@@ -212,7 +209,7 @@ a {
   background: url("../assets/login_bgwhite.png") no-repeat center;
   background-size: 52% 65%;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   /* position: relative; */
   display: flex;
   justify-content: center;
@@ -233,7 +230,7 @@ a {
 
 .login_bg .login_bgwhite .login_input {
   width: 22%;
-  height: 54vh;
+  height: 500px;
   margin-left: 300px;
 }
 

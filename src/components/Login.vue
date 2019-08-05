@@ -63,7 +63,6 @@ export default {
       });
       let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       this.axios.post(url, postData).then(res => {
-        console.log(res.data.Msg !== null);
         if (res.data.Msg !== null) {
           this.$message.error("账号或密码错误");
         } else {
@@ -146,7 +145,6 @@ a {
 
 .login_bg .login_bgwhite .login_input {
   width: 22%;
-  height: 54vh;
   margin-left: 300px;
 }
 

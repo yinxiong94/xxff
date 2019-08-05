@@ -1,89 +1,72 @@
 <template>
-  <div id="header"
-       class="header">
+  <div id="header" class="header">
     <!-- 头部 -->
     <div class="banxin">
       <div class="nav">
         <router-link to="/">
-          <img src="../assets/logo.png"
-               alt />
+          <img src="../assets/logo.png" alt />
         </router-link>
-        <div class="nav_li"
-             v-for="(item, index) in list"
-             :key="item.id">
-          <p :data-id="item.id"
-             @click="Jump($event,index)"
-             :class="index==id?'blue':''">{{item.name}}</p>
+        <div class="nav_li" v-for="(item, index) in list" :key="item.id">
+          <p
+            :data-id="item.id"
+            @click="Jump($event,index)"
+            :class="index==id?'blue':''"
+          >{{item.name}}</p>
         </div>
-        <div class="nav_right"
-             v-if="isshow">
+        <div class="nav_right" v-if="isshow">
           <div class="notice">
-            <img src="../assets/notice.png"
-                 alt />
+            <img src="../assets/notice.png" alt />
             <div>{{sum || 0}}</div>
           </div>
           <div>
             <!-- <img :src="UserImg" alt /> -->
-            <img :src="list1.UserImg"
-                 alt
-                 width="50px"
-                 height="50px"
-                 style="margin-top:10px;margin-left:30px;border-radius: 50%"
-                 @click="show" />
-            <div class="xl"
-                 v-if="isshow2">
+            <img
+              :src="list1.UserImg"
+              alt
+              width="50px"
+              height="50px"
+              style="margin-top:10px;margin-left:30px;border-radius: 50%"
+              @click="show"
+            />
+            <div class="xl" v-if="isshow2">
               <div style="padding-bottom: 10px;border-bottom: 1px solid #ccc;width: 100%">
-                <img :src="list1.UserImg"
-                     alt
-                     style="width: 66px;height: 66px;margin-top: 15px;border-radius: 50%" />
+                <img :src="list1.UserImg" alt style="width: 66px;height: 66px;margin-top: 15px;border-radius: 50%" />
                 <p style="position: absolute;top:34px;left: 90px;line-height: 60px;font-size: 28px;">{{list1.NickName}}</p>
               </div>
               <div class="tx">
-                <img src="../assets/ye.png"
-                     alt />
+                <img src="../assets/ye.png" alt />
                 <div style="width:100%;margin-top: 10px;font-size:16px;">
                   余额￥
-                  <span style="font-size:16px;">{{list1.Price.toFixed(2)}}</span>
+                  <span style="font-size:16px;">{{list1.Price}}</span>
                 </div>
               </div>
               <div class="tx">
-                <img src="../assets/sz.png"
-                     alt
-                     style="width:21px;height:21px" />
+                <img src="../assets/sz.png" alt style="width:21px;height:21px" />
                 <div style="width:100%;margin-top: 10px;font-size:16px;">账户设置</div>
               </div>
               <div class="tx">
-                <img src="../assets/tz.png"
-                     alt
-                     style="width:18px;height:21px" />
+                <img src="../assets/tz.png" alt style="width:18px;height:21px" />
                 <div style="width:100%;margin-top: 10px;font-size:16px;">
                   通知中心
                   <!-- <span style="font-size:16px;">0.00</span> -->
                 </div>
               </div>
               <div class="tx">
-                <img src="../assets/tc.png"
-                     alt
-                     style="width:22px;height:18px" />
+                <img src="../assets/tc.png" alt style="width:22px;height:18px" />
                 <router-link to>
-                  <div style="width:100%;margin-top: 10px;font-size:16px;"
-                       @click="exit">退出</div>
+                  <div style="width:100%;margin-top: 10px;font-size:16px;" @click="exit">退出</div>
                 </router-link>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="dengruzucv"
-             v-if="isshow1">
-          <div class="enter"
-               @click.stop="doThis">
-            <img src="../assets/dengru.png"
-                 alt />
+        <div class="dengruzucv" v-if="isshow1">
+          <div class="enter" @click.stop="doThis">
+            <img src="../assets/dengru.png" alt />
             <span>登入</span>
           </div>
-          <div class="register"
-               @click.stop="register">注册</div>
+          <div class="register" @click.stop="register">注册</div>
         </div>
       </div>
     </div>
@@ -93,7 +76,7 @@
 export default {
   name: "Header",
   props: ["coou"],
-  data () {
+  data() {
     return {
       list: [
         { id: 0, name: "主页" },
@@ -109,10 +92,10 @@ export default {
       isshow1: true,
       isshow2: false,
       list1: [],
-      sum: ""
+      sum:""
     };
   },
-  created () {
+  created() {
     this.getxx();
     this.getuser();
     this.index = this.coou;
@@ -124,35 +107,35 @@ export default {
       (this.isshow1 = false), (this.isshow = true);
     }
   },
-  beforeUpdate () { },
+  beforeUpdate() {},
   methods: {
-    Jump (e, index) {
+    Jump(e, index) {
       this.index = index;
       this.id = parseInt(e.target.dataset.id);
       this.index == 0
         ? this.$router.push({ path: "/" })
         : this.index == 1 && this.id == 1
-          ? this.$router.push({ path: "/pirce" })
-          : this.index == 2 && this.id == 2
-            ? this.$router.push({ path: "/release" })
-            : this.index == 3 && this.id == 3
-              ? this.$router.push({ path: "/adhibition" })
-              : this.$router.push({ path: "/withdrawal" });
+        ? this.$router.push({ path: "/pirce" })
+        : this.index == 2 && this.id == 2
+        ? this.$router.push({ path: "/release" })
+        : this.index == 3 && this.id == 3
+        ? this.$router.push({ path: "/adhibition" })
+        : this.$router.push({ path: "/withdrawal" });
     },
 
-    doThis () {
+    doThis() {
       this.$router.push({ path: "/Login" });
     },
 
-    register () {
+    register() {
       this.$router.push({ path: "/register" });
     },
 
-    gohome () {
+    gohome() {
       this.$router.push({ path: "/" });
     },
 
-    show () {
+    show() {
       if (this.isshow2 == false) {
         this.isshow2 = true;
       } else {
@@ -160,40 +143,38 @@ export default {
       }
     },
 
-    exit () {
+    exit() {
       localStorage.clear();
       location.reload();
     },
 
     // 获取用户信息
-    getuser () {
+    getuser() {
       let userid = localStorage.getItem("UserId");
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let postData = this.qs.stringify({
         action: "withdrawIndex",
         userid: userid
       });
-      this.axios.post(url, postData).then(res => {
+      this.axios.post("GetUserData.ashx", postData).then(res => {
         this.list1 = res.data.Result;
       });
     },
 
     // 消息列表
-    getxx () {
+    getxx(){
       var sum;
-      let UserId = localStorage.getItem("UserId");
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      let postData = this.qs.stringify({
-        action: "Xiaoxi",
-        UserId: UserId
+      let UserId= localStorage.getItem("UserId");
+      let postData=this.qs.stringify({
+            action:"Xiaoxi",
+            UserId:UserId
       })
-      this.axios.post(url, postData).then(res => {
-        for (var i = 0; i < res.data.Result.length; i++) {
-          if (res.data.Result[i].Num == 0) {
-            sum += 1
+      this.axios.post("GetUserData.ashx",postData).then(res=>{
+        for(var i=0;i<res.data.Result.length;i++){
+          if(res.data.Result[i].Num==0){
+              sum+=1
           }
         }
-        this.sum = sum
+        this.sum=sum
       })
     }
   }
@@ -202,9 +183,8 @@ export default {
 
 <style>
 .header {
-  /* position: fixed; */
   z-index: 100000;
-  width: 100%;
+  width: 100%
 }
 .tx {
   display: flex;
@@ -251,7 +231,6 @@ export default {
 }
 .nav {
   display: flex;
-  height: 75px;
 }
 .blue {
   color: #258ffc;

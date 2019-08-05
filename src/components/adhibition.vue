@@ -5,9 +5,14 @@
     <div class="search_withdrawal"
          v-if="show">
       <div class="search aa">
-        <img src="../assets/search.png" alt />
-        <input type="text" placeholder="搜索您的应用" v-model="val" @input="jumpcx" />
-        <img src="../assets/chacha.png" alt />
+        <img src="../assets/search.png"
+             alt />
+        <input type="text"
+               placeholder="搜索您的应用"
+               v-model="val"
+               @input="jumpcx" />
+        <img src="../assets/chacha.png"
+             alt />
       </div>
       <div class="searchTwo">
         <div class="One">
@@ -105,17 +110,29 @@ export default {
   },
   data () {
     return {
-      list: [], //列表
+      list: [],//列表
       val: "", //用户输入的
       show: false,
-      heide: true
+      heide: true,
     };
   },
   created () {
     this.obtain();
   },
   methods: {
-    obtain(val) {
+    jsee (e) {
+      let index = e.currentTarget.dataset.ccg;
+      let OrderDetailsII = this.list[index].OrderDetailsId;
+      localStorage.setItem("OrderDetailsII", OrderDetailsII);
+      this.$router.push('/Application')
+    },
+    det (e) {
+      let index = e.currentTarget.dataset.index;
+      let OrderDetailsId = this.list[index].OrderDetailsId;
+      localStorage.setItem("OrderDetailsId", OrderDetailsId);
+      this.$router.push('/details')
+    },
+    obtain (val) {
       // let input1 = this.$refs.input1.value;
       let UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
@@ -126,18 +143,19 @@ export default {
         name: val
       });
       this.axios.post("GetUserData.ashx", postData).then(res => {
-        console.log(res.data.Result);
         if (res.data.Result == []) {
-          (this.show = false), (this.heide = true);
+          this.heide = true;
+          this.show = false
         } else {
-          (this.show = true), (this.heide = false);
+          this.heide = false;
+          this.show = true
         }
         this.list = res.data.Result;
       });
     },
     // 搜索
-    jumpcx() {
-      this.obtain(this.val);
+    jumpcx () {
+      this.obtain(this.val)
     },
     // 删除应用
     jumpdel (e) {
