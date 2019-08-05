@@ -151,8 +151,7 @@ export default {
         userid: UserId,
         Moeny: this.HandPirce
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res);
         if (res.data.Msg == "提现申请成功") {
           this.NewCellPhone = '';

@@ -2,7 +2,8 @@
   <div class="withdrawal">
     <Header :coou="3"></Header>
 
-    <div class="search_withdrawal" v-if="show">
+    <div class="search_withdrawal"
+         v-if="show">
       <div class="search aa">
         <img src="../assets/search.png" alt />
         <input type="text" placeholder="搜索您的应用" v-model="val" @input="jumpcx" />
@@ -11,7 +12,8 @@
       <div class="searchTwo">
         <div class="One">
           <span>全部</span>
-          <img src="../assets/daosanjiao.png" alt />
+          <img src="../assets/daosanjiao.png"
+               alt />
         </div>
         <div class="Two">
           <span>发布</span>
@@ -25,7 +27,9 @@
         <span class="lanmuThree">下载次数</span>
         <span class="lanmuFour">下载方式</span>
       </div>
-      <div class="searchTwoTwo" v-for="item in list" :key="item.AppId">
+      <div class="searchTwoTwo"
+           v-for="(item,index) in list"
+           :key="index">
         <div class="lanmuOne flex">
           <div class="ContentOne">
             <!-- <div class="flexOne">
@@ -34,7 +38,8 @@
             </div>-->
           </div>
           <div class="ContentTwo">
-            <img :src="item.OrderDetailsImg" alt />
+            <img :src="item.OrderDetailsImg"
+                 alt />
           </div>
           <div class="Contentthree">
             <div class="textCenterTwo">
@@ -44,14 +49,16 @@
               <!-- <span class="gray">23:22</span> -->
             </div>
             <div class="flexTwo textCenterTwoSpan">
-              <span class="blue">更新</span>
-              <span class="green">编辑</span>
+              <span class="blue"
+                    :data-ccg="index"
+                    @click="jsee($event)">更新</span>
+              <span class="green"
+                    :data-index="index"
+                    @click="det($event)">编辑</span>
               <span class="yellow">预览</span>
-              <span
-                class="red"
-                :data-OrderDetailsId="item.OrderDetailsId"
-                @click="jumpdel($event)"
-              >删除</span>
+              <span class="red"
+                    :data-OrderDetailsId="item.OrderDetailsId"
+                    @click="jumpdel($event)">删除</span>
             </div>
           </div>
         </div>
@@ -64,19 +71,27 @@
         <el-dropdown>
           <div class="lanmuFour">
             <span class="textCenter">pppppppppp</span>
-            <img class="textCenter" src="../assets/erweima.png" alt />
+            <img class="textCenter"
+                 src="../assets/erweima.png"
+                 alt />
           </div>
           <el-dropdown-menu slot="dropdown">
-            <img :src="item.Ytubiao" alt class="lanmuFour_img" />
+            <img :src="item.Ytubiao"
+                 alt
+                 class="lanmuFour_img" />
           </el-dropdown-menu>
         </el-dropdown>
       </div>
       <div class="pagination">
-        <el-pagination background layout="prev, pager, next" :total="10" :size="100"></el-pagination>
+        <el-pagination background
+                       layout="prev, pager, next"
+                       :total="10"
+                       :size="100"></el-pagination>
       </div>
     </div>
 
-    <div v-if="heide" class="heide">您还没有应用哦~</div>
+    <div v-if="heide"
+         class="heide">您还没有应用哦~</div>
     <Tail class="tail"></Tail>
   </div>
 </template>
@@ -88,7 +103,7 @@ export default {
     Header,
     Tail
   },
-  data() {
+  data () {
     return {
       list: [], //列表
       val: "", //用户输入的
@@ -96,13 +111,12 @@ export default {
       heide: true
     };
   },
-  created() {
+  created () {
     this.obtain();
   },
   methods: {
     obtain(val) {
       // let input1 = this.$refs.input1.value;
-      // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
         action: "GetOrderDetails",
@@ -119,7 +133,6 @@ export default {
           (this.show = true), (this.heide = false);
         }
         this.list = res.data.Result;
-        localStorage.setItem("yylength", res.data.Result.length);
       });
     },
     // 搜索
@@ -127,9 +140,8 @@ export default {
       this.obtain(this.val);
     },
     // 删除应用
-    jumpdel(e) {
+    jumpdel (e) {
       let orderdetailsid = e.target.dataset.orderdetailsid;
-      // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
       let postData = this.qs.stringify({
         action: "Del",
         OrderDetailsId: orderdetailsid

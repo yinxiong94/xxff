@@ -182,8 +182,7 @@ export default {
         action: "GetAuthCodeMima",
         Tel: this.tel1
       });
-      var url = "http://192.168.1.188:8035/API/GetCode.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetCode.ashx', params).then(res => {
         console.log(res);
       });
     },
@@ -194,8 +193,7 @@ export default {
         action: "GetAuthCodeMima",
         Tel: this.newTel
       });
-      var url = "http://192.168.1.188:8035/API/GetCode.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetCode.ashx', params).then(res => {
         console.log(res);
       });
     },
@@ -207,8 +205,7 @@ export default {
         Tel: this.tel1,
         Code: this.NewCellPhone
       });
-      var url = "http://192.168.1.188:8035/API/GetCode.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetCode.ashx', params).then(res => {
         console.log(res);
         if (res.data.Result == true) {
           this.NewCellPhone = "";
@@ -231,8 +228,7 @@ export default {
         Tel: this.tel1,
         EditTel: this.newTel
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res);
       });
     },
@@ -242,8 +238,7 @@ export default {
         action: "withdrawIndex",
         userid: UserId
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res);
         this.user = res.data.Result;
       });
@@ -269,25 +264,22 @@ export default {
     },
     handshangc: function(reader) {
       // 文件上传
-      var url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      this.axios.post(url, reader).then(res => {
+      this.axios.post('FileUpLoad.ashx', reader).then(res => {
         console.log(res);
       });
     },
 
     modifyUser: function() {
       var UserId = localStorage.getItem("UserId");
-      console.log(this.user);
-      // let params = this.qs.stringify({
-      //   action: 'Registe',
-      //   UserName: UserId,
-      //   NickName: ''
-      // });
-      // var url = "http://192.168.1.188:8035/API/FileUpLoad.ashx";
-      // this.axios.post(url, params).then(res => {
-      //   console.log(res);
-      //   this.user = res.data.Result
-      // });
+      let params = this.qs.stringify({
+        action: 'Registe',
+        UserName: UserId,
+        NickName: ''
+      });
+      this.axios.post('FileUpLoad.ashx', params).then(res => {
+        console.log(res);
+        this.user = res.data.Result
+      });
     },
     handpsw: function() {
       // 修改密码
@@ -298,8 +290,7 @@ export default {
         pwd: this.psw,
         editpwd: this.psw1
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res);
         if (res.data.Result == "修改成功") {
           this.NewCellPhone = "";
@@ -320,8 +311,7 @@ export default {
         userid: UserId,
         NickName: this.userName
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res);
         if (res.data.Result == "1") {
           this.NewCellPhone = "";

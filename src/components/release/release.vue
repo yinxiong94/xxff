@@ -10,9 +10,13 @@
     <div class="mian_content">
       <div class="banxin">
         <div class="upload">
-          <div class="upload_iife" @click.stop="release">
-            <input type="file" id="btn_file" style="display:none" />
-            <img src="../../assets/iife.png" alt />
+          <div class="upload_iife"
+               @click.stop="release">
+            <input type="file"
+                   id="btn_file"
+                   style="display:none" />
+            <img src="../../assets/iife.png"
+                 alt />
           </div>
           <div class="Notes">
             点击按钮选择应用的安装包，或拖拽文件到此区域
@@ -34,7 +38,7 @@ export default {
     Header,
     tail
   },
-  data() {
+  data () {
     return {};
   },
 
@@ -42,11 +46,13 @@ export default {
     /**
      * 跳转到应用发布
      */
-    release() {
+    release () {
+      let OrderDetailsII = true;
+      localStorage.setItem("OrderDetailsII", OrderDetailsII);
       this.$router.push({ path: "/Application" });
     },
 
-    
+
   }
 };
 </script>

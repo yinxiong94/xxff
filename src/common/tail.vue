@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style>
+body {
+  padding-bottom: 300px;
+
+}
 .cont_body_bg4 {
   background: #3e3e3e;
   width: 100%;
@@ -43,6 +47,9 @@ export default {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 .mod_help_list_text {
   color: #fff;

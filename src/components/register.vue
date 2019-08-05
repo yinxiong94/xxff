@@ -93,8 +93,7 @@ export default {
         PassWord: input2,
         Code: input4
       });
-      var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post('GetUserData.ashx', params).then(res => {
         console.log(res.data.Result);
         if (res.data.Result !== "") {
           this.$message({
