@@ -11,7 +11,7 @@
                v-if="off == 0">
             <div class="send">
               <div class="send_conter">
-                <span class="send_pirce1">5000.00</span>
+                <span class="send_pirce1">{{userOthers}}</span>
                 <span class="send_Total">账户钱包余额（￥）</span>
               </div>
             </div>
@@ -77,7 +77,7 @@
                      placeholder=""
                      value="">
               <div class="Recharge_balance">
-                188,000 <span>元</span>
+                {{userOthers || 0}} <span>元</span>
               </div>
               <div class="Recharge_Btn"
                    @click="HandSub">
@@ -119,6 +119,7 @@ export default {
       HandPirce: '',
       OrderPrice: '',
       from: '',
+      userOthers: '',
       list: [
         { text: '1.为了您的账户资金安全，请在充值前开通第三方资金托管账户、设置交易密码；', id: 1 },
         { text: '2.充值过程中不收取任何手续费', id: 2 },
@@ -144,31 +145,46 @@ export default {
         this.off = 0;
       }
     },
+    // 提现
     HandSub: function () {
       var UserId = localStorage.getItem('UserId')
-      let params = this.qs.stringify({
-        action: "withdrawSave",
-        userid: UserId,
-        Moeny: this.HandPirce
-      });
-      this.axios.post('GetUserData.ashx', params).then(res => {
-        if (res.data.Msg == "提现申请成功") {
-          this.NewCellPhone = '';
-          this.$message({
-            message: "提现申请成功",
-            type: "success"
-          });
-          this.telFalse = 0;
-        } else {
-          this.$message.error("提现失败");
-        }
-      });
+      var userOthers = parseInt(this.userOthers);
+      var HandPirce = parseInt(this.HandPirce);
+      if (HandPirce > userOthers) {
+        this.$message.error("提现失败");
+        return
+      } else {
+        console.log(2);
+        let params = this.qs.stringify({
+          action: "withdrawSave",
+          userid: UserId,
+          Moeny: this.HandPirce
+        });
+        this.axios.post('GetUserData.ashx', params).then(res => {
+          if (res.data.Msg == "提现申请成功") {
+            this.NewCellPhone = '';
+            this.$message({
+              message: "提现申请成功",
+              type: "success"
+            });
+            this.telFalse = 0;
+          } else {
+            this.$message.error("提现失败");
+          }
+        });
+      }
     },
     handchong: function () {
       localStorage.setItem("OrderPrice", this.OrderPrice);
-      this.$router.push({ name: "zhifubao"})
+      this.$router.push({ name: "zhifubao" })
       // 充值
 
+    }
+  },
+  created () {
+    var userOthers = localStorage.getItem("userOthers");
+    if (userOthers == 'null') {
+      this.userOthers = 0;
     }
   },
   watch: {
