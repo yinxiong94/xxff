@@ -239,7 +239,7 @@ export default {
         this.textcount = this.item.TextId
         this.handXxztxg();
       }
-    
+
     },
     // 获取应用列表
     InforTcList: function () {
@@ -264,6 +264,7 @@ export default {
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
         this.user = res.data.Result;
+        localStorage.setItem("userOthers", res.data.Result.Price);
       });
     },
     // 开始时间

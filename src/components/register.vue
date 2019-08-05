@@ -2,40 +2,61 @@
   <div class="login_bg">
     <div class="login_bgwhite">
       <div class="login_fangzi">
-        <img class="login_fangzi_img" src="../assets/Login_fangzi.png" alt />
+        <img class="login_fangzi_img"
+             src="../assets/Login_fangzi.png"
+             alt />
       </div>
       <div class="login_input">
         <div class="login_input_img">
-          <img src="../assets/logo_Login.png" alt />
+          <img src="../assets/logo_Login.png"
+               alt />
         </div>
         <div class="login_input_text1">
           <div class="form item-fore">
-            <img src="../assets/Login_user.png" alt />
-            <input type="text" placeholder="请输入您的用户名" ref="input1" />
+            <img src="../assets/Login_user.png"
+                 alt />
+            <input type="text"
+                   placeholder="请输入您的用户名"
+                   ref="input1" />
             <span class="bit">*</span>
           </div>
           <div class="form item-fore">
-            <img src="../assets/Login_wpd.png" alt />
-            <input type="password" placeholder="请输入登入密码" ref="input2" />
+            <img src="../assets/Login_wpd.png"
+                 alt />
+            <input type="password"
+                   placeholder="请输入登入密码"
+                   ref="input2" />
             <span class="bit">*</span>
           </div>
 
           <div class="form item-fore">
-            <img src="../assets/shouji.png" alt />
-            <input type="text" placeholder="请输入您的手机号码" ref="input3" />
+            <img src="../assets/shouji.png"
+                 alt />
+            <input type="text"
+                   placeholder="请输入您的手机号码"
+                   ref="input3" />
           </div>
 
           <div class="form item-fore">
-            <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="请输入验证码" ref="input4" />
-            <span class="yzm" @click.stop="textCode">{{code}}</span>
+            <img src="../assets/Login_wpd.png"
+                 alt />
+            <input type="text"
+                   placeholder="请输入验证码"
+                   ref="input4" />
+            <span class="yzm"
+                  @click.stop="textCode">{{code}}</span>
           </div>
           <div class="form item-fore">
-            <img src="../assets/Login_wpd.png" alt />
-            <input type="text" placeholder="输入上级ID得10元优惠券(选填)" ref="input5" />
+            <img src="../assets/Login_wpd.png"
+                 alt />
+            <input type="text"
+                   placeholder="输入上级ID得10元优惠券(选填)"
+                   ref="input5" />
           </div>
-          <div class="but" @click.stop="registerpost">注册</div>
-          <div class="but1" @click.stop="doThis">已有账号去登入</div>
+          <div class="but"
+               @click.stop="registerpost">注册</div>
+          <div class="but1"
+               @click.stop="doThis">已有账号去登入</div>
         </div>
       </div>
     </div>
@@ -44,7 +65,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       count: 60, //倒计时时间
       code: "获取验证码"
@@ -55,7 +76,7 @@ export default {
     /**
      * 提交注册
      */
-    registerpost() {
+    registerpost () {
       let input1 = this.$refs.input1.value; //用户名
       let input2 = this.$refs.input2.value; //密码
       let input3 = this.$refs.input3.value; //手机号码
@@ -109,7 +130,7 @@ export default {
     /**
      * 获取验证码
      */
-    textCode() {
+    textCode () {
       let input3 = this.$refs.input3.value; //手机号码
       if (!/^1[3-9]\d{9}$/.test(input3)) {
         this.$message({
@@ -165,7 +186,7 @@ export default {
     },
 
     /**跳转到登入 */
-    doThis() {
+    doThis () {
       this.$router.push({ path: "/Login" });
     }
   }
@@ -244,6 +265,7 @@ a {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 17px;
+  width: 286px;
 }
 .login_input_text1 .form,
 .login_input_text1 .form1 {
