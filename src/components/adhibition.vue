@@ -5,7 +5,7 @@
     <div class="search_withdrawal" v-if="show">
       <div class="search aa">
         <img src="../assets/search.png" alt />
-        <input type="text" placeholder="搜索您的应用" v-model="val" @input="jumpcx"/>
+        <input type="text" placeholder="搜索您的应用" v-model="val" @input="jumpcx" />
         <img src="../assets/chacha.png" alt />
       </div>
       <div class="searchTwo">
@@ -90,17 +90,16 @@ export default {
   },
   data() {
     return {
-      list: [],//列表
-      val:"", //用户输入的
-      show:false,
-      heide:true,
+      list: [], //列表
+      val: "", //用户输入的
+      show: false,
+      heide: true
     };
   },
   created() {
     this.obtain();
   },
   methods: {
-    
     obtain(val) {
       // let input1 = this.$refs.input1.value;
       // var url = "http://192.168.1.188:8035/API/GetUserData.ashx";
@@ -114,20 +113,18 @@ export default {
       });
       this.axios.post("GetUserData.ashx", postData).then(res => {
         console.log(res.data.Result);
-        if(res.data.Result==[]){
-            this.show=true,
-            this.heide=false
-        }else{
-           this.show=false,
-            this.heide=true
+        if (res.data.Result == []) {
+          (this.show = false), (this.heide = true);
+        } else {
+          (this.show = true), (this.heide = false);
         }
         this.list = res.data.Result;
         localStorage.setItem("yylength", res.data.Result.length);
       });
     },
     // 搜索
-    jumpcx(){
-      this.obtain(this.val)
+    jumpcx() {
+      this.obtain(this.val);
     },
     // 删除应用
     jumpdel(e) {
@@ -164,19 +161,19 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.tail{
+.tail {
   position: fixed;
   bottom: 0;
   width: 100%;
 }
 
-.heide{
+.heide {
   width: 100%;
   height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0088FF;
+  color: #0088ff;
   font-size: 30px;
   font-weight: bold;
 }

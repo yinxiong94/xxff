@@ -12,7 +12,7 @@
                      alt />
                 <div class="Overview_data_top_tx_right">
                   <span>{{user.NickName}}</span>
-                  <span>ID:{{user.OpenID}}</span>
+                  <span>ID:{{user.Referral}}</span>
                   <div class="Overview_data_top_tx_right_tb">
                     <img src="../../assets/tb1.png"
                          alt />
