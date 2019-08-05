@@ -206,7 +206,7 @@
         </div>
       </div>
     </div>
-    <div class="cont_body_bg3">
+    <!-- <div class="cont_body_bg3">
       <div class="SkusCell SkusCell1">
         <p class="mod_price_text">合作企业</p>
         <p class="mod_price_text1">HENGXINGDYNAMICS</p>
@@ -237,7 +237,7 @@
         <img src="../assets/zhaos.png"
              alt />
       </div>
-    </div>
+    </div> -->
     <Tail></Tail>
   </div>
 </template>
@@ -528,8 +528,9 @@ p {
   height: 50px;
   position: absolute;
   bottom: -18px;
-  left: -28px;
+  left: 49px;
   overflow: hidden;
+  width: 250px;
 }
 
 .SkusCell_img {
@@ -549,6 +550,7 @@ p {
   justify-content: center;
   color: #fff;
   font-size: 14px;
+  width: 100%;
 }
 
 .mod_copyright_auth_ico1_text2 {

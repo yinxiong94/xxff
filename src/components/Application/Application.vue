@@ -424,7 +424,6 @@ export default {
       this.newImport3(fd);
     },
     handleRemove (file, fileList) {
-      console.log(file, fileList);
     },
 
     handlePictureCardPreview (file) {
@@ -481,7 +480,6 @@ export default {
           VersionNum: input3
         });
         this.axios.post('GetUserData.ashx', postData).then(res => {
-          console.log(res);
           if (res.Msg == null) {
             this.$message({
               message: "发布成功",
@@ -513,7 +511,6 @@ export default {
           OrderDetailsId: OrderDetailsII
         });
         this.axios.post('GetUserData.ashx', postData).then(res => {
-          console.log(res);
           if (res.Msg == null) {
             this.$message({
               message: "发布成功",

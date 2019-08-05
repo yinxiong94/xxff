@@ -143,8 +143,6 @@ export default {
         name: val
       });
       this.axios.post("GetUserData.ashx", postData).then(res => {
-        console.log(11);
-        console.log(res);
         if (res.data.Result == []) {
           this.heide = true;
           this.show = false

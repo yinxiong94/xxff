@@ -84,7 +84,6 @@ export default {
           OrderDetailsId: this.applicationId
         });
         this.axios.post('GetUserData.ashx', params).then(res => {
-          console.log(res);
           if (res.data.Result == "1") {
             this.NewCellPhone = "";
             this.$message({

@@ -16,7 +16,6 @@ export default {
 
       var UserId = localStorage.getItem('UserId')
       var OrderPrice = localStorage.getItem('OrderPrice')
-      console.log(OrderPrice)
       let params = this.qs.stringify({
         action: "Zhifu",
         userid: UserId,

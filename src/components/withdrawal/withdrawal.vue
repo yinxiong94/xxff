@@ -152,7 +152,6 @@ export default {
         Moeny: this.HandPirce
       });
       this.axios.post('GetUserData.ashx', params).then(res => {
-        console.log(res);
         if (res.data.Msg == "提现申请成功") {
           this.NewCellPhone = '';
           this.$message({
