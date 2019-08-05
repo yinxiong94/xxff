@@ -6,7 +6,7 @@
         <div class="banxin">
           <div class="xhs">
             <div class="xhs_conter">
-              <img src="../../assets/syuan183.png"
+              <img :src="list.OrderDetailsImg"
                    alt="" />
             </div>
           </div>
@@ -18,16 +18,16 @@
                        alt="" />
                 </div>
                 <div class="xhs_top_right">
-                  小红书APP
+                  {{list.OrderDetailsName}}
                 </div>
               </div>
               <div class="lower">
-                版本：1.0.3 (build 3) 大小：4.4 MB 更新时间 ：2019-04-11
+                版本：{{list.VersionNum}} 大小：{{list.PackageSize}} MB 更新时间 ：{{list.ShowTime}}
               </div>
             </div>
             <div class="xhs_evm">
               <div class="evm">
-                <img src="../../assets/timg226.png"
+                <img :src="img"
                      alt="" />
               </div>
             </div>
@@ -39,37 +39,26 @@
             </div>
           </div>
           <div class="bbyh">
-            <div class="bbyh_bbh">
+            <div class="bbyh_bbh"
+                 v-for="(item,index) in send"
+                 v-bind:key="index">
               <div class="bbyh_bbh_li">
-                1.0.3 (build 1 )
+                {{item.Version}}
               </div>
               <div class="bbyh_bbh_li">
-                版本优化
+                {{item.UpdateDesc}}
               </div>
               <div class="bbyh_bbh_li">
-                2018-12-24
-              </div>
-            </div>
-            <div class="bbyh_bbh">
-              <div class="bbyh_bbh_li">
-                1.0.3 (build 1 )
-              </div>
-              <div class="bbyh_bbh_li">
-                版本优化
-              </div>
-              <div class="bbyh_bbh_li">
-                2018-12-24
+                {{item.UpdateTime}}
               </div>
             </div>
           </div>
           <div class="yyjs">
             <div class="yyjs_conter">
               <h2>应用介绍</h2>
-              <p class="yyjs_p">小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。</p>
-              <p class="yyjs_p">小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。</p>
+              <p class="yyjs_p">{{list.OneCompany}}</p>
               <div>
-                <p>小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。
-                  <p>小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。小熊帮帮是兼职平台，适合宝妈大学生碎片时间赚零花。</p>
+                <p>{{list.TwoCompany}}</p>
               </div>
             </div>
           </div>
@@ -79,19 +68,15 @@
             </div>
             <div class="yyjt_list">
               <div class="list">
-                <img src="../../assets/cbcx.png"
+                <img :src="list.CopyrightImg"
                      alt="">
               </div>
               <div class="list">
-                <img src="../../assets/cbbx.png"
+                <img :src="list.ScreenshotImg"
                      alt="">
               </div>
               <div class="list">
-                <img src="../../assets/cbtxxx.png"
-                     alt="">
-              </div>
-              <div class="list">
-                <img src="../../assets/cbtbcg.png"
+                <img :src="list.OrderDetailsImg"
                      alt="">
               </div>
             </div>
@@ -116,12 +101,61 @@ export default {
   },
   data () {
     return {
-
+      list: [],
+      send: [],
+      img: ''
     }
   },
   methods: {
+    details: function () {
+      var OrderDetailsId = localStorage.getItem('OrderDetailsId');
+      let postData = this.qs.stringify({
+        action: "GetOrderDetailsID",
+        OrderDetailsId: OrderDetailsId
+      });
+      this.axios.post("GetUserData.ashx", postData).then(res => {
+        this.list = res.data.Result;
+        this.Packge();
+      });
+    },
+    Packge: function () {
+      // 二维码网址
+      console.log(1);
+      var OrderDetailsId = localStorage.getItem('OrderDetailsId');
+      let postData = this.qs.stringify({
+        action: "GetQRCode",
+        url: this.list.Package
+      });
+      this.axios.post("GetUserData.ashx", postData).then(res => {
+        this.img = res.data.Result;
+      });
+    },
+    transaction: function () {
+      var OrderDetailsId = localStorage.getItem('OrderDetailsId');
+      let postData = this.qs.stringify({
+        action: "GetUpdateList",
+        DetailId: '7a38977a-b0c7-442d-a9e3-c0bac9e9d66c'
+      });
+      this.axios.post("GetUserData.ashx", postData).then(res => {
+        console.log(1);
+        console.log(res);
+        this.send = res.data.Result;
+        console.log(this.send);
+      });
+    }
   },
   watch: {
+
+  },
+  computed () {
+
+  },
+  created () {
+    this.details();
+    this.transaction();
+  },
+  mounted () {
+
 
   }
 }
@@ -197,6 +231,11 @@ export default {
 }
 .db .banxin .xhs_app .xhs_evm .evm {
   width: 18.9%;
+  margin: 0 auto;
+}
+.db .banxin .xhs_app .xhs_evm .evm img {
+  width: 226px;
+  height: 226px;
   margin: 0 auto;
 }
 .db .banxin .xhs_app .xhs_az {
