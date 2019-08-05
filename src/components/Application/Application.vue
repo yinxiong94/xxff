@@ -111,15 +111,15 @@
           <div class="information_1_app">
             <div class="information_1_left">
               *
-              <span>应用子分类</span>
+              <span>应用安装包</span>
             </div>
 
-            <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+            <el-upload action="http://192.168.1.188:8035/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload"
-                       :headers="headers"
+         
                        :on-preview="handlePictureCardPreview"
-                       :on-remove="handleRemove"
+                       
                        :limit="1">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -144,12 +144,12 @@
               <span>应用图标</span>
             </div>
 
-            <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+            <el-upload action="http://192.168.1.188:8035/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload1"
-                       :headers="headers"
+        
                        :on-preview="handlePictureCardPreview"
-                       :on-remove="handleRemove"
+                       
                        :limit="1">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -170,16 +170,15 @@
               <span>应用截图</span>
             </div>
 
-            <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+            <el-upload action="http://192.168.1.188:8035/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload2"
-                       :headers="headers"
                        :on-preview="handlePictureCardPreview"
-                       :on-remove="handleRemove"
+                       
                        :limit="5">
               <i class="el-icon-plus"></i>
             </el-upload>
-            <el-dialog :visible.sync="dialogVisible">
+            <el-dialog :visible.sync="dialogVisible" modal="">
               <img width="100%"
                    :src="dialogImageUrl"
                    alt />
@@ -201,16 +200,15 @@
               <span>版权证明</span>
             </div>
 
-            <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+            <el-upload action=""
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload3"
-                       :headers="headers"
                        :on-preview="handlePictureCardPreview"
-                       :on-remove="handleRemove"
+                      
                        :limit="5">
               <i class="el-icon-plus"></i>
             </el-upload>
-            <el-dialog :visible.sync="dialogVisible">
+            <el-dialog :visible.sync="dialogVisible" modal="modal">
               <img width="100%"
                    :src="dialogImageUrl"
                    alt />
@@ -255,6 +253,7 @@ export default {
       headers: {
         "Content-Type": "multipart/form-data"
       },
+      modal:false,
       dialogImageUrl: "",
       dialogVisible: false,
       limit: 1,
@@ -270,7 +269,6 @@ export default {
   },
   mounted () {
     this.initialize();
-    this.newImport4();
   },
   methods: {
     changeText (e) {
@@ -324,7 +322,6 @@ export default {
           message: "上传应用只能是apk、ipa格式!",
           type: "warning"
         });
-        return;
       }
 
       if (!isLt2M) {
@@ -332,12 +329,15 @@ export default {
           message: "上传应用大小不能超过 100MB!",
           type: "warning"
         });
-        return;
       }
 
+      this.handlePictureCardPreview()
       let fd = new FormData();
       fd.append("file", file);
-      this.newImport(fd);
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
+        this.zfl = res.data.Result.url;
+      });
+      return false;
     },
     beforeAvatarUpload1 (file) {
       var fileName = new Array();
@@ -351,8 +351,7 @@ export default {
         this.$message({
           message: "上传应用只能是jpg、png格式!",
           type: "warning"
-        });
-        return;
+        })
       }
 
       if (!isLt2M) {
@@ -360,12 +359,16 @@ export default {
           message: "上传应用大小不能超过 1M!",
           type: "warning"
         });
-        return;
+  
       }
 
+       this.handlePictureCardPreview()
       let fd = new FormData();
       fd.append("file", file);
-      this.newImport1(fd);
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
+        this.zfl1 = res.data.Result.url;
+      });
+      return false;
     },
     beforeAvatarUpload2 (file) {
       var fileName = new Array();
@@ -380,7 +383,7 @@ export default {
           message: "上传应用只能是jpg、png格式!",
           type: "warning"
         });
-        return;
+
       }
 
       if (!isLt2M) {
@@ -388,13 +391,19 @@ export default {
           message: "上传应用大小不能超过 1M!",
           type: "warning"
         });
-        return;
+
       }
 
+      this.handlePictureCardPreview()
       let fd = new FormData();
       fd.append("file", file);
-      this.newImport2(fd);
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
+        this.zfl2 = res.data.Result.url;
+      });
+      return false;
     },
+
+
     beforeAvatarUpload3 (file) {
       var fileName = new Array();
       fileName = file.name.split(".");
@@ -408,7 +417,7 @@ export default {
           message: "上传应用只能是jpg、png格式!",
           type: "warning"
         });
-        return;
+
       }
 
       if (!isLt2M) {
@@ -416,47 +425,55 @@ export default {
           message: "上传应用大小不能超过 1M!",
           type: "warning"
         });
-        return;
+ 
       }
-
+      this.handlePictureCardPreview()
       let fd = new FormData();
       fd.append("file", file);
-      this.newImport3(fd);
-    },
-    handleRemove (file, fileList) {
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
+        this.zfl3 = res.data.Result.url;
+      });
+      return false;
     },
 
+
+    // handleRemove (file, fileList) {
+    // },
+
     handlePictureCardPreview (file) {
+      console.log(file)
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
 
-    newImport (data) {
-      this.axios.post('FileUpLoad.ashx', data).then(res => {
+    newImport (fd) {
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl = res.data.Result.url;
       });
+       return false;
     },
 
-    newImport1 (data) {
-      this.axios.post('FileUpLoad.ashx', data).then(res => {
+    newImport1 (fd) {
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl1 = res.data.Result.url;
       });
+       return false;
     },
 
-    newImport2 (data) {
-      this.axios.post('FileUpLoad.ashx', data).then(res => {
+    newImport2 (fd) {
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl2 = res.data.Result.url;
       });
+       return false;
     },
 
-    newImport3 (data) {
-      this.axios.post('FileUpLoad.ashx', data).then(res => {
+    newImport3 (fd) {
+      this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl3 = res.data.Result.url;
       });
+       return false;
     },
-    newImport4 () {
-
-    },
+ 
     issue () {
       let OrderDetailsII = localStorage.getItem("OrderDetailsII");
       if (OrderDetailsII) {
@@ -485,9 +502,14 @@ export default {
               message: "发布成功",
               type: "success"
             });
+             const countDown = setInterval(() => {
+            this.$router.push({ path: "/adhibition" });+
+             clearInterval(countDown)
+          }, 2000);
           } else {
             this.$message.error("发布失败请稍后在试");
           }
+         
         });
       } else {
         let input1 = this.$refs.input1.value; //安装包名称
@@ -516,13 +538,20 @@ export default {
               message: "发布成功",
               type: "success"
             });
+             const countDown = setInterval(() => {
+            this.$router.push({ path: "/adhibition" });+
+             clearInterval(countDown)
+          }, 2000);
           } else {
             this.$message.error("发布失败请稍后在试");
           }
+
         });
       }
 
     }
+
+
   }
 };
 </script>

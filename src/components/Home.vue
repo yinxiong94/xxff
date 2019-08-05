@@ -53,7 +53,7 @@
         <p class="mod_price_text">一键分发APP</p>
         <p class="mod_price_text1">ETPROXYFRATURES</p>
       </div>
-      <div class="cont_body_bg_but">立即发布</div>
+      <div class="cont_body_bg_but" @click="issue">立即发布</div>
     </div>
     <div class="cont_body_bg1">
       <div class="slider_next">
@@ -258,7 +258,10 @@ export default {
   methods: {
     junm (e) {
       this.curr = e.target.dataset.cuur;
-    }
+    },
+    issue(){
+      this.$router.push("/Application")
+    },
   }
 };
 </script>
@@ -381,6 +384,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+   cursor:pointer;
 }
 
 .cont_body_bg1 {

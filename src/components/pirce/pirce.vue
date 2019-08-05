@@ -6,6 +6,21 @@
         <div class="mian_title">价格/发布次数</div>
       </div>
     </div>
+    <div class="center11"
+         v-if="off==0">
+      <div class="center11_item">
+        <div v-if="item.length==0">暂无应用可购买发布包</div>
+        <div class="center11_list"
+             @click="handXuan($event)"
+             :data-index="index"
+             v-for="(item,index) in item"
+             v-bind:key="index">
+          <img :src="item.OrderDetailsImg"
+               alt="">
+          <div class="cocos">{{item.OrderDetailsName}}</div>
+        </div>
+      </div>
+    </div>
     <div class="package">
       <div class="banxin">
         <div class="package_title">
@@ -36,20 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="center11"
-         v-if="off==0">
-      <div class="center11_item">
-        <div class="center11_list"
-             @click="handXuan($event)"
-             :data-index="index"
-             v-for="(item,index) in item"
-             v-bind:key="index">
-          <img :src="item.OrderDetailsImg"
-               alt="">
-          <div class="cocos">{{item.OrderDetailsName}}</div>
-        </div>
-      </div>
-    </div>
+    
     <tail></tail>
   </div>
 </template>
@@ -272,7 +274,7 @@ export default {
   width: 600px;
   height: 730px;
   position: absolute;
-  top: 32%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.21);
@@ -280,6 +282,7 @@ export default {
   box-sizing: border-box;
   padding: 20px;
   padding-top: 0;
+  z-index: 1000
 }
 .center11 .center11_item {
 }

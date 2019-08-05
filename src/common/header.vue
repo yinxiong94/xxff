@@ -109,10 +109,12 @@ export default {
   },
   beforeUpdate() {},
   methods: {
-    Jump(e, index) {
+     Jump(e, index) {
+       let userid = localStorage.getItem("UserId");
       this.index = index;
       this.id = parseInt(e.target.dataset.id);
-      this.index == 0
+      if(userid!=null){
+        this.index == 0
         ? this.$router.push({ path: "/" })
         : this.index == 1 && this.id == 1
         ? this.$router.push({ path: "/pirce" })
@@ -121,6 +123,14 @@ export default {
         : this.index == 3 && this.id == 3
         ? this.$router.push({ path: "/adhibition" })
         : this.$router.push({ path: "/withdrawal" });
+      }  else {
+        if(this.index==0){
+           this.$router.push("/")
+        } else {
+        this.$router.push("/Login")
+        }
+      }
+    
     },
 
     doThis() {
@@ -145,7 +155,7 @@ export default {
 
     exit() {
       localStorage.clear();
-      location.reload();
+    this.$router.push("/")
     },
 
     // 获取用户信息
