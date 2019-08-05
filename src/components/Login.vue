@@ -2,20 +2,29 @@
   <div class="login_bg">
     <div class="login_bgwhite">
       <div class="login_fangzi">
-        <img class="login_fangzi_img" src="../assets/Login_fangzi.png" alt />
+        <img class="login_fangzi_img"
+             src="../assets/Login_fangzi.png"
+             alt />
       </div>
       <div class="login_input">
         <div class="login_input_img">
-          <img src="../assets/logo_Login.png" alt />
+          <img src="../assets/logo_Login.png"
+               alt />
         </div>
         <div class="login_input_text1">
           <div class="form item-fore">
-            <img src="../assets/Login_user.png" alt />
-            <input type="text" placeholder="请输入您的手机号码" ref="input1" />
+            <img src="../assets/Login_user.png"
+                 alt />
+            <input type="text"
+                   placeholder="请输入您的手机号码"
+                   ref="input1" />
           </div>
           <div class="form">
-            <img src="../assets/Login_wpd.png" alt />
-            <input type="password" placeholder="请输入登入密码" ref="input2" />
+            <img src="../assets/Login_wpd.png"
+                 alt />
+            <input type="password"
+                   placeholder="请输入登入密码"
+                   ref="input2" />
           </div>
           <div class="form1">
             <label>
@@ -24,9 +33,11 @@
             <a href>忘记密码？</a>
           </div>
 
-          <div class="but" @click.stop="login">登入</div>
+          <div class="but"
+               @click.stop="login">登入</div>
 
-          <div class="but1" @click.stop="register">注册</div>
+          <div class="but1"
+               @click.stop="register">注册</div>
         </div>
       </div>
     </div>
@@ -35,24 +46,24 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       checked: true
     };
   },
 
   methods: {
-    register() {
+    register () {
       this.$router.push({ path: "/register" });
     },
     /**
      * 登入
      */
-    login() {
+    login () {
       let input1 = this.$refs.input1.value; //用户名
       let input2 = this.$refs.input2.value; //密码
 
-      if(input1==""|| input2==""){
+      if (input1 == "" || input2 == "") {
         this.$message.error("账号或密码不能为空");
         return
       }
@@ -78,13 +89,13 @@ export default {
           localStorage.setItem("UserImg", res.data.Result.UserImg);
           // 手机号码
           localStorage.setItem("UserTel", res.data.Result.UserTel);
-         
-         
-         const countDown = setInterval(() => {
-            this.$router.push({ path: "/" });+
-             clearInterval(countDown)
+
+
+          const countDown = setInterval(() => {
+            this.$router.push({ path: "/" }); +
+              clearInterval(countDown)
           }, 2000);
-          
+
         }
       });
     }
@@ -160,6 +171,7 @@ a {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 43px;
+  width: 286px;
 }
 .login_input_text1 .form,
 .login_input_text1 .form1 {
