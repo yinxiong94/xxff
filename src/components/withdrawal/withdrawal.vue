@@ -11,7 +11,7 @@
                v-if="off == 0">
             <div class="send">
               <div class="send_conter">
-                <span class="send_pirce1">{{userOthers}}</span>
+                <span class="send_pirce1">{{userOthers || 0}}</span>
                 <span class="send_Total">账户钱包余额（￥）</span>
               </div>
             </div>
@@ -50,7 +50,7 @@
                      v-model="OrderPrice"
                      value="">
               <div class="Recharge_balance">
-                188,000 <span>元</span>
+                {{userOthers || 0}} <span>元</span>
               </div>
               <div class="Recharge_Btn"
                    @click="handchong">
@@ -183,6 +183,10 @@ export default {
   },
   created () {
     var userOthers = localStorage.getItem("userOthers");
+    var off = localStorage.getItem("off");
+    if (off == 1) {
+      this.off = 1;
+    }
     if (userOthers == 'null') {
       this.userOthers = 0;
     }
