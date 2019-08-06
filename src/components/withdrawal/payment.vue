@@ -23,7 +23,7 @@
                    checked="checked" />
             <img src="../../assets/balance.png"
                  alt="">
-            <span>账户余额（1569元）</span>
+            <span>账户余额（{{netPirce}}元）</span>
             <div class="input_right">支付<span>{{pirce}}</span>元</div>
           </div>
           <div :class="mode == 1?'input':'input1'">
@@ -66,7 +66,8 @@ export default {
       mode: 1,
       pirce: 99,
       tcid: '',
-      applicationId: ''
+      applicationId: '',
+      netPirce: ''
     };
   },
   methods: {
@@ -76,9 +77,35 @@ export default {
     HandSubmission: function () {
       var UserId = localStorage.getItem('UserId')
       if (this.mode == '0') {
+        if (this.pirce > this.netPirce) {
+          this.$message.error("余额不足");
+          return
+        }
         let params = this.qs.stringify({
           action: "payment",
           type: 0,
+          UserId: UserId,
+          price: this.tcid,
+          OrderDetailsId: this.applicationId
+        });
+        this.axios.post('GetUserData.ashx', params).then(res => {
+          if (res.data.Result == "1") {
+            this.NewCellPhone = "";
+            this.$message({
+              message: "支付成功",
+              type: "success"
+            });
+            this.netPirce = parseInt(this.netPirce) - parseInt(this.pirce);
+            this.telFalse = 0;
+            this.$router.push({ path: "/adhibition" })
+          } else {
+            this.$message.error("支付失败");
+          }
+        });
+      } else if (this.mode == '1') {
+        let params = this.qs.stringify({
+          action: "payment",
+          type: 1,
           UserId: UserId,
           price: this.tcid,
           OrderDetailsId: this.applicationId
@@ -111,6 +138,8 @@ export default {
     this.applicationId = localStorage.getItem('applicationId');
   },
   created () {
+    this.netPirce = localStorage.getItem('userOthers');
+    console.log(this.netPirce);
   }
 }
 </script>
