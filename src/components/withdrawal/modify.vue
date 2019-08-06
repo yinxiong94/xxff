@@ -8,7 +8,7 @@
           <div class="title">修改资料</div>
           <div class="wallet_data">
             <div class="wallet_list">头像</div>
-            <img :src="imgBase64" alt />
+            <img :src="user.UserImg" alt />
             <div class="wallet_btn">
               <form id="upload" enctype="multipart/form-data" method="post">
                 <input
@@ -147,6 +147,7 @@ export default {
     navList,
     tail
   },
+  inject:['reload'],
   data() {
     return {
       tel: "",
@@ -182,9 +183,7 @@ export default {
         action: "GetAuthCodeMima",
         Tel: this.tel1
       });
-      this.axios.post('GetCode.ashx', params).then(res => {
-
-      });
+      this.axios.post("GetCode.ashx", params).then(res => {});
     },
     Verification1: function() {
       // 获取验证码
@@ -193,9 +192,7 @@ export default {
         action: "GetAuthCodeMima",
         Tel: this.newTel
       });
-      this.axios.post('GetCode.ashx', params).then(res => {
-
-      });
+      this.axios.post("GetCode.ashx", params).then(res => {});
     },
     VerificationCode: function() {
       // 验证验证码
@@ -205,8 +202,7 @@ export default {
         Tel: this.tel1,
         Code: this.NewCellPhone
       });
-      this.axios.post('GetCode.ashx', params).then(res => {
- 
+      this.axios.post("GetCode.ashx", params).then(res => {
         if (res.data.Result == true) {
           this.NewCellPhone = "";
           this.$message({
@@ -227,8 +223,7 @@ export default {
         Tel: this.tel1,
         EditTel: this.newTel
       });
-      this.axios.post('GetUserData.ashx', params).then(res => {
-      });
+      this.axios.post("GetUserData.ashx", params).then(res => {});
     },
     Information: function() {
       var UserId = localStorage.getItem("UserId");
@@ -236,7 +231,7 @@ export default {
         action: "withdrawIndex",
         userid: UserId
       });
-      this.axios.post('GetUserData.ashx', params).then(res => {
+      this.axios.post("GetUserData.ashx", params).then(res => {
         this.user = res.data.Result;
       });
     },
@@ -248,32 +243,40 @@ export default {
     },
     changeImage: function() {
       // 文件预览
-      var _this = this;
-      var event = event || window.event;
-      var file = event.target.files[0];
-      reader.onload = function(e) {
-        _this.imgBase64 = e.target.result;
-      };
-      reader.readAsDataURL(file);
-
-      // this.handshangc();
+      var file = document.getElementById("upfile").files[0];
+      var fd = new FormData();
+      var UserId = localStorage.getItem("UserId");
+      fd.append("UserId", UserId);
+      fd.append("file", file);
+      fd.append("action", "EditImg");
+      this.handshangc(fd);
     },
-    handshangc: function(reader) {
+    handshangc: function(fd) {
       // 文件上传
-      this.axios.post('FileUpLoad.ashx', reader).then(res => {
-       
+      this.axios.post("GetUserData.ashx", fd).then(res => {
+        console.log(res.data.Result);
+        if (res.data.Result) {
+          this.$message({
+            message: "上传成功",
+            type: "success"
+          });
+          this.reload()
+        }else{
+           this.$message.error('上传失败请稍后再试');
+        }
+        // this.imgBase64 = res.data.Result.url;
       });
     },
 
     modifyUser: function() {
       var UserId = localStorage.getItem("UserId");
       let params = this.qs.stringify({
-        action: 'Registe',
+        action: "Registe",
         UserName: UserId,
-        NickName: ''
+        NickName: ""
       });
-      this.axios.post('FileUpLoad.ashx', params).then(res => {
-        this.user = res.data.Result
+      this.axios.post("FileUpLoad.ashx", params).then(res => {
+        this.user = res.data.Result;
       });
     },
     handpsw: function() {
@@ -285,7 +288,7 @@ export default {
         pwd: this.psw,
         editpwd: this.psw1
       });
-      this.axios.post('GetUserData.ashx', params).then(res => {
+      this.axios.post("GetUserData.ashx", params).then(res => {
         console.log(res);
         if (res.data.Result == "修改成功") {
           this.NewCellPhone = "";
@@ -306,7 +309,7 @@ export default {
         userid: UserId,
         NickName: this.userName
       });
-      this.axios.post('GetUserData.ashx', params).then(res => {
+      this.axios.post("GetUserData.ashx", params).then(res => {
         console.log(res);
         if (res.data.Result == "1") {
           this.NewCellPhone = "";
