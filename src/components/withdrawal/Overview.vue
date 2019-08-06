@@ -8,13 +8,16 @@
           <div class="Overview_data">
             <div class="Overview_data_top">
               <div class="Overview_data_top_tx">
-                <img :src="user.UserImg" alt />
+                <img :src="user.UserImg"
+                     alt />
                 <div class="Overview_data_top_tx_right">
                   <span>{{user.NickName}}</span>
                   <span>ID:{{user.Referral}}</span>
                   <div class="Overview_data_top_tx_right_tb">
-                    <img src="../../assets/tb1.png" alt />
-                    <img src="../../assets/tb2.png" alt />
+                    <img src="../../assets/tb1.png"
+                         alt />
+                    <img src="../../assets/tb2.png"
+                         alt />
                   </div>
                 </div>
               </div>
@@ -33,7 +36,7 @@
               </div>
               <div class="Overview_data_right_pirce">{{user.Price || 0}}元</div>
               <div class="Overview_data_right_btn">
-                <div class="Overview_data_right_btn1">充值</div>
+                <div class="Overview_data_right_btn1" @click="Recharge">充值</div>
               </div>
             </div>
           </div>
@@ -71,10 +74,13 @@
                 <div class="notice">
                   <div class="text">消息通知</div>
                   <div class="xian"></div>
-                  <img :src="item.off? img1 : img " @click="handSee()" alt />
+                  <img :src="item.off? img1 : img "
+                       @click="handSee()"
+                       alt />
                   <div class="time">{{item.AddTime}}</div>
                 </div>
-                <div class="xia" v-if="item.off">{{item.Text}}</div>
+                <div class="xia"
+                     v-if="item.off">{{item.Text}}</div>
               </div>
             </div>
           </div>
@@ -82,48 +88,36 @@
             <div class="Overview_date_title">交易明细</div>
             <div class="Overview_date_nian">
               <div class="dian"></div>
-              <dir
-                class="Overview_date_ri"
-                @click="openByDrop($event)"
-                readonly
-              >{{calendar3.display}}</dir>
+              <dir class="Overview_date_ri"
+                   @click="openByDrop($event)"
+                   readonly>{{calendar3.display}}</dir>
               <transition name="fade">
-                <div
-                  class="calendar-dropdown"
-                  :style="{'left':18+'px','top':calendar3.top+'px'}"
-                  v-if="calendar3.show"
-                >
-                  <calendar
-                    :zero="calendar3.zero"
-                    :lunar="calendar3.lunar"
-                    :value="calendar3.value"
-                    :begin="calendar3.begin"
-                    :end="calendar3.end"
-                    @select="calendar3.select"
-                  ></calendar>
+                <div class="calendar-dropdown"
+                     :style="{'left':18+'px','top':calendar3.top+'px'}"
+                     v-if="calendar3.show">
+                  <calendar :zero="calendar3.zero"
+                            :lunar="calendar3.lunar"
+                            :value="calendar3.value"
+                            :begin="calendar3.begin"
+                            :end="calendar3.end"
+                            @select="calendar3.select"></calendar>
                 </div>
               </transition>
               <div class="dian"></div>
               <div class="dian"></div>
-              <dir
-                class="Overview_date_ri"
-                @click="openByDrop1($event)"
-                readonly
-              >{{calendar4.display}}</dir>
+              <dir class="Overview_date_ri"
+                   @click="openByDrop1($event)"
+                   readonly>{{calendar4.display}}</dir>
               <transition name="fade">
-                <div
-                  class="calendar-dropdown"
-                  :style="{'left':18+'px','top':calendar4.top+'px'}"
-                  v-if="calendar4.show"
-                >
-                  <calendar
-                    :zero="calendar4.zero"
-                    :lunar="calendar4.lunar"
-                    :value="calendar4.value"
-                    :begin="calendar4.begin"
-                    :end="calendar4.end"
-                    @select="calendar4.select"
-                  ></calendar>
+                <div class="calendar-dropdown"
+                     :style="{'left':18+'px','top':calendar4.top+'px'}"
+                     v-if="calendar4.show">
+                  <calendar :zero="calendar4.zero"
+                            :lunar="calendar4.lunar"
+                            :value="calendar4.value"
+                            :begin="calendar4.begin"
+                            :end="calendar4.end"
+                            @select="calendar4.select"></calendar>
                 </div>
               </transition>
               <div class="Overview_date_yue">月</div>
@@ -136,7 +130,9 @@
                 <div class="Overview_date_type_list1">交易时间</div>
                 <div class="Overview_date_type_list1">变动金额</div>
               </div>
-              <div class="Overview_date_type_item" v-for="item in list" :key="item.pid">
+              <div class="Overview_date_type_item"
+                   v-for="item in list"
+                   :key="item.pid">
                 <div class="Overview_date_type_list1">{{item.Remark}}</div>
                 <div class="Overview_date_type_list1">{{item.RecordTime}}</div>
                 <div class="Overview_date_type_list1">
@@ -165,7 +161,7 @@ export default {
     tail,
     calendar
   },
-  data() {
+  data () {
     return {
       img: require("../../assets/right.png"),
       img1: require("../../assets/xia.png"),
@@ -201,16 +197,26 @@ export default {
       APPlength: ""
     };
   },
-  created() {
+  created () {
     // this.record()
     this.Information();
     this.InforTcList();
     this.handXiaoxi();
   },
   methods: {
+    // 跳转充值
+    Recharge:function(){
+      localStorage.setItem("off", 1);
+      this.$router.push({ name: "withdrawal" })
+    },
     // 推荐码
     Recommendation: function () {
-      var UserId = localStorage.getItem('UserId')
+      var UserId = localStorage.getItem('UserId');
+      var code = localStorage.getItem('code');
+      if (code == this.code) {
+        this.$message.error("你已填写过此邀请码");
+        return
+      }
       let params = this.qs.stringify({
         action: "GetInvitation",
         UserId: UserId,
@@ -223,6 +229,8 @@ export default {
             message: "填写成功",
             type: "success"
           });
+          this.user.Price = this.user.Price + 10;
+          localStorage.setItem("code", this.code);
         } else {
           this.$message.error("填写失败");
         }
@@ -230,7 +238,7 @@ export default {
 
     },
     // 消息
-    handXiaoxi: function() {
+    handXiaoxi: function () {
       var UserId = localStorage.getItem("UserId");
       let params = this.qs.stringify({
         action: "Xiaoxi",
@@ -244,15 +252,15 @@ export default {
       });
     },
     // 修改状态
-    handXxztxg: function() {
+    handXxztxg: function () {
       let params = this.qs.stringify({
         action: "SetXiaoxiType",
         textcount: this.textcount,
         type: 2
       });
-      this.axios.post("GetUserData.ashx", params).then(res => {});
+      this.axios.post("GetUserData.ashx", params).then(res => { });
     },
-    handSee: function() {
+    handSee: function () {
       // 展开效果
       this.$set(this.item, "off", !this.item.off);
       if (this.item.Num == 1) {
@@ -264,7 +272,7 @@ export default {
       }
     },
     // 获取应用列表
-    InforTcList: function() {
+    InforTcList: function () {
       var UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
         action: "GetOrderDetails",
@@ -277,7 +285,7 @@ export default {
       });
     },
     // 获取用户信息
-    Information: function() {
+    Information: function () {
       var UserId = localStorage.getItem("UserId");
       let params = this.qs.stringify({
         action: "withdrawIndex",
@@ -289,7 +297,7 @@ export default {
       });
     },
     // 开始时间
-    openByDrop(e) {
+    openByDrop (e) {
       this.calendar3.show = true;
       this.calendar3.top = e.target.offsetTop + 70;
       e.stopPropagation();
@@ -298,7 +306,7 @@ export default {
           "click",
           e => {
             this.calendar3.show = false;
-            document.removeEventListener("click", () => {}, false);
+            document.removeEventListener("click", () => { }, false);
           },
           false
         );
@@ -306,7 +314,7 @@ export default {
     },
     // 结束时间
 
-    openByDrop1(e) {
+    openByDrop1 (e) {
       this.calendar4.show = true;
       this.calendar4.top = e.target.offsetTop + 70;
       e.stopPropagation();
@@ -315,7 +323,7 @@ export default {
           "click",
           e => {
             this.calendar4.show = false;
-            document.removeEventListener("click", () => {}, false);
+            document.removeEventListener("click", () => { }, false);
           },
           false
         );
@@ -324,7 +332,7 @@ export default {
       // this.record()
     },
 
-    record() {
+    record () {
       let myDate = new Date().toLocaleDateString();
       let UserId = localStorage.getItem("UserId");
       let postData = this.qs.stringify({
