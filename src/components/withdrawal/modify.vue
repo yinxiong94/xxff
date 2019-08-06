@@ -257,12 +257,12 @@ export default {
         console.log(res.data.Result);
         if (res.data.Result) {
           this.$message({
-            message: "上传成功",
+            message: "修改成功",
             type: "success"
           });
           this.reload()
         }else{
-           this.$message.error('上传失败请稍后再试');
+           this.$message.error('修改头像失败请稍后再试');
         }
         // this.imgBase64 = res.data.Result.url;
       });
