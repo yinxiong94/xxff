@@ -103,25 +103,7 @@ export default {
           }
         });
       } else if (this.mode == '1') {
-        let params = this.qs.stringify({
-          action: "payment",
-          type: 1,
-          UserId: UserId,
-          price: this.tcid,
-          OrderDetailsId: this.applicationId
-        });
-        this.axios.post('GetUserData.ashx', params).then(res => {
-          if (res.data.Result == "1") {
-            this.NewCellPhone = "";
-            this.$message({
-              message: "支付成功",
-              type: "success"
-            });
-            this.telFalse = 0;
-          } else {
-            this.$message.error("支付失败");
-          }
-        });
+        this.$router.push({ path: "/zhifubaoa" });
       }
     }
   },
