@@ -3,7 +3,7 @@
     <headWoke></headWoke>
     <div class="mian">
       <div class="banxin">
-        <navList :cities='4'></navList>
+        <navList :cities='3'></navList>
         <div class="mian_conter">
           <div class="title">
             <h4>我的消息</h4>

@@ -42,7 +42,7 @@ export default {
           off: false
         },
         {
-          id: 4,
+          id: 3,
           title: "我的消息",
           Selection: require("../assets/nav15.png"),
           noSelection: require("../assets/nav5.png"),
@@ -77,7 +77,7 @@ export default {
           : index == 2
             ? this.$router.push({ path: "/modify" })
             :
-            index == 4 ? this.$router.push({ path: "/news" }) : ""
+            index == 3 ? this.$router.push({ path: "/news" }) : ""
         ;
     }
   },
