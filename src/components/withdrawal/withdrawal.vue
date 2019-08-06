@@ -132,6 +132,7 @@ export default {
   methods: {
     Recharge: function () {
       this.off = 1;
+      localStorage.setItem("off", 0);
       this.title = '账户充值'
     },
     withdrawal: function () {
@@ -148,13 +149,15 @@ export default {
     // 提现
     HandSub: function () {
       var UserId = localStorage.getItem('UserId')
-      var userOthers = parseInt(this.userOthers);
       var HandPirce = parseInt(this.HandPirce);
-      if (HandPirce > userOthers) {
+
+      if (typeof this.userOthers == 'string') {
+        this.userOthers = parseInt(this.userOthers);
+      }
+      if (HandPirce > this.userOthers) {
         this.$message.error("提现失败");
         return
       } else {
-        console.log(2);
         let params = this.qs.stringify({
           action: "withdrawSave",
           userid: UserId,
@@ -183,13 +186,16 @@ export default {
   },
   created () {
     var userOthers = localStorage.getItem("userOthers");
-    var off = localStorage.getItem("off");
+    var off = this.$route.params.off;
     if (off == 1) {
       this.off = 1;
+    } else {
+      this.off = 0;
     }
     if (userOthers == 'null') {
       this.userOthers = 0;
     }
+    this.userOthers = userOthers;
   },
   watch: {
 
