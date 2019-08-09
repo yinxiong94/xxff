@@ -1,0 +1,38 @@
+<template>
+  <div v-html="html"></div>
+</template>
+
+<script>
+// import { videoPay } from '@/api/pay.js'
+export default {
+  data () {
+    return {
+      html: ''
+    }
+  },
+  methods: {
+    fetchVideoPay () {
+      var UserId = localStorage.getItem('UserId')
+      var tcid = localStorage.getItem('tcid');
+      var applicationId = localStorage.getItem('applicationId');
+      let params = this.qs.stringify({
+        action: "payment",
+        type: 1,
+        UserId: UserId,
+        price: tcid,
+        OrderDetailsId: applicationId
+      });
+      this.axios.post('GetUserData.ashx', params).then(res => {
+        console.log(res);
+        this.html = res.data.Result;
+        this.$nextTick(() => {
+          document.forms[0].submit()
+        })
+      });
+    }
+  },
+  mounted () {
+    this.fetchVideoPay()
+  }
+}
+</script>
