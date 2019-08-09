@@ -1,39 +1,47 @@
 <template>
   <div>
-    <el-upload
-      class="upload-demo"
-      drag
-      name="file"
-      action
-      accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      :before-upload="uploadFile"
-      multiple
-    >
-      <i class="el-icon-upload"></i>
-      <div class="el-upload__text clearfix">
-        <span class="fl">将文件拖拽至此区域上传</span>
-        <em class="fl">点击上传</em>
-      </div>
-    </el-upload>
+    <!-- <a href="javascript:;" class="a-upload">
+      <input type="file" name id />点击这里上传文件
+    </a> -->
+
+    <div href="javascript:;" class="file">
+      <img src="../assets/zu.png">
+      <input type="file"  ref="input1"  @change="uploading" />
+    </div>
   </div>
 </template>
 
 
 <script>
+import  uploading1 from '../utils/utils'
 export default {
   data() {
     return {};
   },
   methods: {
-    uploadFile(file) {
-      var formData = new FormData();
-      formData.append("file", file);
-      var file = formData;
-      this.axios.post("FileUpLoad.ashx", file).then(res => {
-            console.log(res)
-      });
-      return false;
-    }
+      uploading(){
+        uploading1.uploading1(this.$refs.input1.files[0])
+      },
   }
 };
 </script>
+
+<style>
+
+.file {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+</style>

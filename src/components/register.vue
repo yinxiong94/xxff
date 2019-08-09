@@ -2,61 +2,40 @@
   <div class="login_bg">
     <div class="login_bgwhite">
       <div class="login_fangzi">
-        <img class="login_fangzi_img"
-             src="../assets/Login_fangzi.png"
-             alt />
+        <img class="login_fangzi_img" src="../assets/Login_fangzi.png" alt />
       </div>
       <div class="login_input">
         <div class="login_input_img">
-          <img src="../assets/logo_Login.png"
-               alt />
+          <img src="../assets/logo_Login.png" alt />
         </div>
         <div class="login_input_text1">
           <div class="form item-fore">
-            <img src="../assets/Login_user.png"
-                 alt />
-            <input type="text"
-                   placeholder="请输入您的用户名"
-                   ref="input1" />
+            <img src="../assets/Login_user.png" alt />
+            <input type="text" placeholder="请输入您的用户名" ref="input1" />
             <span class="bit">*</span>
           </div>
           <div class="form item-fore">
-            <img src="../assets/Login_wpd.png"
-                 alt />
-            <input type="password"
-                   placeholder="请输入登入密码"
-                   ref="input2" />
+            <img src="../assets/Login_wpd.png" alt />
+            <input type="password" placeholder="请输入登入密码" ref="input2" />
             <span class="bit">*</span>
           </div>
 
           <div class="form item-fore">
-            <img src="../assets/shouji.png"
-                 alt />
-            <input type="text"
-                   placeholder="请输入您的手机号码"
-                   ref="input3" />
+            <img src="../assets/shouji.png" alt />
+            <input type="text" placeholder="请输入您的手机号码" ref="input3" />
           </div>
 
           <div class="form item-fore">
-            <img src="../assets/Login_wpd.png"
-                 alt />
-            <input type="text"
-                   placeholder="请输入验证码"
-                   ref="input4" />
-            <span class="yzm"
-                  @click.stop="textCode">{{code}}</span>
+            <img src="../assets/Login_wpd.png" alt />
+            <input type="text" placeholder="请输入验证码" ref="input4" />
+            <span class="yzm" @click.stop="textCode">{{code}}</span>
           </div>
           <div class="form item-fore">
-            <img src="../assets/Login_wpd.png"
-                 alt />
-            <input type="text"
-                   placeholder="输入上级ID得10元优惠券(选填)"
-                   ref="input5" />
+            <img src="../assets/Login_wpd.png" alt />
+            <input type="text" placeholder="输入上级ID得10元优惠券(选填)" ref="input5" />
           </div>
-          <div class="but"
-               @click.stop="registerpost">注册</div>
-          <div class="but1"
-               @click.stop="doThis">已有账号去登入</div>
+          <div class="but" @click.stop="registerpost">注册</div>
+          <div class="but1" @click.stop="doThis">已有账号去登入</div>
         </div>
       </div>
     </div>
@@ -65,7 +44,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       count: 60, //倒计时时间
       code: "获取验证码"
@@ -76,7 +55,7 @@ export default {
     /**
      * 提交注册
      */
-    registerpost () {
+    registerpost() {
       let input1 = this.$refs.input1.value; //用户名
       let input2 = this.$refs.input2.value; //密码
       let input3 = this.$refs.input3.value; //手机号码
@@ -91,9 +70,25 @@ export default {
         return;
       }
 
+      if (input1.length > 8) {
+        this.$message({
+          message: "用户名不能超过8个字符",
+          type: "warning"
+        });
+        return;
+      }
+
       if (input2 == "") {
         this.$message({
           message: "密码不能为空",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (input4 == "") {
+        this.$message({
+          message: "验证码不能为空",
           type: "warning"
         });
         return;
@@ -114,14 +109,17 @@ export default {
         PassWord: input2,
         Code: input4
       });
-      this.axios.post('GetUserData.ashx', params).then(res => {
-        if (res.data.Result !== "") {
-          this.$message({
-            message: "注册成功",
-            type: "success"
-          });
-          setInterval(() => {
+      this.axios.post("GetUserData.ashx", params).then(res => {
+        if (res.data.Result == false) {
+          this.$message.error("验证码不正确");
+          return;
+        } else if (res.Msg !== null) {
+          this.$message.error("该手机号码已组成");
+          return;
+        } else {
+          const countDown = setInterval(() => {
             this.$router.push({ path: "/Login" });
+            clearInterval(countDown);
           }, 2000);
         }
       });
@@ -130,40 +128,8 @@ export default {
     /**
      * 获取验证码
      */
-    textCode () {
+    textCode() {
       let input3 = this.$refs.input3.value; //手机号码
-      if (!/^1[3-9]\d{9}$/.test(input3)) {
-        this.$message({
-          message: "手机号码不正确",
-          type: "warning"
-        });
-        return;
-      } else {
-        this.$message({
-          message: "验证码已发送请查收",
-          type: "success"
-        });
-      }
-
-      if (this.code !== "获取验证码") {
-        this.$message({
-          message: "已发送验证码",
-          type: "warning"
-        });
-        return;
-      }
-
-      const countDown = setInterval(() => {
-        if (this.count <= 0) {
-          this.count = 60;
-          this.code = "获取验证码";
-          clearInterval(countDown);
-          return;
-        }
-        this.count--;
-        this.code =
-          this.count < 10 ? `请等待0${this.count}s` : `请等待${this.count}s`;
-      }, 1000);
 
       let params = this.qs.stringify({
         action: "GetAuthCode",
@@ -176,6 +142,41 @@ export default {
             message: "此账号已被注册",
             type: "warning"
           });
+          return;
+        } else {
+          if (!/^1[3-9]\d{9}$/.test(input3)) {
+            this.$message({
+              message: "手机号码不正确",
+              type: "warning"
+            });
+            return;
+          } else {
+            this.$message({
+              message: "验证码已发送请查收",
+              type: "success"
+            });
+          }
+
+          if (this.code !== "获取验证码") {
+            this.$message({
+              message: "已发送验证码",
+              type: "warning"
+            });
+            return;
+          }
+          const countDown = setInterval(() => {
+            if (this.count <= 0) {
+              this.count = 60;
+              this.code = "获取验证码";
+              clearInterval(countDown);
+              return;
+            }
+            this.count--;
+            this.code =
+              this.count < 10
+                ? `请等待0${this.count}s`
+                : `请等待${this.count}s`;
+          }, 1000);
         }
       });
 
@@ -186,7 +187,7 @@ export default {
     },
 
     /**跳转到登入 */
-    doThis () {
+    doThis() {
       this.$router.push({ path: "/Login" });
     }
   }
