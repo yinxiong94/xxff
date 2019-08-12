@@ -3,7 +3,7 @@
     <headWoke></headWoke>
     <div class="mian">
       <div class="db">
-        <div class="banxin">
+        <div class="banxin All">
           <div class="xhs">
             <div class="xhs_conter">
               <img :src="list.OrderDetailsImg"
@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="lower">
-                版本：{{list.VersionNum}} 大小：{{list.PackageSize}} MB 更新时间 ：{{list.ShowTime}}
+                版本：{{list.VersionNum}} 大小：{{list.PackageSize}}MB 更新时间 ：{{list.ShowTime}}
               </div>
             </div>
             <div class="xhs_evm">
@@ -33,7 +33,7 @@
             </div>
             <div class="xhs_az">
               <div class="xhs_az_conter">
-                <div class="xhs_az_btn">点击安装</div>
+                <div class="xhs_az_btn"><a :href="list.Package" class="aaa">点击安装</a></div>
                 <p>或者用手机扫描二维码安装</p>
               </div>
             </div>
@@ -67,10 +67,10 @@
               应用截图
             </div>
             <div class="yyjt_list">
-              <div class="list">
+              <!-- <div class="list">
                 <img :src="list.CopyrightImg"
                      alt="">
-              </div>
+              </div> -->
               <div class="list">
                 <img :src="list.ScreenshotImg"
                      alt="">
@@ -103,7 +103,8 @@ export default {
     return {
       list: [],
       send: [],
-      img: ''
+      img: '',
+      PackageSize:""
     }
   },
   methods: {
@@ -115,6 +116,7 @@ export default {
       });
       this.axios.post("GetUserData.ashx", postData).then(res => {
         this.list = res.data.Result;
+        this.PackageSize=(res.data.Result.PackageSize/1048576).toFixed(2)
         this.Packge();
       });
     },
@@ -134,7 +136,7 @@ export default {
       var OrderDetailsId = localStorage.getItem('OrderDetailsId');
       let postData = this.qs.stringify({
         action: "GetUpdateList",
-        DetailId: '7a38977a-b0c7-442d-a9e3-c0bac9e9d66c'
+        DetailId: OrderDetailsId
       });
       this.axios.post("GetUserData.ashx", postData).then(res => {
         console.log(1);
@@ -162,6 +164,11 @@ export default {
 </script>
 
 <style>
+.aaa{
+  text-decoration: none;
+  font-size: 28px !important;
+  color:#fff !important
+}
 .mian {
   margin-top: 30px;
 }
@@ -176,6 +183,9 @@ export default {
 .db .banxin .xhs {
   width: 183px;
   margin: 0 auto;
+}
+.All{
+  display: block !important
 }
 .db .banxin .xhs .xhs_conter {
   width: 100%;

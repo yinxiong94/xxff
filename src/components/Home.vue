@@ -49,11 +49,12 @@
       </div>
     </div>
     <div class="cont_body_bg">
-      <div class="cont_body_bg_cheng">
+      <img src="../assets/shouye_02.png" alt="" style="height:600px;position: absolute;">
+      <div class="cont_body_bg_cheng" style="z-index:100">
         <p class="mod_price_text">一键分发APP</p>
         <p class="mod_price_text1">ETPROXYFRATURES</p>
       </div>
-      <div class="cont_body_bg_but" @click="issue">立即发布</div>
+      <div class="cont_body_bg_but" @click="issue" style="z-index:100">立即发布</div>
     </div>
     <div class="cont_body_bg1">
       <div class="slider_next">
@@ -116,15 +117,15 @@
           <div class="J_house1">
             <div class="J_house">
               <p class="J_house_text">用户量</p>
-              <p class="J_house_text1">94,230</p>
+              <p class="J_house_text1">{{list1.UserCount}}</p>
             </div>
             <div class="J_house">
               <p class="J_house_text">每日使用量</p>
-              <p class="J_house_text1">94,230</p>
+              <p class="J_house_text1">{{list1.ByXiaZaiCount}}</p>
             </div>
             <div class="J_house2">
               <p class="J_house_text">可用分发量</p>
-              <p class="J_house_text1">94,230</p>
+              <p class="J_house_text1">{{list1.MaxXiaZaiCount}}</p>
             </div>
           </div>
         </div>
@@ -252,17 +253,37 @@ export default {
   },
   data () {
     return {
-      curr: 0
+      curr: 0,
+      list1:[]
     };
   },
   methods: {
     junm (e) {
       this.curr = e.target.dataset.cuur;
     },
-    issue(){
-      this.$router.push("/Application")
+    lll(){
+
+      
+       let postData = this.qs.stringify({
+        action: "InexStatistics"
+      });
+       this.axios.post("GetUserData.ashx", postData).then(res => {
+         console.log(res)
+        this.list1 = res.data.Result;
+      });
     },
-  }
+    issue(){
+      let userid = localStorage.getItem("UserId");
+      if(userid!=null){
+      this.$router.push("/Application")
+      } else {
+        this.$router.push("/Login")
+      }
+    },
+  },
+  created(){
+    this.lll()
+  },
 };
 </script>
 
@@ -316,15 +337,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  z-index: 100
 }
 
 .cont_body_bg {
-  background: url("../assets/shouye_02.png") no-repeat;
+  background: url("../assets/boder3.png") no-repeat;
   background-size: 100% 100%;
   height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto
 }
 
 .cont_sk_item_lk .lazyimg {

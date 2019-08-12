@@ -30,7 +30,7 @@
             <label>
               <el-checkbox v-model="checked">记住用户名</el-checkbox>
             </label>
-            <a href>忘记密码？</a>
+            <router-link to="/mima">忘记密码？</router-link>
           </div>
 
           <div class="but"
@@ -72,8 +72,7 @@ export default {
         Tel: input1,
         PassWord: input2
       });
-      let url = "http://192.168.1.188:8035/API/GetUserData.ashx";
-      this.axios.post(url, postData).then(res => {
+      this.axios.post("GetUserData.ashx", postData).then(res => {
         if (res.data.Msg !== null) {
           this.$message.error("账号或密码错误");
         } else {
@@ -89,10 +88,8 @@ export default {
           // 手机号码
           localStorage.setItem("UserTel", res.data.Result.UserTel);
 
-
-          const countDown = setInterval(() => {
-            this.$router.push({ path: "/" }); +
-              clearInterval(countDown)
+setTimeout(() => {
+            this.$router.push({ path: "/" }); 
           }, 2000);
 
         }

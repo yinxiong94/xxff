@@ -2,7 +2,7 @@
   <div class="Application">
     <headWoke></headWoke>
     <div class="mian">
-      <div class="banxin">
+      <div class="banxin All">
         <div class="app">
           <div class="left">
             <div class="left_img">
@@ -114,12 +114,10 @@
               <span>应用安装包</span>
             </div>
 
-            <el-upload action="http://192.168.1.188:8035/API/FileUpLoad.ashx"
+            <el-upload action="http://www.xxffpt.com/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload"
-         
                        :on-preview="handlePictureCardPreview"
-                       
                        :limit="1">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -144,7 +142,7 @@
               <span>应用图标</span>
             </div>
 
-            <el-upload action="http://192.168.1.188:8035/API/FileUpLoad.ashx"
+            <el-upload action="http://www.xxffpt.com/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload1"
         
@@ -170,7 +168,7 @@
               <span>应用截图</span>
             </div>
 
-            <el-upload action="http://192.168.1.188:8035/API/FileUpLoad.ashx"
+            <el-upload action="http://www.xxffpt.com/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload2"
                        :on-preview="handlePictureCardPreview"
@@ -200,7 +198,7 @@
               <span>版权证明</span>
             </div>
 
-            <el-upload action=""
+            <el-upload action="http://www.xxffpt.com/API/FileUpLoad.ashx"
                        list-type="picture-card"
                        :before-upload="beforeAvatarUpload3"
                        :on-preview="handlePictureCardPreview"
@@ -295,8 +293,6 @@ export default {
         FathId: LeibieId
       });
       this.axios.post('GetUserData.ashx', postData).then(res => {
-        // console.log(res.data.Result);
-        // this.list = res.data.Result
         this.arr = res.data.Result;
       });
     },
@@ -308,6 +304,8 @@ export default {
     selAll (e) {
       this.ProductActive = event.target.value;
     },
+
+    
     beforeAvatarUpload (file) {
       var fileName = new Array();
       fileName = file.name.split(".");
@@ -317,6 +315,7 @@ export default {
       // 获取上传文件的大小
       this.size = file.size;
       const isLt2M = file.size / 1024 / 1024 <= 100;
+      console.log(isLt2M)
       if (!extension && !extension2) {
         this.$message({
           message: "上传应用只能是apk、ipa格式!",
@@ -329,15 +328,16 @@ export default {
           message: "上传应用大小不能超过 100MB!",
           type: "warning"
         });
-      }
-
-      this.handlePictureCardPreview()
+      }    
       let fd = new FormData();
       fd.append("file", file);
       this.axios.post('FileUpLoad.ashx', fd).then(res => {
+        console.log(res)
         this.zfl = res.data.Result.url;
+        // this.handlePictureCardPreview(res.data.Result)
       });
-      return false;
+      // 
+
     },
     beforeAvatarUpload1 (file) {
       var fileName = new Array();
@@ -361,14 +361,12 @@ export default {
         });
   
       }
-
-       this.handlePictureCardPreview()
       let fd = new FormData();
       fd.append("file", file);
       this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl1 = res.data.Result.url;
-      });
-      return false;
+        // this.handlePictureCardPreview(res.data.Result)
+      });  
     },
     beforeAvatarUpload2 (file) {
       var fileName = new Array();
@@ -393,14 +391,12 @@ export default {
         });
 
       }
-
-      this.handlePictureCardPreview()
       let fd = new FormData();
       fd.append("file", file);
       this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl2 = res.data.Result.url;
+        // this.handlePictureCardPreview(res.data.Result)
       });
-      return false;
     },
 
 
@@ -427,13 +423,13 @@ export default {
         });
  
       }
-      this.handlePictureCardPreview()
+   
       let fd = new FormData();
       fd.append("file", file);
       this.axios.post('FileUpLoad.ashx', fd).then(res => {
         this.zfl3 = res.data.Result.url;
+        console.log(res)
       });
-      return false;
     },
 
 
@@ -446,33 +442,33 @@ export default {
       this.dialogVisible = true;
     },
 
-    newImport (fd) {
-      this.axios.post('FileUpLoad.ashx', fd).then(res => {
-        this.zfl = res.data.Result.url;
-      });
-       return false;
-    },
+    // newImport (fd) {
+    //   this.axios.post('FileUpLoad.ashx', fd).then(res => {
+    //     this.zfl = res.data.Result.url;
+    //   });
+    //    return false;
+    // },
 
-    newImport1 (fd) {
-      this.axios.post('FileUpLoad.ashx', fd).then(res => {
-        this.zfl1 = res.data.Result.url;
-      });
-       return false;
-    },
+    // newImport1 (fd) {
+    //   this.axios.post('FileUpLoad.ashx', fd).then(res => {
+    //     this.zfl1 = res.data.Result.url;
+    //   });
+    //    return false;
+    // },
 
-    newImport2 (fd) {
-      this.axios.post('FileUpLoad.ashx', fd).then(res => {
-        this.zfl2 = res.data.Result.url;
-      });
-       return false;
-    },
+    // newImport2 (fd) {
+    //   this.axios.post('FileUpLoad.ashx', fd).then(res => {
+    //     this.zfl2 = res.data.Result.url;
+    //   });
+    //    return false;
+    // },
 
-    newImport3 (fd) {
-      this.axios.post('FileUpLoad.ashx', fd).then(res => {
-        this.zfl3 = res.data.Result.url;
-      });
-       return false;
-    },
+    // newImport3 (fd) {
+    //   this.axios.post('FileUpLoad.ashx', fd).then(res => {
+    //     this.zfl3 = res.data.Result.url;
+    //   });
+    //    return false;
+    // },
  
     issue () {
       let OrderDetailsII = localStorage.getItem("OrderDetailsII");
@@ -572,7 +568,9 @@ a {
   max-width: 1200px;
   margin: 0 auto;
 }
-
+.All{
+  display: block !important
+}
 .mian {
   width: 100%;
   background: #efefef;

@@ -11,13 +11,13 @@
                v-if="off == 0">
             <div class="send">
               <div class="send_conter">
-                <span class="send_pirce1">{{userOthers || 0}}</span>
+                <span class="send_pirce1">{{list1.Price || 0}}元</span>
                 <span class="send_Total">账户钱包余额（￥）</span>
               </div>
             </div>
             <div class="send">
               <div class="send_conter">
-                <span class="send_pirce">5000.00</span>
+                <span class="send_pirce">{{list1.Earnings || 0}}元</span>
                 <span class="send_Total">分佣钱包余额（￥）</span>
               </div>
             </div>
@@ -126,13 +126,24 @@ export default {
         { text: '4.根据不同的安全认证方式，充值单笔限额和每日限额会不同，具体请咨询银行客服；', id: 3 },
         { text: '5.严禁利用充值功能进行信用卡套现、转账、洗钱等行为；', id: 4 },
         { text: '6.充值期间，请勿关闭浏览器，待充值成功并返回会员中心后，所充资金才能入账，如有疑问请及时联系我们：*************', id: 5 },
-      ]
+      ],
+      list1:[]
     }
   },
   methods: {
     Recharge: function () {
       this.off = 1;
       this.title = '账户充值'
+    },
+    getuser() {
+      let userid = localStorage.getItem("UserId");
+      let postData = this.qs.stringify({
+        action: "withdrawIndex",
+        userid: userid
+      });
+      this.axios.post("GetUserData.ashx", postData).then(res => {
+        this.list1 = res.data.Result;
+      });
     },
     withdrawal: function () {
       this.off = 2;
@@ -148,10 +159,10 @@ export default {
     // 提现
     HandSub: function () {
       var UserId = localStorage.getItem('UserId')
-      var userOthers = parseInt(this.userOthers);
+      var userOthers = parseInt(this.userOthers)
       var HandPirce = parseInt(this.HandPirce);
       if (HandPirce > userOthers) {
-        this.$message.error("提现失败");
+        this.$message.error("可提现金额不足");
         return
       } else {
         console.log(2);
@@ -182,6 +193,7 @@ export default {
     }
   },
   created () {
+    this.getuser();
     var userOthers = localStorage.getItem("userOthers");
     var off = localStorage.getItem("off");
     if (off == 1) {
@@ -189,7 +201,7 @@ export default {
     }
     if (userOthers == 'null') {
       this.userOthers = 0;
-    }
+    } else {this.userOthers=userOthers}
   },
   watch: {
 

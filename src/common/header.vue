@@ -15,7 +15,9 @@
         </div>
         <div class="nav_right" v-if="isshow">
           <div class="notice">
-            <img src="../assets/notice.png" alt />
+            <router-link to="/news">
+            <img src="../assets/notice.png" alt/>
+            </router-link>
             <div>{{sum || 0}}</div>
           </div>
           <div>
@@ -31,7 +33,7 @@
             <div class="xl" v-if="isshow2">
               <div style="padding-bottom: 10px;border-bottom: 1px solid #ccc;width: 100%">
                 <img :src="list1.UserImg" alt style="width: 66px;height: 66px;margin-top: 15px;border-radius: 50%" />
-                <p style="position: absolute;top:34px;left: 90px;line-height: 60px;font-size: 28px;">{{list1.NickName}}</p>
+                <p style="position: absolute;top:34px;left: 90px;line-height: 60px;font-size:20px;">{{list1.NickName}}</p>
               </div>
               <div class="tx">
                 <img src="../assets/ye.png" alt />
@@ -42,14 +44,18 @@
               </div>
               <div class="tx">
                 <img src="../assets/sz.png" alt style="width:21px;height:21px" />
+                <router-link to="/modify">
                 <div style="width:100%;margin-top: 10px;font-size:16px;">账户设置</div>
+                </router-link>
               </div>
               <div class="tx">
                 <img src="../assets/tz.png" alt style="width:18px;height:21px" />
+                <router-link to="/news">
                 <div style="width:100%;margin-top: 10px;font-size:16px;">
                   通知中心
                   <!-- <span style="font-size:16px;">0.00</span> -->
                 </div>
+                </router-link>
               </div>
               <div class="tx">
                 <img src="../assets/tc.png" alt style="width:22px;height:18px" />
@@ -133,6 +139,15 @@ export default {
     
     },
 
+    // sz(){
+    //   this.$router.push({ path: "/modify" })
+    // },
+
+    // tz(){
+    //   this.$router.push("/news")
+    // },
+
+
     doThis() {
       this.$router.push({ path: "/Login" });
     },
@@ -155,7 +170,8 @@ export default {
 
     exit() {
       localStorage.clear();
-    this.$router.push("/")
+      location.reload();
+      this.$router.push({ path: "/" })
     },
 
     // 获取用户信息

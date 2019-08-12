@@ -36,7 +36,8 @@
               </div>
               <div class="Overview_data_right_pirce">{{user.Price || 0}}元</div>
               <div class="Overview_data_right_btn">
-                <div class="Overview_data_right_btn1" @click="Recharge">充值</div>
+                <div class="Overview_data_right_btn1"
+                     @click="Recharge">充值</div>
               </div>
             </div>
           </div>
@@ -49,14 +50,14 @@
                 <span>个</span>
               </div>
             </div>
-            <div class="item">
+            <!-- <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">拥有优惠券数量</div>
               <div class="item_num">
                 4
                 <span>张</span>
               </div>
-            </div>
+            </div> -->
             <div class="item">
               <div class="item_xian"></div>
               <div class="item_z">分佣钱包</div>
@@ -194,7 +195,8 @@ export default {
       user: [],
       item: [],
       textcount: "",
-      APPlength: ""
+      APPlength: "",
+      code: ''
     };
   },
   created () {
@@ -205,14 +207,13 @@ export default {
   },
   methods: {
     // 跳转充值
-    Recharge:function(){
-      localStorage.setItem("off", 1);
-      this.$router.push({ name: "withdrawal" })
+    Recharge: function () {
+      this.$router.push({ name: "withdrawal", params: { off: 1 } })
     },
     // 推荐码
     Recommendation: function () {
       var UserId = localStorage.getItem('UserId');
-      var code = localStorage.getItem('code');
+      this.code = localStorage.getItem('code');
       if (code == this.code) {
         this.$message.error("你已填写过此邀请码");
         return
@@ -557,7 +558,7 @@ body {
 .Overview_item {
   margin: 15px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-left: 15px;
 }
 .Overview_item > .item {

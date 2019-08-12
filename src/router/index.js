@@ -17,7 +17,9 @@ import nothing from "../components/nothing";
 import introduce from "../components/introduce";
 import adhibition from "../components/adhibition";
 import text from "../components/text";
-import zhifubao from "../components/withdrawal/zhifubao"
+import zhifubao from "../components/withdrawal/zhifubao";
+import zhifubaoa from "../components/withdrawal/zhifubaoa";
+import mima from "../components/regis"
 
 Vue.use(Router);
 
@@ -35,6 +37,14 @@ export default new Router({
       path: "/zhifubao",
       name: "zhifubao",
       component: zhifubao,
+      meta: {
+        title: "支付"
+      }
+    },
+    {
+      path: "/zhifubaoa",
+      name: "zhifubaoa",
+      component: zhifubaoa,
       meta: {
         title: "支付"
       }
@@ -96,6 +106,11 @@ export default new Router({
       path: "/payment",
       name: "payment",
       component: payment
+    },
+    {
+      path:"/mima",
+      name:"mima",
+      component:mima
     },
     {
       path: "/news",

@@ -91,9 +91,25 @@ export default {
         return;
       }
 
+      if (input1.length > 8) {
+        this.$message({
+          message: "用户名不能超过8个字符",
+          type: "warning"
+        });
+        return;
+      }
+
       if (input2 == "") {
         this.$message({
           message: "密码不能为空",
+          type: "warning"
+        });
+        return;
+      }
+
+      if (input4 == "") {
+        this.$message({
+          message: "验证码不能为空",
           type: "warning"
         });
         return;
@@ -114,13 +130,15 @@ export default {
         PassWord: input2,
         Code: input4
       });
-      this.axios.post('GetUserData.ashx', params).then(res => {
-        if (res.data.Result !== "") {
-          this.$message({
-            message: "注册成功",
-            type: "success"
-          });
-          setInterval(() => {
+      this.axios.post("GetUserData.ashx", params).then(res => {
+        if (res.data.Result == false) {
+          this.$message.error("验证码不正确");
+          return;
+        } else if (res.Msg !== null) {
+          this.$message.error("该手机号码已组成");
+          return;
+        } else {
+          setTimeout(() => {
             this.$router.push({ path: "/Login" });
           }, 2000);
         }
@@ -169,8 +187,7 @@ export default {
         action: "GetAuthCode",
         Tel: input3
       });
-      var url = "http://192.168.1.188:8035/API/GetCode.ashx";
-      this.axios.post(url, params).then(res => {
+      this.axios.post("GetCode.ashx", params).then(res => {
         if (res.data.Msg == "此账号已被注册") {
           this.$message({
             message: "此账号已被注册",
@@ -206,6 +223,7 @@ ul {
 input {
   outline: none;
   border: none;
+  width: 200px
 }
 
 a {

@@ -59,8 +59,8 @@
                     @click="jsee($event)">更新</span>
               <span class="green"
                     :data-index="index"
-                    @click="det($event)">编辑</span>
-              <span class="yellow">预览</span>
+                    @click="det($event)">预览</span>
+              <!-- <span class="yellow">预览</span> -->
               <span class="red"
                     :data-OrderDetailsId="item.OrderDetailsId"
                     @click="jumpdel($event)">删除</span>
@@ -143,7 +143,7 @@ export default {
         name: val
       });
       this.axios.post("GetUserData.ashx", postData).then(res => {
-        if (res.data.Result == []) {
+        if (res.data.Result.length == 0) {
           this.heide = true;
           this.show = false
         } else {
