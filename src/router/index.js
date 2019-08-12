@@ -21,6 +21,7 @@ import zhifubao from "../components/withdrawal/zhifubao";
 import zhifubaoa from "../components/withdrawal/zhifubaoa";
 import mima from "../components/regis"
 
+
 Vue.use(Router);
 
 export default new Router({

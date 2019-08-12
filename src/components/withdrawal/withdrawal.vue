@@ -133,6 +133,7 @@ export default {
   methods: {
     Recharge: function () {
       this.off = 1;
+      localStorage.setItem("off", 0);
       this.title = '账户充值'
     },
     getuser() {
@@ -165,7 +166,6 @@ export default {
         this.$message.error("可提现金额不足");
         return
       } else {
-        console.log(2);
         let params = this.qs.stringify({
           action: "withdrawSave",
           userid: UserId,
@@ -195,9 +195,11 @@ export default {
   created () {
     this.getuser();
     var userOthers = localStorage.getItem("userOthers");
-    var off = localStorage.getItem("off");
+    var off = this.$route.params.off;
     if (off == 1) {
       this.off = 1;
+    } else {
+      this.off = 0;
     }
     if (userOthers == 'null') {
       this.userOthers = 0;
